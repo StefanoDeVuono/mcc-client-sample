@@ -1,0 +1,399 @@
+h2 {
+  font: bold 18px helvetica, Arial, sans-serif; }
+
+h3 {
+  font: 22px helvetica, Arial, sans-serif;
+  color: #41728e; }
+
+.clear {
+  clear: both; }
+
+html, body {
+  background: #dadde0;
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif; }
+
+#page {
+  position: relative;
+  width: 960px;
+  margin: 0 auto;
+  background: white;
+  border-top: 7px #689ebf solid;
+  border-left: 1px #a4a4a4 solid;
+  border-right: 1px #a4a4a4 solid;
+  box-shadow: 0 2px 2px 2px #a4a4a4; }
+
+#sectionA, #sectionB, #sectionC, #sectionD, #sectionE {
+  width: 835px;
+  float: right; }
+
+.clear {
+  clear: both; }
+
+#sectionA header {
+  height: 37px;
+  width: 100%;
+  background: #d5e9f3;
+  box-shadow: 0 2px 2px #d5e9f3;
+  font-size: 12px; }
+  #sectionA header a {
+    display: block; }
+  #sectionA header #reload {
+    height: 16px;
+    width: 16px;
+    background: url(./images/reload.svg) no-repeat;
+    background-size: contain;
+    float: left;
+    margin: 9px 5px 11px 11px; }
+  #sectionA header .pause {
+    height: 16px;
+    width: 16px;
+    background: url(./images/pause.svg) no-repeat;
+    background-size: contain;
+    float: left;
+    margin: 9px 5px 11px 11px; }
+  #sectionA header #date {
+    float: right;
+    width: 142px;
+    height: 39px;
+    border-left: 1px white solid;
+    line-height: 37px;
+    text-align: center; }
+  #sectionA header #options {
+    float: right;
+    width: 68px;
+    height: 39px;
+    border-left: 1px white solid;
+    line-height: 37px;
+    text-align: center; }
+  #sectionA header #settings {
+    float: right;
+    width: 94px;
+    height: 39px;
+    border-left: 1px white solid;
+    line-height: 37px;
+    text-align: center; }
+
+#sectionA .text {
+  color: #8f8f8f;
+  font: 9px helvetica, Arial, sans-serif; }
+#sectionA .col0 {
+  margin: 24px 40px auto 36px;
+  width: 67px;
+  float: left; }
+  #sectionA .col0 .number {
+    font: 78px helvetica, Arial, sans-serif;
+    text-align: center; }
+
+#sectionATable {
+  margin: 19px 0;
+  float: left;
+  width: 664px; }
+  #sectionATable .number {
+    font: 28px helvetica, Arial, sans-serif; }
+  #sectionATable .row1 {
+    border-bottom: 1px solid #a4a4a4; }
+  #sectionATable .col1 {
+    width: 81px;
+    padding-right: 46px;
+    border-right: 1px solid #a4a4a4;
+    float: left;
+    height: 54px;
+    text-align: center; }
+  #sectionATable .col2 {
+    width: 169px;
+    border-right: 1px solid #a4a4a4;
+    float: left;
+    height: 54px;
+    text-align: center; }
+  #sectionATable .col3 {
+    width: 180px;
+    border-right: 1px solid #a4a4a4;
+    float: left;
+    height: 54px;
+    text-align: center; }
+  #sectionATable .col4 {
+    width: 183px;
+    float: left;
+    height: 54px;
+    text-align: center; }
+  #sectionATable .row2 .text {
+    padding-top: 12px; }
+
+#sectionB {
+  height: 55px;
+  background: #c32232;
+  color: white;
+  position: relative;
+  font: 14px helvetica, Arial, sans-serif; }
+  #sectionB #alertLogo {
+    float: left;
+    margin: 16px 16px 16px 8px;
+    height: 21px;
+    width: 21px;
+    background: url(./images/alertLogo.svg) no-repeat;
+    background-size: contain; }
+  #sectionB #noOfAlerts {
+    float: left;
+    line-height: 55px;
+    margin-right: 234px; }
+  #sectionB label {
+    float: left;
+    line-height: 55px;
+    margin-right: 13px; }
+  #sectionB #alertSettings1 {
+    margin: 12px 8px auto auto;
+    height: 31px;
+    width: 146px;
+    float: left; }
+  #sectionB #alertSettings2 {
+    margin: 12px 8px auto auto;
+    height: 31px;
+    width: 146px;
+    float: left; }
+  #sectionB #onOff {
+    margin: 12px auto auto auto;
+    width: 67px;
+    height: 31px; }
+  #sectionB .close {
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    background: url(./images/closewht.svg) no-repeat;
+    background-size: contain;
+    top: 10px;
+    right: 12px; }
+
+#sectionC {
+  position: relative;
+  border-bottom: 1px solid #a4a4a4; }
+  #sectionC .col0 {
+    margin: 15px 19px 16px 30px;
+    width: 98px;
+    float: left; }
+    #sectionC .col0 nav {
+      border-right: 1px #a4a4a4 solid; }
+    #sectionC .col0 button {
+      width: 73px;
+      height: 27px;
+      margin-top: 7px; }
+      #sectionC .col0 button:first-child {
+        margin-top: 0; }
+  #sectionC #upperRight {
+    width: 320px;
+    height: 31px;
+    position: absolute;
+    top: 0;
+    right: 0; }
+    #sectionC #upperRight button {
+      float: left;
+      height: 31px;
+      margin: 0; }
+      #sectionC #upperRight button:nth-child(1) {
+        width: 36px; }
+      #sectionC #upperRight button:nth-child(2) {
+        width: 43px; }
+      #sectionC #upperRight button:nth-child(3) {
+        width: 38px; }
+      #sectionC #upperRight button:nth-child(4) {
+        width: 34px; }
+      #sectionC #upperRight button:nth-child(5) {
+        width: 47px; }
+      #sectionC #upperRight button:nth-child(6) {
+        width: 42px; }
+      #sectionC #upperRight button:nth-child(6) {
+        width: 44px; }
+    #sectionC #upperRight .close {
+      float: left;
+      margin: 10px auto auto 15px;
+      display: block;
+      height: 10px;
+      width: 10px;
+      background: url(./images/closeblk.svg) no-repeat;
+      background-size: contain; }
+
+#sectionD {
+  position: relative;
+  border-bottom: 1px solid #a4a4a4;
+  min-height: 195px; }
+  #sectionD header {
+    margin: 21px auto 17px 28px;
+    float: left;
+    width: 666px; }
+    #sectionD header h2 {
+      float: left;
+      margin: 0; }
+    #sectionD header button {
+      margin: 5px 8px 0 17px;
+      height: 15px;
+      width: 15px;
+      background-image: url(./images/minipause.svg), url(./images/gradient.svg);
+      background-position: center center, -5px -5px;
+      background-repeat: no-repeat, repeat-x;
+      background-size: 90%, auto 150%;
+      border-radius: 4px;
+      border: 2px outset rgba(0, 0, 0, 0);
+      float: left; }
+    #sectionD header label {
+      float: left; }
+  #sectionD #callsWaitingTable {
+    width: 666px;
+    margin: 20px auto auto 19px; }
+    #sectionD #callsWaitingTable .col1, #sectionD #callsWaitingTable .col2, #sectionD #callsWaitingTable .col3, #sectionD #callsWaitingTable .col4, #sectionD #callsWaitingTable .col5 {
+      width: 20%;
+      float: left;
+      margin: 0; }
+    #sectionD #callsWaitingTable button.col1, #sectionD #callsWaitingTable button.col2, #sectionD #callsWaitingTable button.col3, #sectionD #callsWaitingTable button.col4, #sectionD #callsWaitingTable button.col5 {
+      height: 28px; }
+    #sectionD #callsWaitingTable div.col1, #sectionD #callsWaitingTable div.col2, #sectionD #callsWaitingTable div.col3, #sectionD #callsWaitingTable div.col4, #sectionD #callsWaitingTable div.col5 {
+      height: 43px;
+      box-sizing: border-box;
+      border: 1px solid #a4a4a4; }
+  #sectionD #closeSectionD {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    background: url(./images/closeblk.svg) no-repeat;
+    background-size: contain; }
+  #sectionD nav {
+    font-size: 11px;
+    width: 86px;
+    float: right;
+    margin-top: 24px;
+    right: 0; }
+    #sectionD nav .options {
+      border-top: 1px solid #a4a4a4; }
+
+#sectionE {
+  position: relative; }
+  #sectionE header {
+    margin: 21px auto 17px 28px;
+    width: 666px;
+    float: left; }
+    #sectionE header h2 {
+      margin: 0; }
+  #sectionE #activeResourcesTable {
+    float: left;
+    width: 716px;
+    margin: auto auto auto 19px; }
+    #sectionE #activeResourcesTable .col1, #sectionE #activeResourcesTable .col2, #sectionE #activeResourcesTable .col3, #sectionE #activeResourcesTable .col4, #sectionE #activeResourcesTable .col5, #sectionE #activeResourcesTable .col6, #sectionE #activeResourcesTable .col7 {
+      width: 95.142857px;
+      float: left;
+      margin: 0; }
+    #sectionE #activeResourcesTable button.col1, #sectionE #activeResourcesTable button.col2, #sectionE #activeResourcesTable button.col3, #sectionE #activeResourcesTable button.col4, #sectionE #activeResourcesTable button.col5, #sectionE #activeResourcesTable button.col6, #sectionE #activeResourcesTable button.col7 {
+      height: 28px; }
+    #sectionE #activeResourcesTable div.col1, #sectionE #activeResourcesTable div.col2, #sectionE #activeResourcesTable div.col3, #sectionE #activeResourcesTable div.col4, #sectionE #activeResourcesTable div.col5, #sectionE #activeResourcesTable div.col6, #sectionE #activeResourcesTable div.col7 {
+      height: 43px;
+      box-sizing: border-box;
+      border: 1px solid #a4a4a4; }
+    #sectionE #activeResourcesTable div.col8 {
+      margin: 0;
+      float: left;
+      height: 43px;
+      width: 50px; }
+    #sectionE #activeResourcesTable #listen, #sectionE #activeResourcesTable #speak, #sectionE #activeResourcesTable #shout {
+      display: block;
+      float: left;
+      height: 19px;
+      margin-top: 9px; }
+    #sectionE #activeResourcesTable #listen {
+      width: 17px;
+      background: url(./images/micro.jpg) 0px center no-repeat; }
+    #sectionE #activeResourcesTable #speak {
+      width: 17px;
+      background: url(./images/micro.jpg) -17px center no-repeat; }
+    #sectionE #activeResourcesTable #shout {
+      width: 16px;
+      background: url(./images/micro.jpg) -36px center no-repeat; }
+  #sectionE nav {
+    font-size: 11px;
+    width: 86px;
+    float: right;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    right: 0; }
+    #sectionE nav .options {
+      border-top: 1px solid #a4a4a4; }
+  #sectionE #closeSectionE {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    background: url(./images/closeblk.svg) no-repeat;
+    background-size: contain; }
+
+.thing input[type="checkbox"] {
+  background: url(./images/radio-uncheck.png);
+  -webkit-appearance: radio;
+  -moz-appearance: radio;
+  appearance: radio; }
+.thing:checked {
+  background: url(./images/radio-check.png);
+  -webkit-appearance: radio;
+  -moz-appearance: radio;
+  appearance: radio; }
+
+#sectionF {
+  float: left;
+  width: 125px;
+  box-sizing: border-box;
+  border-right: 1px solid grey; }
+  #sectionF #logo {
+    height: 57px;
+    background: url(./images/logo.png);
+    border-top: 1px solid #cccccc;
+    border-right: 1px solid #a4a4a4;
+    border-bottom: 1px solid #a4a4a4;
+    border-left: 1px solid #cccccc; }
+  #sectionF .sides {
+    font: 500 12px helvetica, Arial, sans-serif;
+    color: #8f8f8f;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 22px 6px 21px 6px;
+    border-top: 1px solid #cccccc;
+    border-right: 1px solid #a4a4a4;
+    border-bottom: 1px solid #a4a4a4;
+    border-left: 1px solid #cccccc;
+    background: url(./images/gradient.svg) no-repeat;
+    background-size: auto 100%; }
+    #sectionF .sides h2, #sectionF .sides h3, #sectionF .sides h4 {
+      margin: 0; }
+    #sectionF .sides h2 {
+      color: #5ebf1e;
+      font-size: 25px;
+      margin-top: 20px;
+      margin-bottom: 22px; }
+    #sectionF .sides h2 .pct {
+      font: 700 12px/20px helvetica, Arial, sans-serif;
+      line-height: 20px;
+      vertical-align: top; }
+    #sectionF .sides h3 {
+      margin-top: 14px; }
+    #sectionF .sides h4 {
+      font: normal 12px helvetica, Arial, sans-serif; }
+    #sectionF .sides h4#dropped {
+      color: #c32232; }
+    #sectionF .sides h4#answered {
+      color: #5ebf1e; }
+
+.sort {
+  display: block;
+  height: 14px;
+  width: 9px;
+  float: left;
+  background: url(./images/arrows.svg) no-repeat;
+  background-size: contain; }
+
+button a.close {
+  display: block;
+  height: 9px;
+  width: 9px;
+  float: right;
+  background: url(./images/closeblk.svg) no-repeat;
+  background-size: contain; }
