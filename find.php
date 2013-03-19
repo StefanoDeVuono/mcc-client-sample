@@ -124,59 +124,6 @@ $stmt = "select sum(agents_average_onemin * agent_calls_today) from vicidial_cam
 $stmt = "select sum(agent_calls_today) from vicidial_campaign_stats where calls_today > 10"
 $num / $den
 
-/*
-$PHP_AUTH_USER' and pass='$PHP_AUTH_PW
-*/
-// $PHP_AUTH_USER=$_SERVER['PHP_AUTH_USER'];
-// $PHP_AUTH_PW=$_SERVER['PHP_AUTH_PW'];
-// // eg 1101 / BigBuzz
-
-// /*
-// $LOGuser_group
-// */
-// $stmt="SELECT user_group from vicidial_users where user='$PHP_AUTH_USER' and pass='$PHP_AUTH_PW';";
-// // eg ADMIN
-
-
-// $LOGallowed_campaigns
-
-// $stmt="SELECT allowed_campaigns from vicidial_user_groups where user_group='$LOGuser_group';";
-// $rslt=mysql_query($stmt, $link);
-// $row=mysql_fetch_row($rslt);
-// // eg  '-ALL-CAMPAIGNS- DemoRCS Omni SMADemo test Training VTigerD -'
-
-// /*
-// $types
-// */
-// if (isset($_GET["types"]))				{$types=$_GET["types"];}
-// 	elseif (isset($_POST["types"]))		{$types=$_POST["types"];}
-// 	if (!isset($types))			{$types='SHOW ALL CAMPAIGNS';}
-
-/*
-$campaign_typeSQL 
-*/
-// $campaign_typeSQL='';
-// if ($types == 'AUTO-DIAL ONLY')			{$campaign_typeSQL="and dial_method IN('RATIO','ADAPT_HARD_LIMIT','ADAPT_TAPERED','ADAPT_AVERAGE')";} 
-// if ($types == 'MANUAL ONLY')			{$campaign_typeSQL="and dial_method IN('MANUAL','INBOUND_MAN')";} 
-// if ($types == 'INBOUND ONLY')			{$campaign_typeSQL="and campaign_allow_inbound='Y'";} 
-
-
-/* 
-$groups
-*/
-// $stmt="select campaign_id from vicidial_campaigns where active='Y' $LOGallowed_campaignsSQL $campaign_typeSQL order by campaign_id;";
-// $rslt=mysql_query($stmt, $link);
-// if (!isset($DB))   {$DB=0;}
-// if ($DB) {$MAIN.="$stmt\n";}
-// $groups_to_print = mysql_num_rows($rslt);
-// $i=0;
-// while ($i < $groups_to_print)
-// 	{
-// 	$row=mysql_fetch_row($rslt);
-// 	$groups[$i] =$row[0];
-// 	$i++;
-// 	}
-
 
 
 // dialable leads
