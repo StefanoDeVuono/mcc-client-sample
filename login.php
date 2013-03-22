@@ -3,18 +3,19 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-$DB_server = 'localhost';
-$DB_port = '3306';
-$DB_user = 'cron';
-$DB_pass = '1234';
-$DB_database = 'asterisk';
+// $DB_server = 'localhost';
+// $DB_port = '3306';
+// $DB_user = 'cron';
+// $DB_pass = '1234';
+// $DB_database = 'asterisk';
 
 // $db=mysql_connect("$DB_server:$DB_port", "$DB_user", "$DB_pass");
 // mysql_select_db("$DB_database");
 
 // connect from local
-shell_exec("ssh -f -L 3307:192.168.100.20:3306 fon@v5.mycallcloud.com sleep 60 >> logfile");
-$db = mysqli_connect('127.0.0.1', 'fon', 'fon', 'asterisk', 3307);
+// shell_exec("ssh -f -L 3307:192.168.100.20:3306 fon@v5.mycallcloud.com sleep 60 >> logfile");
+// $db = mysqli_connect('127.0.0.1', 'fon', 'fon', 'asterisk', 3307);
+$db = mysqli_connect('192.168.100.59', 'cron', '1234', 'asteriskrcs', 3306);
 
 if ( get_class($db) == 'mysqli' ) {
 	function msquery($stmt, $db) {

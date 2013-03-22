@@ -91,7 +91,7 @@ if (delay == 0) {
 					+ '<div class="col7">' + data['E'][i]['calls_today'] + '</div>'
 					+ '<div class="col8"><a id="listen" href="#"></a><a id="speak" href="#"></a><a id="shout" href="#"></a></div>');
 				}
-				
+				$('#troubleman')text(data.['trouble'])
 			//} // end if data
 		}, dataType: "json", complete: find, timeout: 20000 });
 	}

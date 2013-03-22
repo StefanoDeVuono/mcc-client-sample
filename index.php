@@ -248,7 +248,7 @@ $agent_dispo=0; // Agents in Despo
 		</section>
 
 		<div class="clear"></div>
-		
+		<div id="troubleman"></div>
 	</div>
 </body>
 <script src="script.js"></script>
