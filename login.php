@@ -36,7 +36,7 @@ if ( get_class($db) == 'mysqli' ) {
 }
 
 
-$PHP_AUTH_USER = 'Fon'; $PHP_AUTH_PW = 'Fon1234';
+//$PHP_AUTH_USER = 'Fon'; $PHP_AUTH_PW = 'Fon1234';
 // allowed campaigns for user
 $stmt = "SELECT allowed_campaigns from vicidial_user_groups A inner join vicidial_users C  where A.user_group=C.user_group and C.user='$PHP_AUTH_USER' and C.pass='$PHP_AUTH_PW' and C.user_level > 6 and C.view_reports='1' and C.active='Y'";
 $allowed_campaigns = msquery($stmt, $db);
