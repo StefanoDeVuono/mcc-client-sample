@@ -1,7 +1,7 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 
 // $DB_server = 'localhost';
 // $DB_port = '3306';
@@ -17,7 +17,7 @@ ini_set('display_errors', '1');
 // $db = mysqli_connect('127.0.0.1', 'fon', 'fon', 'asterisk', 3307);
 $db = mysqli_connect('192.168.100.59', 'cron', '1234', 'asteriskrcs', 3306);
 
-if ( get_class($db) == 'mysqli' ) {
+// if ( get_class($db) == 'mysqli' ) {
 	function msquery($stmt, $db) {
 		$rslt = mysqli_query($db, $stmt);
 		if ($rslt) { 
@@ -25,18 +25,18 @@ if ( get_class($db) == 'mysqli' ) {
 			return $array[0];
 		}
 	} 
-} else {
-	function msquery($stmt, $db) {
-		$rslt = mysql_query($stmt, $db);
-		if ($rslt) { 
-			$array = mysql_fetch_row($rslt);
-			return $array[0];
-		}
-	}
-}
+// } else {
+// 	function msquery($stmt, $db) {
+// 		$rslt = mysql_query($stmt, $db);
+// 		if ($rslt) { 
+// 			$array = mysql_fetch_row($rslt);
+// 			return $array[0];
+// 		}
+// 	}
+// }
 
 
-//$PHP_AUTH_USER = 'Fon'; $PHP_AUTH_PW = 'Fon1234';
+$PHP_AUTH_USER = '6666'; $PHP_AUTH_PW = 'rscpro';
 // allowed campaigns for user
 $stmt = "SELECT allowed_campaigns from vicidial_user_groups A inner join vicidial_users C  where A.user_group=C.user_group and C.user='$PHP_AUTH_USER' and C.pass='$PHP_AUTH_PW' and C.user_level > 6 and C.view_reports='1' and C.active='Y'";
 $allowed_campaigns = msquery($stmt, $db);
@@ -50,6 +50,9 @@ $alowed_reports = msquery($stmt, $db);
 // echo 'alowed_reports is '.$alowed_reports.'<br>';
 
 
+
+
+
 // if not all campaigns are allowed, make a custom SQL string
 $LOGallowed_campaignsSQL='';
 $whereLOGallowed_campaignsSQL='';
@@ -60,11 +63,13 @@ if ( !(preg_match("/(?i)-ALL/",$allowed_campaigns)) ) {
 	// echo '<br>whereLOGallowed_campaignsSQL is<br>'.$whereLOGallowed_campaignsSQL.'<br><br><br>';
 }
 
+
+
 // info for calls waiting
 $stmt = "select closer_campaigns from vicidial_campaigns where active='Y' $LOGallowed_campaignsSQL;";
 $rslt=mysqli_query($db, $stmt);
 $arrayT = mysqli_fetch_array($rslt);
 $closer_campaignsSQL = preg_replace("/[\s]+/", "', '", $arrayT[0]);
 $closer_campaignsSQL = "'".$closer_campaignsSQL."'";
-
+//echo "this is closer<br>".$closer_campaignsSQL."<br><br><br>";
 ?>

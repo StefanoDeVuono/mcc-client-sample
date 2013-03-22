@@ -69,12 +69,13 @@ if ($arrayA['DISPO'] == null ) {
 }
 
 // tableC
-$stmt = "select count(*) from vicidial_carrier_log;";
+ $timeTHREEhoursAGO = date("Y-m-d H:i:s", date("U") - 10800);
+
+$stmt = "select count(*) from vicidial_carrier_log where call_date >= \"timeTHREEhoursAGO\";";
 $totalStat = msquery($stmt, $db);
 
 $i=0;
-// $timeTWENTYFOURhoursAGO = date("Y-m-d H:i:s", date("U") - 86400);
-$stmt = "SELECT dialstatus,COUNT(*) as count FROM vicidial_carrier_log GROUP BY dialstatus";
+$stmt = "SELECT dialstatus,COUNT(*) as count FROM vicidial_carrier_log where call_date >= \"timeTHREEhoursAGO\" GROUP BY dialstatus";
 $rslt=mysqli_query($db, $stmt);
 while ($row = mysqli_fetch_assoc($rslt)) {
  	$arrayC[$row['dialstatus']] = number_format(100 * $row['count'] / $totalStat, 2);
@@ -113,8 +114,8 @@ echo ', "D":';
 echo json_encode($arrayD);
 echo ', "E":';
 echo json_encode($arrayE);
-echo ', "trouble":';
-echo '"'.$LOGallowed_campaignsSQL.'     '.$PHP_AUTH_USER.'     '.$PHP_AUTH_PW.'     '.$allowed_campaigns.'     '.$alowed_reports.'"';
+//echo ', "trouble":';
+//echo '"'.$LOGallowed_campaignsSQL.'     '.$PHP_AUTH_USER.'     '.$PHP_AUTH_PW.'     '.$allowed_campaigns.'     '.$allowed_reports.'"';
 echo '}';
 
 ?>

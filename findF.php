@@ -42,11 +42,11 @@ $arrayF['AGENT_AVG_WAIT'] = number_format(msquery($stmt, $db) / $arrayF['AGENT_C
 // avg talk time
 // $agent_custtalk_today / $agent_calls_today
 // $agent_custtalk_today;
-$stmt = "select sum(agent_custtalk_today) from vicidial_campaign_stats where calls_today > 10;";
+$stmt = "select sum(agent_custtalk_today) from vicidial_campaign_stats where calls_today > 10 $LOGallowed_campaignsSQL;";
 $arrayF['AVG_TALK_TIME'] = number_format(msquery($stmt, $db) / $arrayF['AGENT_CALLS_TODAY']);
 
 // total calls today
-$stmt = "select sum(calls_today) from vicidial_campaign_stats where calls_today > 500;";
+$stmt = "select sum(calls_today) from vicidial_campaign_stats where calls_today > 500 $LOGallowed_campaignsSQL;";
 $arrayF['TOTAL_CALLS_TODAY'] = msquery($stmt, $db);
 
 // avg wrap
@@ -57,7 +57,7 @@ $arrayF['AVG_WRAP'] = msquery($stmt, $db);
 // avg pause
 // $agent_pause_today / $agent_calls_today
 // $agent_pause_today
-$stmt = "select sum(agent_pause_today) from vicidial_campaign_stats where calls_today > 10;";
+$stmt = "select sum(agent_pause_today) from vicidial_campaign_stats where calls_today > 10 $LOGallowed_campaignsSQL;";
 $arrayF['AVG_PAUSE'] = number_format(msquery($stmt, $db) / $arrayF['AGENT_CALLS_TODAY']);
 
 // avg agents
