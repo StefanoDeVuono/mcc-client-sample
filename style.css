@@ -8,6 +8,9 @@ h3 {
 .clear {
   clear: both; }
 
+.row div {
+  font: 10px helvetica, Arial, sans-serif; }
+
 html, body {
   background: #dadde0;
   margin: 0;
@@ -77,10 +80,10 @@ html, body {
 
 #sectionA .text {
   color: #8f8f8f;
-  font: 9px helvetica, Arial, sans-serif; }
+  font: 10px helvetica, Arial, sans-serif; }
 #sectionA .col0 {
-  margin: 24px 40px auto 36px;
-  width: 67px;
+  margin: 24px 36px auto 32px;
+  width: 75px;
   float: left; }
   #sectionA .col0 .number {
     font: 78px helvetica, Arial, sans-serif;
@@ -95,8 +98,8 @@ html, body {
   #sectionATable .row1 {
     border-bottom: 1px solid #a4a4a4; }
   #sectionATable .col1 {
-    width: 81px;
-    padding-right: 46px;
+    width: 97px;
+    padding-right: 30px;
     border-right: 1px solid #a4a4a4;
     float: left;
     height: 54px;
@@ -180,6 +183,20 @@ html, body {
       margin-top: 7px; }
       #sectionC .col0 button:first-child {
         margin-top: 0; }
+  #sectionC .col1, #sectionC .col2, #sectionC .col3, #sectionC .col4 {
+    width: 169px;
+    float: left;
+    margin-top: 40px;
+    padding: 37px 0;
+    text-align: center;
+    font: normal 12px helvetica, Arial, sans-serif; }
+    #sectionC .col1 .number, #sectionC .col2 .number, #sectionC .col3 .number, #sectionC .col4 .number {
+      font: bold 22px helvetica, Arial, sans-serif;
+      margin-bottom: 38px;
+      padding-left: 10px; }
+    #sectionC .col1 .pct, #sectionC .col2 .pct, #sectionC .col3 .pct, #sectionC .col4 .pct {
+      font: normal 12px/18px helvetica, Arial, sans-serif;
+      vertical-align: top; }
   #sectionC #upperRight {
     width: 320px;
     height: 31px;
@@ -216,7 +233,8 @@ html, body {
 #sectionD {
   position: relative;
   border-bottom: 1px solid #a4a4a4;
-  min-height: 195px; }
+  min-height: 195px;
+  padding-bottom: 65px; }
   #sectionD header {
     margin: 21px auto 17px 28px;
     float: left;
@@ -268,7 +286,8 @@ html, body {
       border-top: 1px solid #a4a4a4; }
 
 #sectionE {
-  position: relative; }
+  position: relative;
+  padding-bottom: 65px; }
   #sectionE header {
     margin: 21px auto 17px 28px;
     width: 666px;
@@ -288,6 +307,8 @@ html, body {
     #sectionE #activeResourcesTable div.col1, #sectionE #activeResourcesTable div.col2, #sectionE #activeResourcesTable div.col3, #sectionE #activeResourcesTable div.col4, #sectionE #activeResourcesTable div.col5, #sectionE #activeResourcesTable div.col6, #sectionE #activeResourcesTable div.col7 {
       height: 43px;
       box-sizing: border-box;
+      text-align: center;
+      padding: 7px 5px;
       border: 1px solid #a4a4a4; }
     #sectionE #activeResourcesTable div.col8 {
       margin: 0;
@@ -338,9 +359,13 @@ html, body {
   appearance: radio; }
 
 #sectionF {
-  float: left;
-  width: 125px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 835px;
+  bottom: 0;
   box-sizing: border-box;
+  padding-bottom: 65px;
   border-right: 1px solid grey; }
   #sectionF #logo {
     height: 57px;
