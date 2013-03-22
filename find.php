@@ -114,7 +114,7 @@ echo json_encode($arrayD);
 echo ', "E":';
 echo json_encode($arrayE);
 echo ', "trouble":';
-echo '"'.$LOGallowed_campaignsSQL.'"';
+echo '"'.$LOGallowed_campaignsSQL.'     '.$PHP_AUTH_USER.'     '.$PHP_AUTH_PW.'     '.$allowed_campaigns.'     '.$alowed_reports'"'
 echo '}';
 
 ?>
