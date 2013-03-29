@@ -1,13 +1,11 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+// error_reporting(E_ALL);
+// ini_set('display_errors', '1');
 
 session_start();
 
 header ("Content-type: text/html; charset=utf-8");
-
-$NOW_TIME = date("n/j/Y g:i:s A");
 
 $agent_ready=0; // Agents Waiting
 $agent_total=0; // Agents Logged In
@@ -20,7 +18,7 @@ $agent_paused=0; // Paused Agents
 $agent_dispo=0; // Agents in Despo
 
 //MySQL Database Connect
-
+include('login.php');
 
 ?>
 
@@ -36,56 +34,64 @@ $agent_dispo=0; // Agents in Despo
 </head>
 <body>
 	<?php //echo session_id(); ?>
+	<div id="background">
+		<div></div>
+	</div>
 	<div id="page">
 
 		<section id="sectionF">
 			<div id="logo"></div>
 			<div class="sides" id="dropped">
-				<a class="close" id="closeDropped"></a>
+				<a href="#" class="close" id="closeDropped"></a>
 				Dropped %
 				<h2><span class="pct">%</span></h2>
 				<h4 id="dropped_no">Dropped - <span></span></h4>
 				<h4 id="answered">Answered - <span></span></h4>
 			</div>
 			<div class="sides" id="agentAvgWait">
-				<a class="close" id="closeAgentAvgWait"></a>
+				<a href="#" class="close" id="closeAgentAvgWait"></a>
 				Agent Avg Wait
 				<h3></h3>
 			</div>
 			<div class="sides" id="avgTalkTime">
-				<a class="close" id="closeAvgTalkTime"></a>
+				<a href="#" class="close" id="closeAvgTalkTime"></a>
 				Avg Talk Time
 				<h3></h3>
 			</div>
 			<div class="sides" id="callsToday">
-				<a class="close" id="closeCallsToday"></a>
+				<a href="#" class="close" id="closeCallsToday"></a>
 				Calls Today
 				<h3></h3>
 			</div>
 			<div class="sides" id="avgWrap">
-				<a class="close" id="closeAvgWarp"></a>
+				<a href="#" class="close" id="closeAvgWarp"></a>
 				Avg Wrap
 				<h3></h3>
 			</div>
 			<div class="sides" id="avgPause">
-				<a class="close" id="closeAvgPause"></a>
+				<a href="#" class="close" id="closeAvgPause"></a>
 				Avg Pause
 				<h3></h3>
 			</div>
 			<div class="sides" id="avgAgents">
-				<a class="close" id="closeAvgAgents"></a>
+				<a href="#" class="close" id="closeAvgAgents"></a>
 				Avg Agents
 				<h3></h3>
 			</div>
 			<div class="sides" id="dialableLeeds">
-				<a class="close" id="closeDialableLeeds"></a>
+				<a href="#" class="close" id="closeDialableLeeds"></a>
 				Dialable Leeds
 				<h3></h3>
 			</div>
 			<div class="sides" id="dialMethod">
-				<a class="close" id="closeDialMethod"></a>
+				<a href="#" class="close" id="closeDialMethod"></a>
 				Dial Method
 				<h3></h3>
+			</div>
+			<div class="sides" id="reports">
+				<a href="#" class="close" id="closeReports"></a>
+				View
+				<h3>Reports</h3>
 			</div>
 			<div class="clear"></div>
 		</section>
@@ -95,7 +101,7 @@ $agent_dispo=0; // Agents in Despo
 			<header>
 				<a id="reload" href="#"></a>
 				<a class="pause" href="#"></a>
-				<div id="date"><?php echo $NOW_TIME; ?></div>
+				<div id="date"></div>
 				<a id="options">Options</a>
 				<a id="settings">User Settings</a>
 			</header>		
@@ -137,115 +143,125 @@ $agent_dispo=0; // Agents in Despo
 					<div class="number"></div>
 				</div>
 				<div id="agent_dispo" class="col4 row2">
-					<div class="text">Agents in Despo</div>
+					<div class="text">Agents in Dispo</div>
 					<div class="number"></div>
 				</div>
 			</div><!-- end sectionATable -->
 		</section>
 
+
 		<section id="sectionB">
-			<div id="alertLogo"></div>
-			<div id="noOfAlerts">3 Alerts</div>
-			<label>Alert Settings</label>
-			<button id="alertSettings1">Select option</button>
-			<button id="alertSettings2">Select option</button>
-			<button id="onOff">ON</button>
+			<div class="closable">
+				<div id="alertLogo"></div>
+				<div id="noOfAlerts">3 Alerts</div>
+				<label>Alert Settings</label>
+				<button id="alertSettings1">Select option</button>
+				<button id="alertSettings2">Select option</button>
+				<button id="onOff">ON</button>
+			</div>
 			<a class="close" href="#"></a>
-		</section>
+		</section><!-- end sectionB -->
 
 		<section id="sectionC">
-			<div class="col0">
-				<div><h2>Stats</h2></div>
-				<nav>
-					<button>Campaigns</button>
-					<button>Carrier</button>
-					<button>Ingroup</button>
-					<button>Agent</butto>
-				</nav>
+			<header><h2>Stats</h2></header>
+			<div class="closable">
+				<div class="col0">
+					
+					<nav>
+						<div class="button">Campaigns</div>
+						<div class="button">Carrier</div>
+						<div class="button">Ingroup</div>
+						<div class="button">Agent</div>
+					</nav>
+				</div>
+				<div id="answer" class="col1"><div class="number"><span class="pct">%</span></div>Answer</div>
+				<div id="busy" class="col2"><div class="number"><span class="pct">%</span></div>Busy</div>
+				<div id="cancel" class="col3"><div class="number"><span class="pct">%</span></div>Cancel</div>
+				<div id="congestion" class="col4"><div class="number"><span class="pct">%</span></div>Congestion</div>
+				<div id="upperRight">
+					<button>All</button>
+					<button>24hrs</button>
+					<button>6hrs</button>
+					<button>1hr</button>
+					<button>15min</button>
+					<button>5min</button>
+					<button>1min</button>
+					
+				</div>
 			</div>
-			<div id="answer" class="col1"><div class="number"><span class="pct">%</span></div>Answer</div>
-			<div id="busy" class="col2"><div class="number"><span class="pct">%</span></div>Busy</div>
-			<div id="cancel" class="col3"><div class="number"><span class="pct">%</span></div>Cancel</div>
-			<div id="congestion" class="col4"><div class="number"><span class="pct">%</span></div>Congestion</div>
-			<div id="upperRight">
-				<button>All</button>
-				<button>24hrs</button>
-				<button>6hrs</button>
-				<button>1hr</button>
-				<button>15min</button>
-				<button>5min</button>
-				<button>1min</button>
-				<a class="close" href="#"></a>
-			</div>
-		</section>
+			<a class="close" href="#"></a>
+		</section><!-- end sectionC -->
 
 		<section id="sectionD">
-			<a class="close" id="closeSectionD"></a>
+			<a class="close" id="closeSectionD" href="#"></a>
 			<header>
 				<h2>Calls Waiting</h2>
-				<button class="pause"></button>
-				<label>Pause Calls</label>
-				<div class="clear"></div>
 			</header>
-			<nav>
-				<button>View</button>
-				<form class="options">
-					<div class="thing"><input type="checkbox" class="all">All</div>
-					<div class="thing"><input type="checkbox" class="campaign">Campaign</div>
-					<div class="thing"><input type="checkbox" class="phone">Phone</div>
-					<div class="thing"><input type="checkbox" class="time">Time</div>
-					<div class="thing"><input type="checkbox" class="callType">Call Type</div>
-					<div class="thing"><input type="checkbox" class="priority">Priority</div>
+			<div class="closable">
+					
+				<form class="pause">
+					<input type="submit" name="pause" value="">
+					<label for="pause">Pause</label>
 				</form>
-				<div class="clear"></div>
-			</nav>
-			<div id="callsWaitingTable">
-				<button id="campaign" class="col1"><a class="sort"></a>Campaign<a class="close"></a></button>
-				<button id="phone" class="col2"><a class="sort"></a>Phone<a class="close"></a></button>
-				<button id="time" class="col3"><a class="sort"></a>Time<a class="close"></a></button>
-				<button id="callType" class="col4"><a class="sort"></a>Call Type<a class="close"></a></button>
-				<button id="priority" class="col5"><a class="sort"></a>Priority<a class="close"></a></button>
-				<span class="row">
-
-				</span>
-			</div>
-		</section>
+				
+				<nav>
+					<button>View</button>
+					<form class="options">
+						<div class="thing"><input type="checkbox" class="all">All</div>
+						<div class="thing"><input type="checkbox" class="campaign">Campaign</div>
+						<div class="thing"><input type="checkbox" class="phone">Phone</div>
+						<div class="thing"><input type="checkbox" class="time">Time</div>
+						<div class="thing"><input type="checkbox" class="callType">Call Type</div>
+						<div class="thing"><input type="checkbox" class="priority">Priority</div>
+					</form>
+					<div class="clear"></div>
+				</nav>
+				<div id="callsWaitingTable">
+					<button id="campaign" class="col1"><a class="sort"></a>Campaign<a class="close" href="#"></a></button>
+					<button id="phone" class="col2"><a class="sort"></a>Phone<a class="close" href="#"></a></button>
+					<button id="time" class="col3"><a class="sort"></a>Time<a class="close" href="#"></a></button>
+					<button id="callType" class="col4"><a class="sort"></a>Call Type<a class="close" href="#"></a></button>
+					<button id="priority" class="col5"><a class="sort"></a>Priority<a class="close" href="#"></a></button>
+					<div class="rows"></div>
+				</div><!-- end callsWaitingTable -->
+			</div><!-- end closable -->
+		</section><!-- end sectionD -->
 
 		<section id="sectionE">
-			<a class="close" id="closeSectionE"></a>
+			<a class="close" id="closeSectionE" href="#"></a>
 			<header>
 				<h2>Active Resources</h2>
 			</header>
-			<nav>
-				<button>View</button>
-				<form class="options">
-					<div class="thing"><input type="checkbox" class="all">All</input></div>
-					<div class="thing"><input type="checkbox" class="user">User</input></div>
-					<div class="thing"><input type="checkbox" class="group">Group</input></div>
-					<div class="thing"><input type="checkbox" class="status">Status</input></div>
-					<div class="thing"><input type="checkbox" class="time">Time</input></div>
-					<div class="thing"><input type="checkbox" class="phone">Phone</input></div>
-					<div class="thing"><input type="checkbox" class="campaign">Campaign</input></div>
-					<div class="thing"><input type="checkbox" class="calls">Calls</input></div>
-				</form>
-				<div class="clear"></div>
-			</nav>
-			<div id="activeResourcesTable">
-				<button id="user" class="col1"><a class="sort"></a>User<a class="close"></a></button>
-				<button id="group" class="col2"><a class="sort"></a>Group<a class="close"></a></button>
-				<button id="status" class="col3"><a class="sort"></a>Status<a class="close"></a></button>
-				<button id="time" class="col4"><a class="sort"></a>Time<a class="close"></a></button>
-				<button id="phone" class="col5"><a class="sort"></a>Phone<a class="close"></a></button>
-				<button id="campaign" class="col6"><a class="sort"></a>Campaign<a class="close"></a></button>
-				<button id="calls" class="col7"><a class="sort"></a>Calls<a class="close"></a></button>
-				<div class="clear"></div>
-				<span class="row">
+			<div class="closable">
+				<nav>
+					<button>View</button>
+					<form class="options">
+						<div class="thing"><input type="checkbox" class="all">All</input></div>
+						<div class="thing"><input type="checkbox" class="user">User</input></div>
+						<div class="thing"><input type="checkbox" class="group">Group</input></div>
+						<div class="thing"><input type="checkbox" class="status">Status</input></div>
+						<div class="thing"><input type="checkbox" class="time">Time</input></div>
+						<div class="thing"><input type="checkbox" class="phone">Phone</input></div>
+						<div class="thing"><input type="checkbox" class="campaign">Campaign</input></div>
+						<div class="thing"><input type="checkbox" class="calls">Calls</input></div>
+					</form>
+					<div class="clear"></div>
+				</nav>
+				<div id="activeResourcesTable">
+					<button id="user" class="col1"><a class="sort"></a>User<a class="close" href="#"></a></button>
+					<button id="group" class="col2"><a class="sort"></a>Group<a class="close" href="#"></a></button>
+					<button id="status" class="col3"><a class="sort"></a>Status<a class="close" href="#"></a></button>
+					<button id="time" class="col4"><a class="sort"></a>Time<a class="close" href="#"></a></button>
+					<button id="phone" class="col5"><a class="sort"></a>Phone<a class="close" href="#"></a></button>
+					<button id="campaign" class="col6"><a class="sort"></a>Campaign<a class="close" href="#"></a></button>
+					<button id="calls" class="col7"><a class="sort"></a>Calls<a class="close" href="#"></a></button>
+					<div class="clear"></div>
+					<span class="rows">
 
-				</span>
+					</span>
+				</div>
 			</div>
-			
-			
-		</section>
+		</section><!-- end sectionE -->
 
 		<div class="clear"></div>
 		<div id="troubleman"></div>

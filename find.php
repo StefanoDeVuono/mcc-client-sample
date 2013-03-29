@@ -1,5 +1,5 @@
 <?php
-include 'login.php'; 
+include 'database.php'; 
 
 // error_reporting(E_ALL);
 // ini_set('display_errors', '1');
@@ -30,11 +30,16 @@ if ($arrayA['INCALL'] == null ) {
 }
 
 // total active calls
-$stmt = "select count(*) from vicidial_auto_calls";
+$stmt = "select count(*) from vicidial_auto_calls where status NOT IN('XFER') and ";
 $arrayA['ACTIVE'] = msquery($stmt, $db);
 if ($arrayA['ACTIVE'] == null ) {
 	$arrayA['ACTIVE'] = 0;
 }
+//  select count(*) from vicidial_auto_calls where status NOT IN('XFER') and ( (call_type='IN' and campaign_id IN ('isaBlastInbound')) or (call_type IN ('OUT','OUTBALANCE') and campaign_id IN('1928','1999','299','437','7373','7374','7375','7376','7377','7771','7777','7778','7779','7780','901','BDLAW','BPA','Energy_R','Gormley','IMS','ISA','isaBlast','msg','Protecti','Rago','TextToSp','')) )
+
+
+// select count(*) from vicidial_auto_calls where status NOT IN('XFER') and ( (call_type='IN' and campaign_id IN ('isaBlastInbound')) or (call_type IN ('OUT','OUTBALANCE') and campaign_id IN('1928','1999','299','437','7373','7374','7375','7376','7377','7771','7777','7778','7779','7780','901','BDLAW','BPA','Energy_R','Gormley','IMS','ISA','isaBlast','msg','Protecti','Rago','TextToSp','')) )
+// 
 
 // dead calls
 $stmt = "select (select count(*) from vicidial_live_agents where status='INCALL')-(select count(*) from vicidial_live_agents A inner join vicidial_auto_calls C on C.callerid=A.callerid where A.status='INCALL') as 'DEAD';";
@@ -69,13 +74,14 @@ if ($arrayA['DISPO'] == null ) {
 }
 
 // tableC
- $timeTHREEhoursAGO = date("Y-m-d H:i:s", date("U") - 10800);
+$timeTHREEhoursAGO = date("Y-m-d H:i:s", date("U") - 10800);
+$arrayC = array();
 
-$stmt = "select count(*) from vicidial_carrier_log where call_date >= \"timeTHREEhoursAGO\";";
+$stmt = "select count(*) from vicidial_carrier_log where call_date >= \"$timeTHREEhoursAGO\";";
 $totalStat = msquery($stmt, $db);
 
 $i=0;
-$stmt = "SELECT dialstatus,COUNT(*) as count FROM vicidial_carrier_log where call_date >= \"timeTHREEhoursAGO\" GROUP BY dialstatus";
+$stmt = "SELECT dialstatus,COUNT(*) as count FROM vicidial_carrier_log where call_date >= \"$timeTHREEhoursAGO\" GROUP BY dialstatus";
 $rslt=mysqli_query($db, $stmt);
 while ($row = mysqli_fetch_assoc($rslt)) {
  	$arrayC[$row['dialstatus']] = number_format(100 * $row['count'] / $totalStat, 2);
@@ -97,10 +103,23 @@ while ($row = mysqli_fetch_assoc($rslt)) {
 // tableE
 $arrayE = array();
 $i = 0; // arrayD index
-
-$stmt = "select vicidial_users.full_name, vicidial_users.user_group, vicidial_live_agents.status, UNIX_TIMESTAMP(last_call_finish), UNIX_TIMESTAMP(last_call_time), vicidial_live_agents.campaign_id, vicidial_live_agents.calls_today from vicidial_live_agents,vicidial_users where vicidial_live_agents.user=vicidial_users.user $LOGallowed_campaignsSQL;";
+function timeFormat($time) {
+	$sec = $time % 100;
+	$min = (int) ($time / 100);
+	$hour = (int) ($min / 100);
+	if ($hour < 1) {
+		$min = $min;
+	} else {
+		$min = $min % 100;
+		$min = $min + $hour * 60;
+	}
+	return $min.':'.$sec;
+}
+$stmt = "select vicidial_users.full_name, vicidial_users.user_group, vicidial_live_agents.status, UNIX_TIMESTAMP(last_update_time) - UNIX_TIMESTAMP(last_call_time) as 'time', vicidial_live_agents.extension, vicidial_live_agents.campaign_id, vicidial_live_agents.calls_today from vicidial_live_agents,vicidial_users where vicidial_live_agents.user=vicidial_users.user $LOGallowed_campaignsSQL;";
 $rslt=mysqli_query($db, $stmt);
 while ($row = mysqli_fetch_assoc($rslt)) {
+	$row['time'] = gmdate('G:i:s', $row['time']); 
+	$row['extension'] = preg_replace('/IAX2\/|SIP\//', '', $row['extension']);
 	$arrayE[$i] = $row;
 	$i++;
 }
