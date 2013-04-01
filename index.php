@@ -35,7 +35,7 @@ include('login.php');
 <body>
 	<?php //echo session_id(); ?>
 	<div id="background">
-		<div></div>
+		<div><span></span></div>
 	</div>
 	<div id="page">
 

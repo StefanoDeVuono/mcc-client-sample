@@ -45,6 +45,11 @@ html, body {
     height: 100%;
     width: 960px;
     position: fixed; }
+    #background div span {
+      display: block;
+      width: 122px;
+      height: 100%;
+      border-right: 2px solid grey; }
 
 #page {
   position: relative;
@@ -792,7 +797,7 @@ html, body {
     float: left; }
   #sectionE #activeResourcesTable {
     float: left;
-    width: 717px;
+    width: 722px;
     margin: auto auto auto 19px; }
     #sectionE #activeResourcesTable .col1, #sectionE #activeResourcesTable .col2, #sectionE #activeResourcesTable .col3, #sectionE #activeResourcesTable .col4, #sectionE #activeResourcesTable .col5, #sectionE #activeResourcesTable .col6, #sectionE #activeResourcesTable .col7 {
       width: 95.142857px;
@@ -941,7 +946,8 @@ html, body {
       margin: 0;
       float: left;
       height: 43px;
-      width: 50px; }
+      width: 50px;
+      padding-left: 5px; }
     #sectionE #activeResourcesTable #listen, #sectionE #activeResourcesTable #speak, #sectionE #activeResourcesTable #shout {
       display: block;
       float: left;
@@ -949,13 +955,13 @@ html, body {
       margin-top: 9px; }
     #sectionE #activeResourcesTable #listen {
       width: 17px;
-      background: url(./images/micro.jpg) 0px center no-repeat; }
+      background: url(./images/micro.png) 0px center no-repeat; }
     #sectionE #activeResourcesTable #speak {
       width: 17px;
-      background: url(./images/micro.jpg) -17px center no-repeat; }
+      background: url(./images/micro.png) -17px center no-repeat; }
     #sectionE #activeResourcesTable #shout {
       width: 16px;
-      background: url(./images/micro.jpg) -36px center no-repeat; }
+      background: url(./images/micro.png) -36px center no-repeat; }
   #sectionE nav {
     font-size: 11px;
     width: 86px;
