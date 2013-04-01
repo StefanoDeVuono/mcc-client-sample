@@ -13,10 +13,9 @@
 // mysql_select_db("$DB_database");
 
 // connect from local
- shell_exec("ssh -f -L 3307:192.168.100.20:3306 fon@v5.mycallcloud.com sleep 60 >> logfile"); // V5 remotely
- $db = mysqli_connect('127.0.0.1', 'fon', 'fon', 'asterisk', 3307); // V5 remotely
-// $db = mysqli_connect('192.168.100.59', 'cron', '1234', 'asteriskrcs', 3306); // RCS
-// $db = mysqli_connect('127.0.0.1', 'cron', '1234', 'asterisk', 3306); // V2
+shell_exec("ssh -f -L 3307:192.168.100.20:3306 fon@v5.mycallcloud.com sleep 60 >> logfile"); // V5 remotely
+$db = mysqli_connect('127.0.0.1', 'fon', 'fon', 'asterisk', 3307); // V5 remotely
+
 
 // if ( get_class($db) == 'mysqli' ) {
 	function msquery($stmt, $db) {
@@ -38,7 +37,7 @@
 
 // *************************************************
 //	User Authorization
- $PHP_AUTH_USER = 'Fon'; $PHP_AUTH_PW = 'Fon1234';
+$PHP_AUTH_USER = 'Fon'; $PHP_AUTH_PW = 'Fon1234';
 // $PHP_AUTH_USER = $_SERVER['PHP_AUTH_USER']; $PHP_AUTH_PW = $_SERVER['PHP_AUTH_PW'];
 // $PHP_AUTH_USER = preg_replace("/[^0-9a-zA-Z]/","",$PHP_AUTH_USER);
 // $PHP_AUTH_PW = preg_replace("/[^0-9a-zA-Z]/","",$PHP_AUTH_PW);

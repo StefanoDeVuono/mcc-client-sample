@@ -1,0 +1,23 @@
+#!/bin/bash
+echo "Please enter your local SQL db connection strings..."
+echo "What is the IP address of the DB?"
+read ip
+echo "What is the username of the DB?"
+read name
+echo "What is the password of the DB?"
+read pass
+echo "What is the port of the DB?"
+read port
+echo "What is the name of the DB?"
+read db
+string = "\$db = mysqli_connect('$ip', '$name', '$pass', '$db', $port); // $HOSTNAME locally"
+
+echo $string
+
+ #sed '10 s:\([.]*\):// \1:' login.php
+ #sed '11,24 s:// \([.]*\):\1:' login.php
+
+ #sed '16,17 s:\([.]*\):// \1:' database.php
+ #sed '17i $string' database.php
+ #sed '41 s:\([.]*\):// \1:' database.php
+ #sed '42,45 s:// \([.]*\):\1:' database.php
