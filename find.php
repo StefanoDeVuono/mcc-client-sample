@@ -91,8 +91,11 @@ while ($row = mysqli_fetch_assoc($rslt)) {
 // tableD
 $arrayD = array();
 $i = 0; // arrayD index
-
-$stmt = "SELECT status,campaign_id,phone_number,server_ip,UNIX_TIMESTAMP(call_time),call_type,queue_priority,agent_only from vicidial_auto_calls where status NOT IN('XFER') and ( (call_type='IN' and campaign_id IN($closer_campaignsSQL)) or (call_type IN('OUT','OUTBALANCE') $LOGallowed_campaignsSQL) ) order by queue_priority desc,campaign_id,call_time";
+$dOrder = "";
+if ( isset($_GET["dSort"]) && isset($_GET["dOrder"]) ) {
+	$dOrder = "order by ".$_GET["dSort"].' '.$_GET["dOrder"];
+}
+$stmt = "SELECT status,campaign_id as 'campaign',phone_number as 'phone',server_ip,UNIX_TIMESTAMP(call_time) as 'time',call_type as 'callType',queue_priority as 'priority',agent_only from vicidial_auto_calls where status NOT IN('XFER') and ( (call_type='IN' and campaign_id IN($closer_campaignsSQL)) or (call_type IN('OUT','OUTBALANCE') $LOGallowed_campaignsSQL) ) $dOrder";
 $rslt=mysqli_query($db, $stmt);
 while ($row = mysqli_fetch_assoc($rslt)) {
 	$arrayD[$i] = $row;
@@ -115,11 +118,15 @@ function timeFormat($time) {
 	}
 	return $min.':'.$sec;
 }
-$stmt = "select vicidial_users.full_name, vicidial_users.user_group, vicidial_live_agents.status, UNIX_TIMESTAMP(last_update_time) - UNIX_TIMESTAMP(last_call_time) as 'time', vicidial_live_agents.extension, vicidial_live_agents.campaign_id, vicidial_live_agents.calls_today from vicidial_live_agents,vicidial_users where vicidial_live_agents.user=vicidial_users.user $LOGallowed_campaignsSQL;";
+$eOrder = "";
+if ( isset($_GET["eSort"]) && isset($_GET["eOrder"]) ) {
+	$eOrder = "order by ".$_GET["eSort"].' '.$_GET["eOrder"];
+}
+$stmt = "select vicidial_users.full_name as 'user', vicidial_users.user_group as 'group', vicidial_live_agents.status as 'status', UNIX_TIMESTAMP(last_update_time) - UNIX_TIMESTAMP(last_call_time) as 'time', vicidial_live_agents.extension as 'phone', vicidial_live_agents.campaign_id as 'campaign', vicidial_live_agents.calls_today as 'calls' from vicidial_live_agents,vicidial_users where vicidial_live_agents.user=vicidial_users.user $LOGallowed_campaignsSQL $eOrder;";
 $rslt=mysqli_query($db, $stmt);
 while ($row = mysqli_fetch_assoc($rslt)) {
 	$row['time'] = gmdate('G:i:s', $row['time']); 
-	$row['extension'] = preg_replace('/IAX2\/|SIP\//', '', $row['extension']);
+	$row['phone'] = preg_replace('/IAX2\/|SIP\//', '', $row['phone']);
 	$arrayE[$i] = $row;
 	$i++;
 }

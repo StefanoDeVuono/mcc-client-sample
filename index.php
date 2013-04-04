@@ -28,8 +28,9 @@ include('login.php');
 <meta charset="UTF-8">
 <link rel="stylesheet" href="style.css">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>-->
+<script src="./jquery.min.js"></script>
+<script async src="script.js"></script>
 <title>MCC</title>
 </head>
 <body>
@@ -43,56 +44,78 @@ include('login.php');
 			<div id="logo"></div>
 			<div class="sides" id="dropped">
 				<a href="#" class="close" id="closeDropped"></a>
-				Dropped %
-				<h2><span class="pct">%</span></h2>
-				<h4 id="dropped_no">Dropped - <span></span></h4>
-				<h4 id="answered">Answered - <span></span></h4>
+				<header>Dropped %</header>
+				<div class="closable">
+					<h2><span class="pct_no"></span><span class="pct">%</span></h2>
+					<h4 id="dropped_no">Dropped - <span></span></h4>
+					<h4 id="answered">Answered - <span></span></h4>
+				</div>
 			</div>
 			<div class="sides" id="agentAvgWait">
 				<a href="#" class="close" id="closeAgentAvgWait"></a>
-				Agent Avg Wait
-				<h3></h3>
+				<header>Agent Avg Wait</header>
+				<div class="closable">
+					<h3></h3>
+				</div>
 			</div>
 			<div class="sides" id="avgTalkTime">
 				<a href="#" class="close" id="closeAvgTalkTime"></a>
-				Avg Talk Time
-				<h3></h3>
+				<header>Avg Talk Time</header>
+				<div class="closable">
+					<h3></h3>
+				</div>
 			</div>
 			<div class="sides" id="callsToday">
 				<a href="#" class="close" id="closeCallsToday"></a>
-				Calls Today
-				<h3></h3>
+				<header>Calls Today</header>
+				<div class="closable">
+					<h3></h3>
+				</div>
 			</div>
 			<div class="sides" id="avgWrap">
 				<a href="#" class="close" id="closeAvgWarp"></a>
-				Avg Wrap
-				<h3></h3>
+				<header>Avg Wrap</header>
+				<div class="closable">
+					<h3></h3>
+				</div>
 			</div>
 			<div class="sides" id="avgPause">
 				<a href="#" class="close" id="closeAvgPause"></a>
-				Avg Pause
-				<h3></h3>
+				<header>Avg Pause</header>
+				<div class="closable">
+					<h3></h3>
+				</div>
 			</div>
 			<div class="sides" id="avgAgents">
 				<a href="#" class="close" id="closeAvgAgents"></a>
-				Avg Agents
-				<h3></h3>
+				<header>Avg Agents</header>
+				<div class="closable">
+					<h3></h3>
+				</div>
 			</div>
 			<div class="sides" id="dialableLeeds">
 				<a href="#" class="close" id="closeDialableLeeds"></a>
-				Dialable Leeds
-				<h3></h3>
+				<header>Dialable Leeds</header>
+				<div class="closable">
+					<h3></h3>
+				</div>
 			</div>
 			<div class="sides" id="dialMethod">
 				<a href="#" class="close" id="closeDialMethod"></a>
-				Dial Method
-				<h3></h3>
+				<header>Dial Method</header>
+				<div class="closable">
+					<h3></h3>
+				</div>
 			</div>
-			<div class="sides" id="reports">
-				<a href="#" class="close" id="closeReports"></a>
-				View
-				<h3>Reports</h3>
-			</div>
+			<a href="tabs.php">
+				<div class="sides" id="reports">
+					<a href="#" class="close" id="closeReports"></a>
+					<header>View</header>
+					<div class="closable">
+						<h3>Reports</h3>
+					</div>
+				</div>
+			</a>
 			<div class="clear"></div>
 		</section>
 
@@ -153,11 +176,11 @@ include('login.php');
 		<section id="sectionB">
 			<div class="closable">
 				<div id="alertLogo"></div>
-				<div id="noOfAlerts">3 Alerts</div>
-				<label>Alert Settings</label>
+				<header>Alert Settings</header>
+				<label>3 Alerts</label>
 				<button id="alertSettings1">Select option</button>
 				<button id="alertSettings2">Select option</button>
-				<button id="onOff">ON</button>
+				<div id="onOff"></div>
 			</div>
 			<a class="close" href="#"></a>
 		</section><!-- end sectionB -->
@@ -217,11 +240,11 @@ include('login.php');
 					<div class="clear"></div>
 				</nav>
 				<div id="callsWaitingTable">
-					<button id="campaign" class="col1"><a class="sort"></a>Campaign<a class="close" href="#"></a></button>
-					<button id="phone" class="col2"><a class="sort"></a>Phone<a class="close" href="#"></a></button>
-					<button id="time" class="col3"><a class="sort"></a>Time<a class="close" href="#"></a></button>
-					<button id="callType" class="col4"><a class="sort"></a>Call Type<a class="close" href="#"></a></button>
-					<button id="priority" class="col5"><a class="sort"></a>Priority<a class="close" href="#"></a></button>
+					<button id="campaign" class="col col1"><a class="sort"></a>Campaign<a class="close" href="#"></a></button>
+					<button id="phone" class="col col2"><a class="sort"></a>Phone<a class="close" href="#"></a></button>
+					<button id="time" class="col col3"><a class="sort"></a>Time<a class="close" href="#"></a></button>
+					<button id="callType" class="col col4"><a class="sort"></a>Call Type<a class="close" href="#"></a></button>
+					<button id="priority" class="col col5"><a class="sort"></a>Priority<a class="close" href="#"></a></button>
 					<div class="rows"></div>
 				</div><!-- end callsWaitingTable -->
 			</div><!-- end closable -->
@@ -248,13 +271,13 @@ include('login.php');
 					<div class="clear"></div>
 				</nav>
 				<div id="activeResourcesTable">
-					<button id="user" class="col1"><a class="sort"></a>User<a class="close" href="#"></a></button>
-					<button id="group" class="col2"><a class="sort"></a>Group<a class="close" href="#"></a></button>
-					<button id="status" class="col3"><a class="sort"></a>Status<a class="close" href="#"></a></button>
-					<button id="time" class="col4"><a class="sort"></a>Time<a class="close" href="#"></a></button>
-					<button id="phone" class="col5"><a class="sort"></a>Phone<a class="close" href="#"></a></button>
-					<button id="campaign" class="col6"><a class="sort"></a>Campaign<a class="close" href="#"></a></button>
-					<button id="calls" class="col7"><a class="sort"></a>Calls<a class="close" href="#"></a></button>
+					<button id="user" class="col col1"><a class="sort"></a>User<a class="close" href="#"></a></button>
+					<button id="group" class="col col2"><a class="sort"></a>Group<a class="close" href="#"></a></button>
+					<button id="status" class="col col3"><a class="sort"></a>Status<a class="close" href="#"></a></button>
+					<button id="time" class="col col4"><a class="sort"></a>Time<a class="close" href="#"></a></button>
+					<button id="phone" class="col col5"><a class="sort"></a>Phone<a class="close" href="#"></a></button>
+					<button id="campaign" class="col col6"><a class="sort"></a>Campaign<a class="close" href="#"></a></button>
+					<button id="calls" class="col col7"><a class="sort"></a>Calls<a class="close" href="#"></a></button>
 					<div class="clear"></div>
 					<span class="rows">
 
@@ -267,5 +290,5 @@ include('login.php');
 		<div id="troubleman"></div>
 	</div>
 </body>
-<script src="script.js"></script>
+
 </html>

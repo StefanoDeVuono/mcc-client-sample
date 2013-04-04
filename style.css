@@ -87,6 +87,13 @@ html, body {
     background-size: contain;
     float: left;
     margin: 9px 5px 11px 11px; }
+  #sectionA header .play {
+    height: 16px;
+    width: 16px;
+    background: url(./images/play.svg) no-repeat;
+    background-size: contain;
+    float: left;
+    margin: 9px 5px 11px 11px; }
   #sectionA header #date {
     float: right;
     width: 142px;
@@ -168,10 +175,11 @@ html, body {
     width: 21px;
     background: url(./images/alertLogo.svg) no-repeat;
     background-size: contain; }
-  #sectionB #noOfAlerts {
+  #sectionB header {
     float: left;
+    font: bold 16px helvetica, Arial, sans-serif;
     line-height: 55px;
-    margin-right: 234px; }
+    margin-right: 220px; }
   #sectionB label {
     float: left;
     line-height: 55px;
@@ -187,9 +195,11 @@ html, body {
     width: 146px;
     float: left; }
   #sectionB #onOff {
-    margin: 12px auto auto auto;
+    margin: 16px auto auto auto;
     width: 67px;
-    height: 31px; }
+    height: 31px;
+    float: left;
+    background: url(./images/toggle_on.png) no-repeat; }
   #sectionB .close {
     position: absolute;
     height: 10px;
@@ -1051,9 +1061,13 @@ html, body {
     width: 100%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    padding: 22px 6px 21px 6px; }
+    padding: 0 6px; }
+    #sectionF .sides header {
+      margin: 22px 0 6px 0; }
     #sectionF .sides h2, #sectionF .sides h3, #sectionF .sides h4 {
       margin: 0; }
+      #sectionF .sides h2:last-child, #sectionF .sides h3:last-child, #sectionF .sides h4:last-child {
+        margin: 0 0 21px 0; }
     #sectionF .sides h2 {
       color: #5ebf1e;
       font-size: 25px;
@@ -1083,7 +1097,8 @@ html, body {
   top: 3px;
   left: 5px;
   background: url(./images/arrows.svg) no-repeat;
-  background-size: contain; }
+  background-size: contain;
+  cursor: pointer; }
 
 a.close {
   display: block;
