@@ -12,9 +12,9 @@
    id="svg3020"
    version="1.1"
    inkscape:version="0.48.1 r9760"
-   width="11.307461"
-   height="14.080605"
-   sodipodi:docname="arrows.svg">
+   width="11.176555"
+   height="6.2148433"
+   sodipodi:docname="desc.svg">
   <metadata
      id="metadata3026">
     <rdf:RDF>
@@ -23,7 +23,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -47,31 +47,14 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:zoom="22.627417"
-     inkscape:cx="7.2509276"
-     inkscape:cy="17.067828"
+     inkscape:cx="7.1854744"
+     inkscape:cy="3.9715571"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg3020"
      showguides="true"
      inkscape:guide-bbox="true" />
-  <path
-     transform="matrix(1.3726516,0,0,-0.88135712,5.4336872,12.150883)"
-     inkscape:transform-center-y="-1.0479406"
-     d="M 4.2791441,6.6525221 0.16030536,13.78656 -3.9585334,6.6525221 z"
-     inkscape:randomized="0"
-     inkscape:rounded="0"
-     inkscape:flatsided="true"
-     sodipodi:arg2="0.52359878"
-     sodipodi:arg1="-0.52359878"
-     sodipodi:r2="2.3780127"
-     sodipodi:r1="4.7560253"
-     sodipodi:cy="9.0305347"
-     sodipodi:cx="0.16030534"
-     sodipodi:sides="3"
-     id="path3032"
-     style="fill:#000000;fill-opacity:1;stroke:none"
-     sodipodi:type="star" />
   <path
      sodipodi:type="star"
      style="fill:#000000;fill-opacity:1;stroke:none"
@@ -88,5 +71,5 @@
      inkscape:randomized="0"
      d="M 4.2791441,6.6525221 0.16030536,13.78656 -3.9585334,6.6525221 z"
      inkscape:transform-center-y="1.0358073"
-     transform="matrix(1.3567604,0,0,0.87115368,5.4362346,2.0703916)" />
+     transform="matrix(1.3567604,0,0,0.87115368,5.3707814,-5.7953691)" />
 </svg>

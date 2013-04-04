@@ -19,88 +19,42 @@ $.get('./time.php', function(data) {
 
 var delay = 2;
 
-var sortOrder = "";
-	if ( $(this).hasClass('desc') ) {
-		// change it to ascending
-		$(this).removeClass('desc');
-		$(this).addClass('asc')
-		sortOrder = 'asc';
-	} else {
-		// change it to descending
-		$(this).removeClass('asc');
-		$(this).addClass('desc')
-		sortOrder = 'desc';
-	}
+
 
 // default sort field for sectionD
 var dSorter = 'campaign';
+var dOrder = "asc";
 // listener to change sort field for sectionD
-$('#callsWaitingTable button').on('click', function(){
+$('#callsWaitingTable th').on('click', function(){
 	//$(this).addClass('clicked');
 	dSorter = $(this).attr('id');
 
-	// run ajax once to re-sort
-	$.ajax({ url: "./find.php",
-		data: {dSort: dSorter, dOrder: dOrder},
-		success: function(data){
-			//Update your dashboard gauge
-			setDataD(data);
-		}, dataType: "json"});
+	if ( $(this).hasClass('headerSortDown') )
+		dOrder = "desc";
+	else if ( $(this).hasClass('headerSortUp') )
+		dOrder = "asc"
 });
-var dOrder = "asc";
-// listener to change sort order for sectionD
-$('#callsWaitingTable button').on('click', 'a.sort', function(){
-	$(this).parent().trigger('click');
-	if ( $(this).hasClass('desc') ) {
-		// change it to ascending
-		$(this).removeClass('desc');
-		$(this).addClass('asc')
-		dOrder = 'asc';
-	} else {
-		// change it to descending
-		$(this).removeClass('asc');
-		$(this).addClass('desc')
-		dOrder = 'desc';
-	}
-});
+
 
 // default sort field for sectionE
 var eSorter = 'user';
-
-// listeners to change sort field for sectionD
+var eOrder = "asc";
+// listeners to change sort field for sectionE
 $('#activeResourcesTable button').on('click', function(){
 	//$(this).addClass('clicked');
 	eSorter = $(this).attr('id');
 
-	// run ajax once to re-sort
-	$.ajax({ url: "./find.php",
-		data: {eSort: eSorter, eOrder: eOrder},
-		success: function(data){
-			//Update your dashboard gauge
-			setDataE(data);
-		}, dataType: "json"});
-});
-var eOrder = "asc";
-// listener to change sort order for sectionD
-$('#activeResourcesTable button').on('click', 'a.sort', function(){
-	$(this).parent().trigger('click');
-	if ( $(this).hasClass('desc') ) {
-		// change it to ascending
-		$(this).removeClass('desc');
-		$(this).addClass('asc')
-		eOrder = 'asc';
-	} else {
-		// change it to descending
-		$(this).removeClass('asc');
-		$(this).addClass('desc')
-		eOrder = 'desc';
-	}
+	if ( $(this).hasClass('headerSortDown') )
+		eOrder = "desc";
+	else if ( $(this).hasClass('headerSortUp') )
+		eOrder = "asc"
+
 });
 
 // ***********************************************************
 // find for areas A-E, updates every "delay" number of seconds
 if ( delay > 0 ) {
-	function find(){
+	function findAE(){
 		setTimeout(ajaxFunc, delay * 1000); // end timeout
 	}
 	ajaxFunc(); // do lookup first time
@@ -113,13 +67,15 @@ if ( delay > 0 ) {
 			setDataC(data);
 			setDataD(data);
 			setDataE(data);
+			$("#callsWaitingTable").trigger("update");
+			$("#activeResourcesTable").trigger("update");
 			//Setup the next poll recursively
-			find();
+			findAE();
 		}, dataType: "json"}); // end ajax function and object
 	}
 	(find)(); // auto run lookup after every deley seconds
 } else if ( delay == 0 ) {
-	(function find(){
+	(function findAE(){
 		$.ajax({ url: "./find.php",
 		data: {dSort: dSorter, dOrder: dOrder, eSort: eSorter, eOrder: eOrder},
 		success: function(data){
@@ -128,26 +84,11 @@ if ( delay > 0 ) {
 			setDataC(data);
 			setDataD(data);
 			setDataE(data);
-
+			$("#callsWaitingTable").trigger("update");
+			$("#activeResourcesTable").trigger("update");
 		}, dataType: "json", complete: find, timeout: 30000 }); // end ajax object
 	})();
 }
-
-
-//echo $_GET["key1"];
-
-// when you click on it run sort function with section you want to sort
-// $('#callsWaitingTable button').on('click', 'a.sort', function(){
-
-// })
-
-// function ajaxSort(section){
-// 	$.ajax({ url: "./find.php", success: function(data){
-// 		if (section)
-// 	}})
-// }
-
-
 
 function setDataA(data) {
 	$('#agent_ready .number').text(data['A']['READY']); // Agents Waiting
@@ -179,31 +120,36 @@ function setDataD(data) {
 	var length = data['D'].length;
 	var row = "";
 	for (var i = 0; i < length; i++) {
-		row += '<div class="col col1">' + data['D'][i]['campaign'] + '</div>';
-		row += '<div class="col col2">' + data['D'][i]['phone'] + '</div>';
-		row += '<div class="col col3">' + data['D'][i]['time'] + '</div>';
-		row += '<div class="col col4">' + data['D'][i]['callType'] + '</div>';
-		row += '<div class="col col5">' + data['D'][i]['priority'] + '</div>';
+		row += '<tr>'
+		if ( $('#callsWaitingTable th.col1').is(':hidden') )
+			row += '<td class="col1" style="display: none">' + data['D'][i]['campaign'] + '</td>';
+		else
+			row += '<td class="col1">' + data['D'][i]['campaign'] + '</td>';
 
-		if ( $('#callsWaitingTable button.col1').is(':hidden') ) {
-			$('div.col1').hide();
-		}
-		if ( $('#callsWaitingTable button.col2').is(':hidden') ) {
-			$('div.col2').hide();
-		}
-		if ( $('#callsWaitingTable button.col3').is(':hidden') ) {
-			$('div.col3').hide();
-		}
-		if ( $('#callsWaitingTable button.col4').is(':hidden') ) {
-			$('div.col4').hide();
-		}
-		if ( $('#callsWaitingTable button.col5').is(':hidden') ) {
-			$('div.col5').hide();
-		}
+		if ( $('#callsWaitingTable th.col2').is(':hidden') )
+			row += '<td class="col2" style="display: none">' + data['D'][i]['phone'] + '</td>';
+		else
+			row += '<td class="col2">' + data['D'][i]['phone'] + '</td>';
+
+		if ( $('#callsWaitingTable th.col3').is(':hidden') )
+			row += '<td class="col3" style="display: none">' + data['D'][i]['time'] + '</td>';
+		else
+			row += '<td class="col3">' + data['D'][i]['time'] + '</td>';
+
+		if ( $('#callsWaitingTable th.col4').is(':hidden') )
+			row += '<td class="col4" style="display: none">' + data['D'][i]['callType'] + '</td>';
+		else
+			row += '<td class="col4">' + data['D'][i]['callType'] + '</td>';
+
+		if ( $('#callsWaitingTable th.col5').is(':hidden') )
+			row += '<td class="col5" style="display: none">' + data['D'][i]['priority'] + '</td>';
+		else
+			row += '<td class="col5">' + data['D'][i]['priority'] + '</td>';
+		row += '</tr>'
 	}
 	
-	$('#callsWaitingTable div.rows').html(row);
-	columnCheckD();
+	$('#callsWaitingTable tbody.rows').html(row);
+	resizeColumns('#callsWaitingTable', 666);
 }
 
 function setDataE(data) {
@@ -212,44 +158,45 @@ function setDataE(data) {
 	var row = "";
 	col8 = "";
 	for (var i = 0; i < length; i++) {
-		if ( $('#activeResourcesTable button.col1').is(':hidden') )
-			row += '<div class="col col" style="display: none">' + data['E'][i]['user'] + '</div>';
+		row += '<tr>'
+		if ( $('#activeResourcesTable th.col1').is(':hidden') )
+			row += '<td class="col col" style="display: none">' + data['E'][i]['user'] + '</td>';
 		else
-			row += '<div class="col col1">' + data['E'][i]['user'] + '</div>';
+			row += '<td class="col col1">' + data['E'][i]['user'] + '</td>';
 		
-		if ( $('#activeResourcesTable button.col2').is(':hidden') )
-			row += '<div class="col col2" style="display: none">' + data['E'][i]['group'] + '</div>';
+		if ( $('#activeResourcesTable th.col2').is(':hidden') )
+			row += '<td class="col col2" style="display: none">' + data['E'][i]['group'] + '</td>';
 		else
-			row += '<div class="col col2">' + data['E'][i]['group'] + '</div>';
+			row += '<td class="col col2">' + data['E'][i]['group'] + '</td>';
 
-		if ( $('#activeResourcesTable button.col3').is(':hidden') )
-			row += '<div class="col col3" style="display: none">' + data['E'][i]['status'] + '</div>';
+		if ( $('#activeResourcesTable th.col3').is(':hidden') )
+			row += '<td class="col col3" style="display: none">' + data['E'][i]['status'] + '</td>';
 		else
-			row += '<div class="col col3">' + data['E'][i]['status'] + '</div>';
+			row += '<td class="col col3">' + data['E'][i]['status'] + '</td>';
 
-		if ( $('#activeResourcesTable button.col4').is(':hidden') )
-			row += '<div class="col col4" style="display: none">' + data['E'][i]['time'] + '</div>';
+		if ( $('#activeResourcesTable th.col4').is(':hidden') )
+			row += '<td class="col col4" style="display: none">' + data['E'][i]['time'] + '</td>';
 		else
-			row += '<div class="col col4">' + data['E'][i]['time'] + '</div>';
+			row += '<td class="col col4">' + data['E'][i]['time'] + '</td>';
 
-		if ( $('#activeResourcesTable button.col5').is(':hidden') )
-			row += '<div class="col col5" style="display: none">' + data['E'][i]['phone'] + '</div>';
+		if ( $('#activeResourcesTable th.col5').is(':hidden') )
+			row += '<td class="col col5" style="display: none">' + data['E'][i]['phone'] + '</td>';
 		else
-			row += '<div class="col col5">' + data['E'][i]['phone'] + '</div>';
+			row += '<td class="col col5">' + data['E'][i]['phone'] + '</td>';
 
-		if ( $('#activeResourcesTable button.col6').is(':hidden') )
-			row += '<div class="col col6" style="display: none">' + data['E'][i]['campaign'] + '</div>';
+		if ( $('#activeResourcesTable th.col6').is(':hidden') )
+			row += '<td class="col col6" style="display: none">' + data['E'][i]['campaign'] + '</td>';
 		else
-			row += '<div class="col col6">' + data['E'][i]['campaign'] + '</div>';
+			row += '<td class="col col6">' + data['E'][i]['campaign'] + '</td>';
 
-		if ( $('#activeResourcesTable button.col7').is(':hidden') )
-			row += '<div class="col col7" style="display: none">' + data['E'][i]['calls'] + '</div>';
+		if ( $('#activeResourcesTable th.col7').is(':hidden') )
+			row += '<td class="col col7" style="display: none">' + data['E'][i]['calls'] + '</td>';
 		else
-			row += '<div class="col col7">' + data['E'][i]['calls'] + '</div>';
-		//row += col8;
+			row += '<td class="col col7">' + data['E'][i]['calls'] + '</td>';
+		row += '</tr>';
 	}
-	$('#activeResourcesTable span.rows').html(row);
-	columnCheckE();
+	$('#activeResourcesTable tbody.rows').html(row);
+	resizeColumns('#activeResourcesTable', 666);
 }
 
 
@@ -268,42 +215,77 @@ findFajax();
 // ajax function used in findF
 function findFajax(){
 	$.ajax({ url: "./findF.php", success: function(data){
-			$('#dropped_no span').text(data['DROPPED']); // Total Dropped Calls today
-			$('#answered span').text(data['ANSWERED']); // Total Answered Calls today
-			$('#dropped h2 span.pct_no').text(data['DROPPED_PCT']); // Percent of Dropped calls today
-			$('#agentAvgWait h3').text(data['AGENT_AVG_WAIT']); // A
-			$('#avgTalkTime h3').text(data['AVG_TALK_TIME']); //
-			$('#callsToday h3').text(data['TOTAL_CALLS_TODAY']); // Number of Agents' calls today
-			$('#avgWrap h3').text(data['AVG_WRAP']); // Average Wrap
-			$('#avgPause h3').text(data['AVG_PAUSE']); // Average Pause
-			$('#avgAgents h3').text(data['AVG_AGENTS']); // Average Pause
-			$('#dialableLeeds h3').text(data['DIALABLE_LEADS']); // Average Pause
-			$('#dialMethod h3').text(data['DIAL_METHOD']); // Average Pause
-
+			setDataF(data);
 			findF();
 		}, dataType: "json"});
 }
-
+function setDataF(data){
+	$('#dropped_no span').text(data['DROPPED']); // Total Dropped Calls today
+	$('#answered span').text(data['ANSWERED']); // Total Answered Calls today
+	$('#dropped h2 span.pct_no').text(data['DROPPED_PCT']); // Percent of Dropped calls today
+	$('#agentAvgWait h3').text(data['AGENT_AVG_WAIT']); // A
+	$('#avgTalkTime h3').text(data['AVG_TALK_TIME']); //
+	$('#callsToday h3').text(data['TOTAL_CALLS_TODAY']); // Number of Agents' calls today
+	$('#avgWrap h3').text(data['AVG_WRAP']); // Average Wrap
+	$('#avgPause h3').text(data['AVG_PAUSE']); // Average Pause
+	$('#avgAgents h3').text(data['AVG_AGENTS']); // Average Pause
+	$('#dialableLeeds h3').text(data['DIALABLE_LEADS']); // Average Pause
+	$('#dialMethod h3').text(data['DIAL_METHOD']); // Average Pause
+}
 // ***********************************************************
 // Pause buttons
-$('header a.pause').on('click', function(){
-	storeDelay = delay;
-	unPause = find;
-	delay = 3600;
-	find = 'pause';
-	unPauseF = findF;
-	findF = 'pause';
+
+pause = function(){
+	console.log('pause');
+}
+$('#sectionA header').on('click', 'a.pause', function(e){
+	e.preventDefault();
+	storeA = setDataA;
+	storeC = setDataC;
+	storeD = setDataD;
+	storeE = setDataE;
+	storeF = setDataF;
+	setDataA = pause;
+	setDataC = pause;
+	setDataD = pause;
+	setDataE = pause;
+	setDataF = pause;
 	$(this).removeClass('pause');
 	$(this).addClass('play');
 });
 
-$('header a.play').on('click', function(){
-	delay = storeDelay;
-	find = unPause;
-	findF = unPauseF;
+$('#sectionA header').on('click', 'a.play', function(e){
+	console.log('play');
+	e.preventDefault();
+	setDataA = storeA;
+	setDataC = storeC;
+	setDataD = storeD;
+	setDataE = storeE;
+	setDataF = storeF;
+	ajaxFunc();
+	findFajax();
 	$(this).removeClass('play');
 	$(this).addClass('pause');
 });
+// section D pauser
+$('#sectionD .pause').on('click', 'div.minipause', function(e){
+	e.preventDefault();
+	storeD = setDataD;
+	setDataD = pause;
+	$(this).removeClass('minipause');
+	$(this).addClass('miniplay');
+	$('#sectionD .pause .pauselabel').text('Play');
+});
+
+$('#sectionD .pause').on('click', 'div.miniplay', function(e){
+	e.preventDefault();
+	setDataD = storeD;
+	ajaxFunc();
+	$(this).removeClass('miniplay');
+	$(this).addClass('minipause');
+	$('#sectionD .pause .pauselabel').text('Pause');
+});
+
 
 // ***********************************************************
 // Close buttons
@@ -347,104 +329,84 @@ $('section').on('click', 'a.open',function(e){
 });
 
 // *********************************************************
-// section D close buttons
-checkBoxCheckerD();
-$('#callsWaitingTable .col').on('click', 'a.close', function(){
-	var classes = $(this).parent().attr('class').replace('col ','');
-	//console.log(classes);
-	$('#callsWaitingTable .'+ classes).hide();
-	columnCheckD();
-	checkBoxCheckerD();
-})
+// section D & E special functions
+function resizeColumns(tableId, tableWidth){
+	//find no of visible headers
+	var length = $(tableId + ' th:visible').length
+	$(tableId + ' th, ' + tableId + ' td').css('width', (tableWidth / length) + 'px');
+	// redo table corners
+}
 
-// section D radio buttons (checkboxes)
-// if this checks it eg IT'S UNCHECKED
+function checkBoxes(tableId) {
+	var visibleButtons = $(tableId + ' th:visible');
+	var length = visibleButtons.length;
+	var grandparentId = '#' + $(tableId).parent().parent().attr('id');
+	$(grandparentId + ' .options input').prop('checked', false);
+	for (var i = 0; i < length; i++) {
+		var id = $(visibleButtons[i]).attr('id');
+		$(grandparentId + ' .options input.' + id).prop('checked', true);
+	}
+}
+
+// *********************************************************
+// section D close buttons
+$('#callsWaitingTable th').on('click', 'a.close', function(e){
+	// prevent propogation
+	e.preventDefault();
+	e.stopPropagation();
+	var classes = $(e.target.parentNode).attr('class').split(' ')[0];
+	if ( $('#callsWaitingTable th:visible').length > 1 )
+		$('#callsWaitingTable .' + classes).hide();
+	// turn off checkbox
+	checkBoxes('#callsWaitingTable');
+	// re-size columns
+	resizeColumns('#callsWaitingTable', 666);
+});
+
 $('#sectionD .options').on('click', 'input:checked', function(){
-	var classes = $(this).attr('class');
-	classes = $('#callsWaitingTable #' + classes).attr('class').replace('col ','');
-	console.log($('#callsWaitingTable .' + classes));
-	$('#callsWaitingTable .' + classes).show();
+	var checkClass = $(this).attr('class');
+	var colClass = $('#callsWaitingTable #' + checkClass).attr('class').split(' ')[0];
+	console.log($('#callsWaitingTable .' + colClass));
+	$('#callsWaitingTable .' + colClass).show();
+	resizeColumns('#callsWaitingTable', 666);
 });
 // if this unchecks it eg IT'S CHECKED
 $('#sectionD .options').on('click', 'input:not(:checked)', function(){
-	var classes = $(this).attr('class');
-	classes = $('#callsWaitingTable #' + classes).attr('class').replace('col ','');
-	console.log($('#callsWaitingTable .' + classes));
-	$('#callsWaitingTable .' + classes).hide();
+	var checkClass = $(this).attr('class');
+	$('#callsWaitingTable th#' + checkClass + ' a').click();
 });
-
-//for visible buttons make sure check boxes are checked.
-function checkBoxCheckerD() {
-	$('#sectionD .options input').prop('checked', false);
-	var visibleButtons = $('#callsWaitingTable button:visible')
-	var length = visibleButtons.length
-	for (var i = 0; i < length; i++) {
-		var id = $(visibleButtons[i]).attr('id');
-		$('#sectionD .options input.' + id).prop('checked', true);
-	}
-}
-function columnCheckD() {// closing columns
-	var length = $('#callsWaitingTable button:visible').length;
-	var pct = 100 / length
-	$('#callsWaitingTable .col').css('width', pct + '%');
-}
-
-checkBoxes();
-
 
 // section E close buttons
-$('#activeResourcesTable .col').on('click', 'a.close', function(){
-	var classes = $(this).parent().attr('class').replace('col ','');
-	console.log(classes);
-	$('#activeResourcesTable .'+ classes).hide();
-	columnCheckE();
-	checkBoxes();
-	var id = $(this).parent().attr('id');
-	$('#sectionE .' + id).prop('checked',false);
+$('#activeResourcesTable th').on('click', 'a.close', function(e){
+	// prevent propogation
+	e.preventDefault();
+	e.stopPropagation();
+	var classes = $(e.target.parentNode).attr('class').split(' ')[0];
+	if ( $('#activeResourcesTable th:visible').length > 1 )
+		$('#activeResourcesTable .' + classes).hide();
+	// turn off checkbox
+	checkBoxes('#activeResourcesTable');
+	// re-size columns
+	resizeColumns('#activeResourcesTable', 666);
 });
 
-// section E radio buttons (checkboxes)
-// if this checks it eg IT'S UNCHECKED show column
+// event listenters for section E checkboxes
 $('#sectionE .options').on('click', 'input:checked', function(){
-	var classes = $(this).attr('class');
-	classes = $('#activeResourcesTable #' + classes).attr('class').replace('col ','');
-	console.log($('#activeResourcesTable .' + classes));
-	$('#activeResourcesTable .' + classes).show();
-	columnCheckE();
+	var checkClass = $(this).attr('class');
+	var colClass = $('#activeResourcesTable #' + checkClass).attr('class').split(' ')[0];
+	console.log($('#activeResourcesTable .' + colClass));
+	$('#activeResourcesTable .' + colClass).show();
+	resizeColumns('#activeResourcesTable', 666);
 });
 // if this unchecks it eg IT'S CHECKED
 $('#sectionE .options').on('click', 'input:not(:checked)', function(){
-	var classes = $(this).attr('class');
-	classes = $('#activeResourcesTable #' + classes).attr('class').replace('col ','');
-	console.log($('#activeResourcesTable .' + classes));
-	$('#activeResourcesTable .' + classes).hide();
-	columnCheckE();
+	var checkClass = $(this).attr('class');
+	$('#activeResourcesTable th#' + checkClass + ' a').click();
 });
 
-
-//for visible buttons make sure check boxes are checked.
-function checkBoxes() {
-	var visibleButtons = $('#activeResourcesTable button:visible')
-	var length = visibleButtons.length;
-	for (var i = 0; i < length; i++) {
-		var id = $(visibleButtons[i]).attr('id');
-		$('#sectionE .options input.' + id).prop('checked', true);
-	}
-}
-var tableWidth = 666;
-// closing columns
-function columnCheckE() {
-	var length = $('#activeResourcesTable button:visible').length;
-	$('#activeResourcesTable .col').css('width', tableWidth / length + 'px');
-	greyRows(length);
-}
-
-greyRows(7);
-
-function greyRows(width) {
-	var length = $('#activeResourcesTable div.col').length;
-	var twiceWidth = 7 * 2;
-	for (var i = 1; i < length; i++) {
-		$('#activeResourcesTable div.col').slice(14*i-7, 7*i).css('background', 'grey');
-	}
-}
+$(document).ready(function(){ 
+	$("#activeResourcesTable").tablesorter();
+	$("#callsWaitingTable").tablesorter();
+	checkBoxes('#callsWaitingTable');
+	checkBoxes('#activeResourcesTable');
+});

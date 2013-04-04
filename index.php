@@ -28,8 +28,8 @@ include('login.php');
 <meta charset="UTF-8">
 <link rel="stylesheet" href="style.css">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>-->
-<script src="./jquery.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="./jquery.tablesorter.min.js"></script>
 <script async src="script.js"></script>
 <title>MCC</title>
 </head>
@@ -222,10 +222,10 @@ include('login.php');
 			</header>
 			<div class="closable">
 					
-				<form class="pause">
-					<input type="submit" name="pause" value="">
-					<label for="pause">Pause</label>
-				</form>
+				<div class="pause">
+					<a href="#"><div class="minipause"></div></a>
+					<div class="pauselabel">Pause</div>
+				</div>
 				
 				<nav>
 					<button>View</button>
@@ -239,14 +239,16 @@ include('login.php');
 					</form>
 					<div class="clear"></div>
 				</nav>
-				<div id="callsWaitingTable">
-					<button id="campaign" class="col col1"><a class="sort"></a>Campaign<a class="close" href="#"></a></button>
-					<button id="phone" class="col col2"><a class="sort"></a>Phone<a class="close" href="#"></a></button>
-					<button id="time" class="col col3"><a class="sort"></a>Time<a class="close" href="#"></a></button>
-					<button id="callType" class="col col4"><a class="sort"></a>Call Type<a class="close" href="#"></a></button>
-					<button id="priority" class="col col5"><a class="sort"></a>Priority<a class="close" href="#"></a></button>
-					<div class="rows"></div>
-				</div><!-- end callsWaitingTable -->
+				<table id="callsWaitingTable" class="tablesorter">
+				<thead>
+					<th id="campaign" class="col1"><a class="sort"></a>Campaign<a class="close" href="#"></a></th>
+					<th id="phone" class="col2"><a class="sort"></a>Phone<a class="close" href="#"></a></th>
+					<th id="time" class="col3"><a class="sort"></a>Time<a class="close" href="#"></a></th>
+					<th id="callType" class="col4"><a class="sort"></a>Call Type<a class="close" href="#"></a></th>
+					<th id="priority" class="col5"><a class="sort"></a>Priority<a class="close" href="#"></a></th>
+				</thead>
+					<tbody class="rows"></tbody>
+				</table><!-- end callsWaitingTable -->
 			</div><!-- end closable -->
 		</section><!-- end sectionD -->
 
@@ -270,19 +272,21 @@ include('login.php');
 					</form>
 					<div class="clear"></div>
 				</nav>
-				<div id="activeResourcesTable">
-					<button id="user" class="col col1"><a class="sort"></a>User<a class="close" href="#"></a></button>
-					<button id="group" class="col col2"><a class="sort"></a>Group<a class="close" href="#"></a></button>
-					<button id="status" class="col col3"><a class="sort"></a>Status<a class="close" href="#"></a></button>
-					<button id="time" class="col col4"><a class="sort"></a>Time<a class="close" href="#"></a></button>
-					<button id="phone" class="col col5"><a class="sort"></a>Phone<a class="close" href="#"></a></button>
-					<button id="campaign" class="col col6"><a class="sort"></a>Campaign<a class="close" href="#"></a></button>
-					<button id="calls" class="col col7"><a class="sort"></a>Calls<a class="close" href="#"></a></button>
-					<div class="clear"></div>
-					<span class="rows">
+				<table id="activeResourcesTable" class="tablesorter">
+				<thead>
+					<th id="user" class="col1"><a class="sort"></a>User<a class="close" href="#"></a></th>
+					<th id="group" class="col2"><a class="sort"></a>Group<a class="close" href="#"></a></th>
+					<th id="status" class="col3"><a class="sort"></a>Status<a class="close" href="#"></a></th>
+					<th id="time" class="col4"><a class="sort"></a>Time<a class="close" href="#"></a></th>
+					<th id="phone" class="col5"><a class="sort"></a>Phone<a class="close" href="#"></a></th>
+					<th id="campaign" class="col6"><a class="sort"></a>Campaign<a class="close" href="#"></a></th>
+					<th id="calls" class="col7"><a class="sort"></a>Calls<a class="close" href="#"></a></th>
+				</thead>
+					<!-- <div class="clear"></div> -->
+					<tbody class="rows">
 
-					</span>
-				</div>
+					</tbody>
+				</table>
 			</div>
 		</section><!-- end sectionE -->
 
