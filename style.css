@@ -859,11 +859,12 @@ html, body {
     #sectionF .sides h2 {
       color: #5ebf1e;
       font-size: 25px;
-      margin-top: 20px;
-      margin-bottom: 22px; }
+      line-height: 60px;
+      text-indent: -0.5em;
+      position: relative; }
     #sectionF .sides h2 .pct {
       font: 700 12px/20px helvetica, Arial, sans-serif;
-      line-height: 20px;
+      line-height: 50px;
       vertical-align: top; }
     #sectionF .sides h3 {
       margin-top: 14px;
@@ -875,6 +876,25 @@ html, body {
     #sectionF .sides h4#dropped {
       color: #c32232; }
     #sectionF .sides h4#answered {
+      color: #5ebf1e; }
+    #sectionF .sides #arrows {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 60px;
+      width: 14px;
+      font-size: 14px;
+      box-sizing: border-box;
+      text-align: left;
+      text-indent: 0.2em; }
+    #sectionF .sides .neutral {
+      background: url("./images/arrows.png") 0px 0px no-repeat, url("./images/arrows.png") -13px 30px no-repeat;
+      color: #8f8f8f; }
+    #sectionF .sides .goingUp {
+      background: url("./images/arrows.png") -52px 0px no-repeat;
+      color: #c32232; }
+    #sectionF .sides .goingDown {
+      background: url("./images/arrows.png") -39px 0px no-repeat;
       color: #5ebf1e; }
 
 .sort {

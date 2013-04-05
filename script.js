@@ -19,7 +19,27 @@ $.get('./time.php', function(data) {
 
 var delay = 2;
 
-
+var oldDropped, deltaDropped;
+droppedTrend();
+function droppedTrend(){
+	var newDropped = $('#dropped_no span').text();
+	deltaDropped = oldDropped - newDropped;
+	oldDropped = newDropped;
+	if ( deltaDropped > 0 ) {
+		// red up arrow
+		$('#arrows').text(deltaDropped);
+		$('#arrows').removeClass();
+		$('#arrows').addClass('goingUp');
+	} else if ( deltaDropped > 0) {
+		$('#arrows').text(deltaDropped);
+		$('#arrows').removeClass();
+		$('#arrows').addClass('goingDown');
+	} else {
+		$('#arrows').text(deltaDropped);
+		$('#arrows').removeClass();
+		$('#arrows').addClass('neutral');
+	}
+}
 
 // default sort field for sectionD
 var dSorter = 'campaign';
@@ -40,14 +60,14 @@ $('#callsWaitingTable th').on('click', function(){
 var eSorter = 'user';
 var eOrder = "asc";
 // listeners to change sort field for sectionE
-$('#activeResourcesTable button').on('click', function(){
+$('#activeResourcesTable th').on('click', function(){
 	//$(this).addClass('clicked');
 	eSorter = $(this).attr('id');
 
 	if ( $(this).hasClass('headerSortDown') )
-		eOrder = "desc";
+		eOrder = "asc";
 	else if ( $(this).hasClass('headerSortUp') )
-		eOrder = "asc"
+		eOrder = "desc"
 
 });
 
@@ -67,6 +87,7 @@ if ( delay > 0 ) {
 			setDataC(data);
 			setDataD(data);
 			setDataE(data);
+			droppedTrend();
 			$("#callsWaitingTable").trigger("update");
 			$("#activeResourcesTable").trigger("update");
 			//Setup the next poll recursively
@@ -216,6 +237,7 @@ findFajax();
 function findFajax(){
 	$.ajax({ url: "./findF.php", success: function(data){
 			setDataF(data);
+			droppedTrend();
 			findF();
 		}, dataType: "json"});
 }
