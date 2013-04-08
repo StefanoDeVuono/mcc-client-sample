@@ -49,7 +49,7 @@ include('login.php');
 					<h2>
 						<span class="pct_no"></span>
 						<span class="pct">%</span>
-						<div id="arrows" class="neutral">-</div>
+						<div id="arrows">-</div>
 					</h2>
 					<h4 id="dropped_no">Dropped - <span></span></h4>
 					<h4 id="answered">Answered - <span></span></h4>

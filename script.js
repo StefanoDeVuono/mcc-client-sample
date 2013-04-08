@@ -19,18 +19,22 @@ $.get('./time.php', function(data) {
 
 var delay = 2;
 
+// Arrows
 var oldDropped, deltaDropped;
-droppedTrend();
 function droppedTrend(){
 	var newDropped = $('#dropped_no span').text();
-	deltaDropped = oldDropped - newDropped;
+	console.log('newDropped is' + newDropped);
+	deltaDropped = newDropped - oldDropped;
+	if (isNaN(deltaDropped)) deltaDropped = 0;
+	console.log('oldDropped is' + oldDropped);
 	oldDropped = newDropped;
+	console.log('deltaDropped is' + deltaDropped);
 	if ( deltaDropped > 0 ) {
 		// red up arrow
-		$('#arrows').text(deltaDropped);
+		$('#arrows').text("+" + deltaDropped);
 		$('#arrows').removeClass();
 		$('#arrows').addClass('goingUp');
-	} else if ( deltaDropped > 0) {
+	} else if ( deltaDropped < 0) {
 		$('#arrows').text(deltaDropped);
 		$('#arrows').removeClass();
 		$('#arrows').addClass('goingDown');
@@ -87,7 +91,6 @@ if ( delay > 0 ) {
 			setDataC(data);
 			setDataD(data);
 			setDataE(data);
-			droppedTrend();
 			$("#callsWaitingTable").trigger("update");
 			$("#activeResourcesTable").trigger("update");
 			//Setup the next poll recursively
@@ -221,26 +224,28 @@ function setDataE(data) {
 }
 
 
-// ******************************************************************
-// define function to find by the minute aggregate info for section F
-function findF(){
-	setTimeout(findFajax, 60000);
-};
+$(document).ready(function(){
+	// ******************************************************************
+	// define function to find by the minute aggregate info for section F
+	function findF(){
+		setTimeout(findFajax, 60000);
+		//droppedTrend();
+	};
 
-// execute findF at load
-findFajax();
+	// execute findF at load
+	findFajax();
 
-// execute findF at 1 minute intervals
-(findF)();
+	// ajax function used in findF
+	function findFajax(){
+		$.ajax({ url: "./findF.php", success: function(data){
+				setDataF(data);
+				droppedTrend();
+				findF();
+			}, dataType: "json"});
+	}
+});
 
-// ajax function used in findF
-function findFajax(){
-	$.ajax({ url: "./findF.php", success: function(data){
-			setDataF(data);
-			droppedTrend();
-			findF();
-		}, dataType: "json"});
-}
+
 function setDataF(data){
 	$('#dropped_no span').text(data['DROPPED']); // Total Dropped Calls today
 	$('#answered span').text(data['ANSWERED']); // Total Answered Calls today

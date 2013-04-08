@@ -880,21 +880,21 @@ html, body {
     #sectionF .sides #arrows {
       position: absolute;
       top: 0;
-      right: 0;
+      right: -4px;
       height: 60px;
-      width: 14px;
+      width: 24px;
       font-size: 14px;
       box-sizing: border-box;
-      text-align: left;
-      text-indent: 0.2em; }
+      text-align: center;
+      text-indent: 0; }
     #sectionF .sides .neutral {
-      background: url("./images/arrows.png") 0px 0px no-repeat, url("./images/arrows.png") -13px 30px no-repeat;
+      background: url("./images/dropped.png") 5px 0px no-repeat;
       color: #8f8f8f; }
     #sectionF .sides .goingUp {
-      background: url("./images/arrows.png") -52px 0px no-repeat;
+      background: url("./images/dropped.png") -20px 0px no-repeat;
       color: #c32232; }
     #sectionF .sides .goingDown {
-      background: url("./images/arrows.png") -39px 0px no-repeat;
+      background: url("./images/dropped.png") -43px 0px no-repeat;
       color: #5ebf1e; }
 
 .sort {
