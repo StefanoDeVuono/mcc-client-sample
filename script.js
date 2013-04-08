@@ -184,9 +184,9 @@ function setDataE(data) {
 	for (var i = 0; i < length; i++) {
 		row += '<tr>'
 		if ( $('#activeResourcesTable th.col1').is(':hidden') )
-			row += '<td class="col col" style="display: none">' + data['E'][i]['user'] + '</td>';
+			row += '<td class="col col" style="display: none">' + data['E'][i]['user'] + '<span><a href="#" id="reportlink"></a><a href="#" id="grouplink"></a><a href="#" id="permissionlink"></a></span></td>';
 		else
-			row += '<td class="col col1">' + data['E'][i]['user'] + '</td>';
+			row += '<td class="col col1">' + data['E'][i]['user'] + '<span><a href="/reports/tabs.php?userid=' + data['E'][i]['user'] + '" id="reportlink"></a><a href="#" id="grouplink"></a><a href="/vicidial/user_status.php?user=' + data['E'][i]['userid'] + '" id="permissionlink"></a></span></td>';
 		
 		if ( $('#activeResourcesTable th.col2').is(':hidden') )
 			row += '<td class="col col2" style="display: none">' + data['E'][i]['group'] + '</td>';
@@ -220,6 +220,12 @@ function setDataE(data) {
 		row += '</tr>';
 	}
 	$('#activeResourcesTable tbody.rows').html(row);
+	$("#activeResourcesTable").tablesorter({
+		widgets: ['zebra'],
+		textExtraction: function(node){
+			return node.childNodes[0].innerHTML;
+		}
+	});
 	resizeColumns('#activeResourcesTable', 666);
 }
 
@@ -263,7 +269,7 @@ function setDataF(data){
 // Pause buttons
 
 pause = function(){
-	console.log('pause');
+	//console.log('pause');
 }
 $('#sectionA header').on('click', 'a.pause', function(e){
 	e.preventDefault();
@@ -290,7 +296,7 @@ $('#sectionA header').on('click', 'a.play', function(e){
 	setDataE = storeE;
 	setDataF = storeF;
 	ajaxFunc();
-	findFajax();
+	findF();
 	$(this).removeClass('play');
 	$(this).addClass('pause');
 });
@@ -432,8 +438,39 @@ $('#sectionE .options').on('click', 'input:not(:checked)', function(){
 });
 
 $(document).ready(function(){ 
-	$("#activeResourcesTable").tablesorter();
+	$("#activeResourcesTable").tablesorter({
+		widgets: ['zebra'],
+		textExtraction: function(node){
+			return node.childNodes[0].childNodes[0].innerHTML;
+		}
+	});
 	$("#callsWaitingTable").tablesorter();
 	checkBoxes('#callsWaitingTable');
 	checkBoxes('#activeResourcesTable');
 });
+
+$('#options').on('hover', function(){
+	$('#options').toggleClass('darkBlue');
+	$('#optionsPopup').toggle();
+});
+
+$('#optionsPopup').on('hover', 'a', function(){
+	$('#options').toggleClass('darkBlue');
+	$('#optionsPopup').toggle();
+	$(this).toggleClass('darkBlue');
+});
+
+// $('td.col1'.on('click','#reportlink', function(e){
+// 	//e.preventDefault();
+
+// })
+
+// $('td.col1').on('click','#grouplink', function(e){
+// 	//e.preventDefault();
+
+// })
+
+// $('td.col1').on('click','#permissionlink', function(e){
+// 	//e.preventDefault();
+
+// })

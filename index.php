@@ -132,7 +132,25 @@ include('login.php');
 				<a id="options">Options</a>
 				<a id="settings">User Settings</a>
 			</header>		
-
+			<div id="optionsPopup">
+				<a href="/vicidial/admin.php">Users</a>
+				<a href="/vicidial/admin.php?ADD=10">Campaigns</a>
+				<a href="/vicidial/admin.php?ADD=100">Lists</a>
+				<a href="/vicidial/admin.php?ADD=1000000">Scripts</a>
+				<a href="/vicidial/admin.php?ADD=10000000">Filters</a>
+				<a href="/vicidial/admin.php?ADD=1000">Inbound</a>
+				<a href="/vicidial/admin.php?ADD=100000">User Groups</a>
+				<a href="/vicidial/admin.php?ADD=10000">Remote Agents</a>
+				<a href="/vicidial/admin.php?ADD=999998">Admin</a>
+				<a href="/vicidial/admin.php?ADD=999999">Reports</a>
+				<a href="/vicidial/admin.php?ADD=10">Modify</a>
+				<a href="/vicidial/admin.php">Summary</a>
+			</div>
+			<div id="settingsPopup">
+				<a class="close" href="#"></a>
+				<div id="selectCampaigns" class=".thingie"></div>
+				<div id="selectUserGroups" class=".thingie"></div>
+			</div>
 			<div id="agent_ready" class="col0">
 						<div class="text">Agents Waiting</div>
 						<div class="number"></div>
