@@ -728,13 +728,17 @@ html, body {
     float: left;
     width: 666px;
     margin: 20px auto auto 19px; }
+    #sectionD #callsWaitingTable thead tr, #sectionD #callsWaitingTable tbody tr {
+      width: 666px;
+      display: block; }
     #sectionD #callsWaitingTable td.col1, #sectionD #callsWaitingTable td.col2, #sectionD #callsWaitingTable td.col3, #sectionD #callsWaitingTable td.col4, #sectionD #callsWaitingTable td.col5 {
       width: 133.2px;
       margin: 0;
       display: inline-block; }
     #sectionD #callsWaitingTable th {
       width: 133.2px;
-      display: inline-block; }
+      display: block;
+      float: left; }
     #sectionD #callsWaitingTable td.col1, #sectionD #callsWaitingTable td.col2, #sectionD #callsWaitingTable td.col3, #sectionD #callsWaitingTable td.col4, #sectionD #callsWaitingTable td.col5 {
       height: 43px;
       box-sizing: border-box;
@@ -744,7 +748,8 @@ html, body {
       display: block;
       width: 666px;
       max-height: 215px;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       border-bottom: 1px solid #a4a4a4; }
   #sectionD nav {
     font-size: 11px;

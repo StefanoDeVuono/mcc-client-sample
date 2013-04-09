@@ -17,7 +17,7 @@ $.get('./time.php', function(data) {
 	}, 1000);
 });
 
-var delay = 2;
+var delay = 4;
 
 // Arrows
 var oldDropped, deltaDropped;
@@ -81,7 +81,7 @@ if ( delay > 0 ) {
 	function findAE(){
 		setTimeout(ajaxFunc, delay * 1000); // end timeout
 	}
-	ajaxFunc(); // do lookup first time
+	
 	function ajaxFunc(){
 		$.ajax({ url: "./find.php",
 		data: {dSort: dSorter, dOrder: dOrder, eSort: eSorter, eOrder: eOrder},
@@ -97,7 +97,7 @@ if ( delay > 0 ) {
 			findAE();
 		}, dataType: "json"}); // end ajax function and object
 	}
-	(find)(); // auto run lookup after every deley seconds
+	ajaxFunc(); // do lookup first time
 } else if ( delay == 0 ) {
 	(function findAE(){
 		$.ajax({ url: "./find.php",

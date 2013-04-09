@@ -57,25 +57,21 @@ background-color: #8dbdd8;
 </head>
 <?php
 if ( isset($_GET["userid"]) ) {
-	$userid = "where Name=".$_GET["userid"]."'";
+	$userid = "where Name='".$_GET["userid"]."'";
 } else {
 	$userid = "";
 }
-
-
-
-
-
-
-$link = $mysql = mysqli_connect('192.168.100.59', 'cron', '1234', 'asteriskrcs', 3306) or die(mysql_error());
+echo "select * from agent_performance_report $userid;";
+// $link = $mysql = mysqli_connect('192.168.100.59', 'cron', '1234', 'asteriskrcs', 3306) or die(mysql_error());
        
-	echo "Agent Stats Report - This is a Daily Report";
+// 	echo "Agent Stats Report - This is a Daily Report";
 
-$result = mysqli_query($link, "select * from agent_performance_report $userid;");
-$totals2 = mysqli_query($link, "select sum(contacts)'contacts',sum(sales)'sales',sum(XFER)'XFER',sum(CBN)'CBN',sum(SCBN)'SCBN',sum(OBCalls)'OBCalls',sum(ManCalls)'ManCalls',sum(IBCalls)'IBCalls',
-       SEC_TO_TIME(sum(TotalTime))'TotalTime',SEC_TO_TIME(sum(OffTime))'OffTime',SEC_TO_TIME(sum(TalkTime))'TalkTime',SEC_TO_TIME(sum(WaitTime))'WaitTime',
-       SEC_TO_TIME(sum(WrapTime))'WrapTime',SEC_TO_TIME(sum(DeadTime))'DeadTime',SEC_TO_TIME(sum(ACW))'ACW'
-               from agent_performance_report $userid;");
+// $result = mysqli_query($link, "select * from agent_performance_report $userid;");
+
+// $totals2 = mysqli_query($link, "select sum(contacts)'contacts',sum(sales)'sales',sum(XFER)'XFER',sum(CBN)'CBN',sum(SCBN)'SCBN',sum(OBCalls)'OBCalls',sum(ManCalls)'ManCalls',sum(IBCalls)'IBCalls',
+//        SEC_TO_TIME(sum(TotalTime))'TotalTime',SEC_TO_TIME(sum(OffTime))'OffTime',SEC_TO_TIME(sum(TalkTime))'TalkTime',SEC_TO_TIME(sum(WaitTime))'WaitTime',
+//        SEC_TO_TIME(sum(WrapTime))'WrapTime',SEC_TO_TIME(sum(DeadTime))'DeadTime',SEC_TO_TIME(sum(ACW))'ACW'
+//                from agent_performance_report $userid;");
 ?>
 <body>
 <table class="tablesorter">
