@@ -778,7 +778,9 @@ html, body {
       -moz-box-sizing: border-box;
       text-align: center;
       padding: 7px 5px;
-      border: 1px solid #a4a4a4; }
+      border: 1px solid #a4a4a4;
+      margin: 0;
+      display: inline-block; }
     #sectionE #activeResourcesTable td.col8 {
       margin: 0;
       float: left;

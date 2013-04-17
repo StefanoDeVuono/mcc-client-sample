@@ -7,7 +7,7 @@ include 'database.php';
 
 // groups
 $stmt = "select campaign_id from vicidial_campaigns where active='Y' $LOGallowed_campaignsSQL order by campaign_id;";
-$alowed_reports =[];
+$alowed_reports = array();
 $result = mysqli_query($db, $stmt);
 // while ($row = mysqli_fetch_row($result)) {
 //         print_r($row);
