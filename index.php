@@ -28,9 +28,10 @@ include('login.php');
 <meta charset="UTF-8">
 <link rel="stylesheet" href="style.css">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script src="./jquery.tablesorter.min.js"></script>
-<script async src="script.js"></script>
+<script async src="./js/options.js"></script>
+<script async src="./js/script.js"></script>
 <title>MCC</title>
 </head>
 <body>
@@ -111,7 +112,7 @@ include('login.php');
 					<h3></h3>
 				</div>
 			</div>
-			<a href="tabs.php">
+			<a href="tabs.php" target="_blank" id="tabslink">
 				<div class="sides" id="reports">
 					<a href="#" class="close" id="closeReports"></a>
 					<header>View</header>
@@ -146,11 +147,47 @@ include('login.php');
 				<a href="/vicidial/admin.php?ADD=10">Modify</a>
 				<a href="/vicidial/admin.php">Summary</a>
 			</div>
-			<div id="settingsPopup">
-				<a class="close" href="#"></a>
-				<div id="selectCampaigns" class=".thingie"></div>
-				<div id="selectUserGroups" class=".thingie"></div>
-			</div>
+			<form id="settingsPopup">
+					<div class="leftform">
+						<label for="select-campaigns">Select Campaigns</label>
+						<select multiple name="select-campaigns" id="select-campaigns">
+							
+						</select>
+
+						<label for="select-usergroups">Select User Groups</label>
+						<select multiple name="select-usergroups" id="select-usergroups">
+							<option>All Inbound</option>
+							<option>LocalTouch</option>
+							<option>Transfer INGroup</option>
+							<option>Test</option>
+						</select>
+					</div>
+					<div class="rightform">	
+						<label for="refreshrate">Screen Refresh Rate</label>
+						<select id="refreshrate" class="dropdown"> class="dropdown"
+							<option>5 seconds</option>
+							<option>10 seconds</option>
+							<option>30 seconds</option>
+							<option>60 seconds</option>
+							<option>Pause</option>
+						</select>
+				
+						<label for="show-ingroup">Show In Group Stats</label>
+						<select id="show-ingroup" class="dropdown">		
+							<option>Yes</option>
+							<option>No</option>
+						</select>
+				
+						<label for="show-carrier">Show Carrier Stats</label>
+						<select id="show-carrier" class="dropdown">
+							<label>g</label>
+							<option>Yes</option>
+							<option>No</option>
+						</select>
+					</div>
+					<input type="submit" value="Submit" />
+					<a href="#" class="close" id="closeSettingsPopup"></a>
+				</form>
 			<div id="agent_ready" class="col0">
 						<div class="text">Agents Waiting</div>
 						<div class="number"></div>
@@ -291,6 +328,13 @@ include('login.php');
 						<div class="thing"><input type="checkbox" class="phone">Phone</input></div>
 						<div class="thing"><input type="checkbox" class="campaign">Campaign</input></div>
 						<div class="thing"><input type="checkbox" class="calls">Calls</input></div>
+						<div class="thing"><input type="checkbox" class="contact">Contact</input></div>
+						<div class="thing"><input type="checkbox" class="transfer">Transfer</input></div>
+						<div class="thing"><input type="checkbox" class="success">Success</input></div>
+						<div class="thing"><input type="checkbox" class="station">Station</input></div>
+						<div class="thing"><input type="checkbox" class="typeIaQ">Type (I,A,Q)</input></div>
+						<div class="thing"><input type="checkbox" class="in-group">In-Group</input></div>
+						<div class="thing"><input type="checkbox" class="activityAlert">Activity Alert</input></div>
 					</form>
 					<div class="clear"></div>
 				</nav>
@@ -303,12 +347,58 @@ include('login.php');
 					<th id="phone" class="col5"><a class="sort"></a>Phone<a class="close" href="#"></a></th>
 					<th id="campaign" class="col6"><a class="sort"></a>Campaign<a class="close" href="#"></a></th>
 					<th id="calls" class="col7"><a class="sort"></a>Calls<a class="close" href="#"></a></th>
+					<th id="contact" class="col8" style="display: none"><a class="sort"></a>Contact<a class="close" href="#"></a></th>
+					<th id="transfer" class="col9" style="display: none"><a class="sort"></a>Transfer<a class="close" href="#"></a></th>
+					<th id="success" class="col10" style="display: none"><a class="sort"></a>Success<a class="close" href="#"></a></th>
+					<th id="station" class="col11" style="display: none"><a class="sort"></a>Station<a class="close" href="#"></a></th>
+					<th id="typeIaQ" class="col12" style="display: none"><a class="sort"></a>Typp (I,A,Q)<a class="close" href="#"></a></th>
+					<th id="in-group" class="col13" style="display: none"><a class="sort"></a>In-Group<a class="close" href="#"></a></th>
+					<th id="activityAlert" class="col14" style="display: none"><a class="sort"></a>Activity Alert<a class="close" href="#"></a></th>
 				</thead>
 					<!-- <div class="clear"></div> -->
 					<tbody class="rows">
 
 					</tbody>
 				</table>
+				<form id="activeResourcesForm">
+					<div class="leftform">
+						<h2 id="agentHeader">Agent: <span>FT FL Sylvestre, Judina</span></h2>
+						<label for="in-groups">Selected In Groups</label>
+						<select multiple name="in-groups" id="in-groups">
+							
+							<option>All Inbound</option>
+							<option>LocalTouch</option>
+							<option>Transfer INGroup</option>
+							<option>Test</option>
+						</select>
+					</div>
+					<div class="rightform">
+						<h2 id="campaignHeader">Campaign: <span>SIC</span></h2>
+						<label for="changeAddRemove">Change, Add or Remove</label>
+						<select id="changeAddRemove" class="dropdown">
+							<option>Change</option>
+							<option>Add</option>
+							<option>Remove</option>
+						</select>
+						
+						<label for="blendedOutAuto">Blended Outbound Autodial</label>
+						<select id="blendedOutAuto" class="dropdown">
+							<option>Blended</option>
+							<option>Outbound</option>
+							<option>Autodial</option>
+						</select>
+				
+						<label for="setUserDefault">Set as User Defaults</label>
+						<select id="setUserDefault" class="dropdown">
+							<option>Yes</option>
+							<option>No</option>
+							<option>Remove</option>
+						</select>
+					</div>
+
+					<input type="submit" value="Submit" />
+					<a href="#" class="close" id="closeActiveResourcesForm"></a>
+				</form>
 			</div>
 		</section><!-- end sectionE -->
 

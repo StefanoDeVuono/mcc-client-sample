@@ -110,14 +110,16 @@ html, body {
     height: 39px;
     border-left: 1px white solid;
     line-height: 37px;
-    text-align: center; }
+    text-align: center;
+    cursor: pointer; }
   #sectionA header #settings {
     float: right;
     width: 94px;
     height: 39px;
     border-left: 1px white solid;
     line-height: 37px;
-    text-align: center; }
+    text-align: center;
+    cursor: pointer; }
 
 #sectionA {
   position: relative; }
@@ -148,20 +150,6 @@ html, body {
       text-align: center;
       font: bold 11px helvetica, Arial, sans-serif;
       line-height: 2.2em; }
-  #sectionA #settingsPopup {
-    display: none;
-    position: absolute;
-    width: 720px;
-    height: 375px;
-    top: 70px;
-    left: 20px;
-    background: #f4f4f4;
-    box-shadow: 2px 2px 2px 2px #dadde0;
-    z-index: 60; }
-    #sectionA #settingsPopup .thingie {
-      height: 131px;
-      width: 342px;
-      overflow: scroll; }
 
 #sectionATable {
   margin: 19px 0;
@@ -214,8 +202,9 @@ html, body {
   #sectionB header {
     float: left;
     font: bold 16px helvetica, Arial, sans-serif;
-    line-height: 55px;
-    margin-right: 220px; }
+    line-height: 1em;
+    margin-right: 220px;
+    margin-top: 20px; }
   #sectionB label {
     float: left;
     line-height: 55px;
@@ -654,8 +643,7 @@ html, body {
 
 #sectionD {
   position: relative;
-  border-bottom: 1px solid #a4a4a4;
-  padding-bottom: 65px; }
+  border-bottom: 1px solid #a4a4a4; }
   #sectionD header {
     margin: 20px auto 17px 28px;
     float: left; }
@@ -727,7 +715,7 @@ html, body {
     border-spacing: 0;
     float: left;
     width: 666px;
-    margin: 20px auto auto 19px; }
+    margin: 20px auto 65px 19px; }
     #sectionD #callsWaitingTable thead tr, #sectionD #callsWaitingTable tbody tr {
       width: 666px;
       display: block; }
@@ -756,6 +744,7 @@ html, body {
     width: 86px;
     float: right;
     margin-top: 24px;
+    margin-bottom: 35px;
     right: 0; }
     #sectionD nav .options {
       border-top: 1px solid #a4a4a4; }
@@ -771,6 +760,15 @@ html, body {
     float: left;
     width: 722px;
     margin: auto auto auto 19px; }
+    #sectionE #activeResourcesTable thead tr {
+      width: 667px;
+      display: block; }
+    #sectionE #activeResourcesTable tbody tr {
+      width: 666px;
+      display: block; }
+    #sectionE #activeResourcesTable th {
+      display: block;
+      float: left; }
     #sectionE #activeResourcesTable .col1, #sectionE #activeResourcesTable .col2, #sectionE #activeResourcesTable .col3, #sectionE #activeResourcesTable .col4, #sectionE #activeResourcesTable .col5, #sectionE #activeResourcesTable .col6, #sectionE #activeResourcesTable .col7 {
       width: 95.142857px;
       margin: 0; }
@@ -788,7 +786,9 @@ html, body {
       width: 50px;
       padding-left: 5px; }
     #sectionE #activeResourcesTable td.col1 {
-      position: relative; }
+      position: relative;
+      display: block;
+      float: left; }
       #sectionE #activeResourcesTable td.col1:hover span {
         display: block; }
     #sectionE #activeResourcesTable td.col1 span {
@@ -806,7 +806,7 @@ html, body {
       display: inline-block;
       width: 11px;
       height: 15px;
-      margin: 10px 6px 0 15px;
+      margin: 10px 6px 0 35px;
       float: left;
       background: url("./images/active_sprite.png") 0px 0px no-repeat; }
       #sectionE #activeResourcesTable #reportlink:hover {
@@ -979,6 +979,13 @@ html, body {
     #sectionF .sides .goingDown {
       background: url("./images/dropped.png") -43px 0px no-repeat;
       color: #5ebf1e; }
+    #sectionF .sides #tabslink {
+      position: absolute;
+      display: block;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0; }
 
 .sort {
   display: block;
@@ -1063,94 +1070,6 @@ table.tablesorter {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     position: relative; }
-    table.tablesorter thead tr th:first-child {
-      display: table-cell;
-      white-space: nowrap;
-      vertical-align: middle;
-      line-height: normal;
-      font-size: 11px;
-      color: black;
-      -webkit-appearance: none;
-      border: 1px solid #dddddd;
-      -webkit-border-top-left-radius: 3px;
-      -webkit-border-top-right-radius: 0;
-      -webkit-border-bottom-right-radius: 0;
-      -webkit-border-bottom-left-radius: 0;
-      -moz-border-radius-topleft: 3px;
-      -moz-border-radius-topright: 0;
-      -moz-border-radius-bottomright: 0;
-      -moz-border-radius-bottomleft: 0;
-      border-top-left-radius: 3px;
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
-      -webkit-box-shadow: 0 1px 1px white;
-      -moz-box-shadow: 0 1px 1px white;
-      box-shadow: 0 1px 1px white;
-      text-shadow: 0 1px 1px white;
-      color: #111111;
-      border-color: #999999;
-      background: #dbdbdb;
-      background: -webkit-gradient(linear, center top, center bottom, from(white), to(#e0e0e0));
-      background: -webkit-linear-gradient(top, white, #e0e0e0);
-      background: -moz-linear-gradient(top, white, #e0e0e0);
-      background: -ms-linear-gradient(top, white, #e0e0e0);
-      background: -o-linear-gradient(top, white, #e0e0e0);
-      background: linear-gradient(top, white, #e0e0e0);
-      -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 0 3px white;
-      -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 0 3px white;
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 0 3px white;
-      height: 28px;
-      width: auto;
-      text-align: center;
-      line-height: 28px;
-      box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      position: relative; }
-    table.tablesorter thead tr th:last-child {
-      display: table-cell;
-      white-space: nowrap;
-      vertical-align: middle;
-      line-height: normal;
-      font-size: 11px;
-      color: black;
-      -webkit-appearance: none;
-      border: 1px solid #dddddd;
-      -webkit-border-top-left-radius: 0;
-      -webkit-border-top-right-radius: 3px;
-      -webkit-border-bottom-right-radius: 0;
-      -webkit-border-bottom-left-radius: 0;
-      -moz-border-radius-topleft: 0;
-      -moz-border-radius-topright: 3px;
-      -moz-border-radius-bottomright: 0;
-      -moz-border-radius-bottomleft: 0;
-      border-top-left-radius: 0;
-      border-top-right-radius: 3px;
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
-      -webkit-box-shadow: 0 1px 1px white;
-      -moz-box-shadow: 0 1px 1px white;
-      box-shadow: 0 1px 1px white;
-      text-shadow: 0 1px 1px white;
-      color: #111111;
-      border-color: #999999;
-      background: #dbdbdb;
-      background: -webkit-gradient(linear, center top, center bottom, from(white), to(#e0e0e0));
-      background: -webkit-linear-gradient(top, white, #e0e0e0);
-      background: -moz-linear-gradient(top, white, #e0e0e0);
-      background: -ms-linear-gradient(top, white, #e0e0e0);
-      background: -o-linear-gradient(top, white, #e0e0e0);
-      background: linear-gradient(top, white, #e0e0e0);
-      -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 0 3px white;
-      -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 0 3px white;
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 0 3px white;
-      height: 28px;
-      width: auto;
-      text-align: center;
-      line-height: 28px;
-      box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      position: relative; }
   table.tablesorter thead tr .header a.sort {
     background-image: url("./images/arrows.svg"); }
   table.tablesorter thead tr .headerSortUp a.sort {
@@ -1159,3 +1078,171 @@ table.tablesorter {
     background-image: url("./images/desc.svg"); }
   table.tablesorter .even {
     background-color: #dadde0; }
+  table.tablesorter .firstButton {
+    border-top-left-radius: 3px;
+    moz-border-radius-topleft: 3px; }
+  table.tablesorter .lastButton {
+    border-top-right-radius: 3px;
+    moz-border-radius-topright: 3px; }
+
+form .leftform {
+  width: 50%;
+  height: 100%;
+  float: left; }
+form .rightform {
+  width: 50%;
+  height: 100%;
+  float: right; }
+  form .rightform label, form .rightform select, form .rightform h2 {
+    margin-left: 83px; }
+form input[type="submit"] {
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: middle;
+  line-height: normal;
+  font-size: 11px;
+  color: black;
+  -webkit-appearance: none;
+  border: 1px solid #dddddd;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  -webkit-box-shadow: 0 1px 1px white;
+  -moz-box-shadow: 0 1px 1px white;
+  box-shadow: 0 1px 1px white;
+  text-shadow: 0 1px 1px white;
+  color: #111111;
+  border-color: #999999;
+  background: #dbdbdb;
+  background: -webkit-gradient(linear, center top, center bottom, from(white), to(#e0e0e0));
+  background: -webkit-linear-gradient(top, white, #e0e0e0);
+  background: -moz-linear-gradient(top, white, #e0e0e0);
+  background: -ms-linear-gradient(top, white, #e0e0e0);
+  background: -o-linear-gradient(top, white, #e0e0e0);
+  background: linear-gradient(top, white, #e0e0e0);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 0 3px white;
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 0 3px white;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 0 3px white;
+  height: 36px;
+  width: 75px;
+  text-align: center;
+  line-height: 36px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  position: relative;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 0.9em;
+  font-weight: bold;
+  line-height: normal; }
+form .dropdown {
+  text-indent: 1em;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: middle;
+  line-height: normal;
+  font-size: 11px;
+  color: black;
+  -webkit-appearance: none;
+  border: 1px solid #dddddd;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  -webkit-box-shadow: 0 1px 1px white;
+  -moz-box-shadow: 0 1px 1px white;
+  box-shadow: 0 1px 1px white;
+  text-shadow: 0 1px 1px white;
+  color: #111111;
+  border-color: #999999;
+  background: #dbdbdb;
+  background: -webkit-gradient(linear, center top, center bottom, from(white), to(#e0e0e0));
+  background: -webkit-linear-gradient(top, white, #e0e0e0);
+  background: -moz-linear-gradient(top, white, #e0e0e0);
+  background: -ms-linear-gradient(top, white, #e0e0e0);
+  background: -o-linear-gradient(top, white, #e0e0e0);
+  background: linear-gradient(top, white, #e0e0e0);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 0 3px white;
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 0 3px white;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 0 3px white;
+  height: 30px;
+  width: 154px;
+  text-align: center;
+  line-height: 30px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  position: relative; }
+form label {
+  font-size: 11px;
+  color: #8f8f8f;
+  margin: 23px 0 10px 0;
+  display: block; }
+form h2 {
+  margin-top: 20px; }
+
+#activeResourcesForm {
+  display: none;
+  position: absolute;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-shadow: 0px 0px 12px black;
+  padding: 0 25px;
+  z-index: 60;
+  background: #f4f4f4;
+  bottom: 20px;
+  left: 100px;
+  height: 340px;
+  width: 700px; }
+  #activeResourcesForm #agentHeader span {
+    color: #8f8f8f; }
+  #activeResourcesForm #campaignHeader span {
+    color: #8f8f8f; }
+  #activeResourcesForm #in-groups label {
+    max-height: 87px; }
+    #activeResourcesForm #in-groups label option {
+      line-height: 1.2em;
+      text-indent: 0.2em; }
+  #activeResourcesForm #in-groups {
+    height: 185px;
+    width: 340px;
+    overflow: auto; }
+
+#settingsPopup {
+  display: none;
+  position: absolute;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-shadow: 0px 0px 12px black;
+  padding: 0 25px;
+  z-index: 60;
+  background: #f4f4f4;
+  width: 720px;
+  height: 375px;
+  top: 70px;
+  left: 20px; }
+  #settingsPopup #select-campaigns {
+    width: 340px;
+    height: 132px;
+    overflow: auto; }
+  #settingsPopup #select-usergroups {
+    width: 340px;
+    height: 132px;
+    overflow: auto; }

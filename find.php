@@ -3,11 +3,15 @@ include 'database.php';
 
 // error_reporting(E_ALL);
 // ini_set('display_errors', '1');
+//echo $allowed_campaigns;
 
 // groups
 $stmt = "select campaign_id from vicidial_campaigns where active='Y' $LOGallowed_campaignsSQL order by campaign_id;";
-//echo 'alowed_reports is '.$alowed_reports.'<br>';
-
+$alowed_reports =[];
+$result = mysqli_query($db, $stmt);
+// while ($row = mysqli_fetch_row($result)) {
+//         print_r($row);
+//     }
 
 $arrayA = array();
 
@@ -122,7 +126,8 @@ $eOrder = "";
 if ( isset($_GET["eSort"]) && isset($_GET["eOrder"]) ) {
 	$eOrder = "order by ".$_GET["eSort"].' '.$_GET["eOrder"];
 }
-$stmt = "select vicidial_users.user as 'userid', vicidial_users.full_name as 'user', vicidial_users.user_group as 'group', vicidial_live_agents.status as 'status', UNIX_TIMESTAMP(last_update_time) - UNIX_TIMESTAMP(last_call_time) as 'time', vicidial_live_agents.extension as 'phone', vicidial_live_agents.campaign_id as 'campaign', vicidial_live_agents.calls_today as 'calls' from vicidial_live_agents,vicidial_users where vicidial_live_agents.user=vicidial_users.user $LOGallowed_campaignsSQL $eOrder;";
+$stmt = "select vicidial_users.user as 'userid', vicidial_users.full_name as 'user', vicidial_users.user_group as 'group', vicidial_live_agents.status as 'status', UNIX_TIMESTAMP(vicidial_live_agents.last_update_time) - UNIX_TIMESTAMP(vicidial_live_agents.last_call_time) as 'time', vicidial_live_agents.extension as 'phone', vicidial_live_agents.campaign_id as 'campaign', vicidial_live_agents.calls_today as 'calls', vicidial_live_agents.extension as 'station', vicidial_auto_calls.campaign_id from vicidial_live_agents,vicidial_users, vicidial_auto_calls where vicidial_live_agents.user=vicidial_users.user and vicidial_live_agents.callerid = vicidial_auto_calls.callerid $LOGallowed_campaignsSQL $eOrder;";
+//echo 'stmt is '.$stmt;
 $rslt=mysqli_query($db, $stmt);
 while ($row = mysqli_fetch_assoc($rslt)) {
 	$row['time'] = gmdate('G:i:s', $row['time']); 

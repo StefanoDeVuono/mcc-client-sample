@@ -13,3 +13,5 @@ logfile
 
 images/MCC-Comp_A.jpg
 dropped.svg
+js/script.coffee
+js/options.coffee
