@@ -27,6 +27,9 @@ include('login.php');
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="style.css">
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script src="./jquery.tablesorter.min.js"></script>
