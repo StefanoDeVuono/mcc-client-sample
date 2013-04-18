@@ -765,14 +765,19 @@ html, body {
       display: block; }
     #sectionE #activeResourcesTable tbody tr {
       width: 666px;
-      display: block; }
+      display: block;
+      position: relative; }
+    #sectionE #activeResourcesTable .col15 {
+      position: absolute;
+      margin-left: 5px;
+      display: inline-block; }
     #sectionE #activeResourcesTable th {
       display: block;
       float: left; }
     #sectionE #activeResourcesTable .col1, #sectionE #activeResourcesTable .col2, #sectionE #activeResourcesTable .col3, #sectionE #activeResourcesTable .col4, #sectionE #activeResourcesTable .col5, #sectionE #activeResourcesTable .col6, #sectionE #activeResourcesTable .col7 {
       width: 95.142857px;
       margin: 0; }
-    #sectionE #activeResourcesTable td.col1, #sectionE #activeResourcesTable td.col2, #sectionE #activeResourcesTable td.col3, #sectionE #activeResourcesTable td.col4, #sectionE #activeResourcesTable td.col5, #sectionE #activeResourcesTable td.col6, #sectionE #activeResourcesTable td.col7 {
+    #sectionE #activeResourcesTable td.col1, #sectionE #activeResourcesTable td.col2, #sectionE #activeResourcesTable td.col3, #sectionE #activeResourcesTable td.col4, #sectionE #activeResourcesTable td.col5, #sectionE #activeResourcesTable td.col6, #sectionE #activeResourcesTable td.col7, #sectionE #activeResourcesTable td.col8, #sectionE #activeResourcesTable td.col9, #sectionE #activeResourcesTable td.col10, #sectionE #activeResourcesTable td.col11, #sectionE #activeResourcesTable td.col12, #sectionE #activeResourcesTable td.col13, #sectionE #activeResourcesTable td.col14 {
       height: 43px;
       box-sizing: border-box;
       -moz-box-sizing: border-box;
@@ -781,12 +786,6 @@ html, body {
       border: 1px solid #a4a4a4;
       margin: 0;
       display: inline-block; }
-    #sectionE #activeResourcesTable td.col8 {
-      margin: 0;
-      float: left;
-      height: 43px;
-      width: 50px;
-      padding-left: 5px; }
     #sectionE #activeResourcesTable td.col1 {
       position: relative;
       display: block;

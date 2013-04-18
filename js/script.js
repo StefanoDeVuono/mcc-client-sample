@@ -2,12 +2,16 @@
 (function() {
   var ajaxFunc, checkBoxes, dOrder, dSorter, delay, droppedTrend, eOrder, eSorter, findAE, findF, findFajax, oldDropped, pause, resizeColumns, setDataA, setDataC, setDataD, setDataE, setDataF;
 
-  oldDropped = parseInt($('#arrows').text);
+  oldDropped = parseInt($('#arrows').text());
+
+  console.log("oldDropped before function is " + oldDropped);
 
   droppedTrend = function() {
     var deltaDropped, newDropped;
 
+    console.log("oldDropped " + oldDropped + " in function");
     newDropped = $('#dropped_no span').text();
+    console.log('newDropped is' + newDropped);
     deltaDropped = isNaN(oldDropped) ? 0 : newDropped - oldDropped;
     if (deltaDropped > 0) {
       $('#arrows').text("+" + deltaDropped);
@@ -22,10 +26,9 @@
       $('#arrows').removeClass();
       $('#arrows').addClass('neutral');
     }
-    return oldDropped = newDropped;
+    oldDropped = newDropped;
+    return console.log('oldDropped is' + oldDropped);
   };
-
-  droppedTrend();
 
   dSorter = 'campaign';
 
@@ -213,6 +216,7 @@
       } else {
         row += '<td class="col col14">' + element['calls'] + '</td>';
       }
+      row += '<td class="col col15"><a id="listen" href="#"></a><a id="speak" href="#"></a><a id="shout" href="#"></a></td>';
       row += '</tr>';
     }
     $('#activeResourcesTable tbody.rows').html(row);
@@ -306,7 +310,7 @@
       url: "./findF.php",
       success: function(data) {
         setDataF(data);
-        droppedTrend;
+        droppedTrend();
         return findF();
       },
       dataType: "json"
@@ -483,11 +487,13 @@
   $('#sectionE .options').on('click', 'input:checked', function() {
     var checkClass, colClass;
 
+    console.log($(this));
     checkClass = $(this).attr('class');
     colClass = $('#activeResourcesTable #' + checkClass).attr('class').split(' ')[0];
     $('#activeResourcesTable .' + colClass).show();
     resizeColumns('#activeResourcesTable', 666);
-    return checkBoxes('#activeResourcesTable');
+    checkBoxes('#activeResourcesTable');
+    return $(this).prop('checked', true);
   });
 
   $('#sectionE .options').on('click', 'input:not(:checked)', function() {
