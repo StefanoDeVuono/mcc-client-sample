@@ -18,7 +18,7 @@ $agent_paused=0; // Paused Agents
 $agent_dispo=0; // Agents in Despo
 
 //MySQL Database Connect
-include('login.php');
+//include('login.php');
 
 ?>
 
@@ -101,9 +101,9 @@ include('login.php');
 					<h3></h3>
 				</div>
 			</div>
-			<div class="sides" id="dialableLeeds">
-				<a href="#" class="close" id="closeDialableLeeds"></a>
-				<header>Dialable Leeds</header>
+			<div class="sides" id="dialableLeads">
+				<a href="#" class="close" id="closeDialableLeads"></a>
+				<header>Dialable Leads</header>
 				<div class="closable">
 					<h3></h3>
 				</div>
@@ -354,7 +354,7 @@ include('login.php');
 					<th id="transfer" class="col9" style="display: none"><a class="sort"></a>Transfer<a class="close" href="#"></a></th>
 					<th id="success" class="col10" style="display: none"><a class="sort"></a>Success<a class="close" href="#"></a></th>
 					<th id="station" class="col11" style="display: none"><a class="sort"></a>Station<a class="close" href="#"></a></th>
-					<th id="typeIaQ" class="col12" style="display: none"><a class="sort"></a>Typp (I,A,Q)<a class="close" href="#"></a></th>
+					<th id="typeIaQ" class="col12" style="display: none"><a class="sort"></a>Type (I,A,Q)<a class="close" href="#"></a></th>
 					<th id="in-group" class="col13" style="display: none"><a class="sort"></a>In-Group<a class="close" href="#"></a></th>
 					<th id="activityAlert" class="col14" style="display: none"><a class="sort"></a>Activity Alert<a class="close" href="#"></a></th>
 				</thead>

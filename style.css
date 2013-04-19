@@ -764,16 +764,18 @@ html, body {
       width: 667px;
       display: block; }
     #sectionE #activeResourcesTable tbody tr {
-      width: 666px;
       display: block;
       position: relative; }
     #sectionE #activeResourcesTable .col15 {
       position: absolute;
-      margin-left: 5px;
+      padding-left: 5px;
+      height: 100%;
+      background: white;
       display: inline-block; }
     #sectionE #activeResourcesTable th {
       display: block;
-      float: left; }
+      float: left;
+      letter-spacing: -1px; }
     #sectionE #activeResourcesTable .col1, #sectionE #activeResourcesTable .col2, #sectionE #activeResourcesTable .col3, #sectionE #activeResourcesTable .col4, #sectionE #activeResourcesTable .col5, #sectionE #activeResourcesTable .col6, #sectionE #activeResourcesTable .col7 {
       width: 95.142857px;
       margin: 0; }
