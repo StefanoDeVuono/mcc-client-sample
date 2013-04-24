@@ -4,14 +4,10 @@
 
   oldDropped = parseInt($('#arrows').text());
 
-  console.log("oldDropped before function is " + oldDropped);
-
   droppedTrend = function() {
     var deltaDropped, newDropped;
 
-    console.log("oldDropped " + oldDropped + " in function");
     newDropped = $('#dropped_no span').text();
-    console.log('newDropped is' + newDropped);
     deltaDropped = isNaN(oldDropped) ? 0 : newDropped - oldDropped;
     if (deltaDropped > 0) {
       $('#arrows').text("+" + deltaDropped);
@@ -26,8 +22,7 @@
       $('#arrows').removeClass();
       $('#arrows').addClass('neutral');
     }
-    oldDropped = newDropped;
-    return console.log('oldDropped is' + oldDropped);
+    return oldDropped = newDropped;
   };
 
   dSorter = 'campaign';
@@ -222,10 +217,7 @@
     }
     $('#activeResourcesTable tbody.rows').html(row);
     $("#activeResourcesTable").tablesorter({
-      widgets: ['zebra'],
-      textExtraction: function(node) {
-        return node.childNodes[0].innerHTML;
-      }
+      widgets: ['zebra']
     });
     resizeColumns('#activeResourcesTable', 666);
     return false;
@@ -250,7 +242,9 @@
           setDataE(data);
           $("#callsWaitingTable").trigger("update");
           $("#activeResourcesTable").trigger("update");
-          return findAE(delay);
+          findAE(delay);
+          console.log(delay);
+          return console.log(findAE);
         },
         dataType: "json"
       });
@@ -499,13 +493,6 @@
   });
 
   checkListeners('#sectionE', '#activeResourcesTable');
-
-  $("#activeResourcesTable").tablesorter({
-    widgets: ['zebra'],
-    textExtraction: function(node) {
-      return node.childNodes[0].childNodes[0].innerHTML;
-    }
-  });
 
   $("#callsWaitingTable").tablesorter();
 

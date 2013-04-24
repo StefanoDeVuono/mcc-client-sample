@@ -15,15 +15,22 @@
   $.ajax({
     url: "./options.php",
     success: function(data) {
-      var begin, element, selectCampaigns, t, _i, _len, _ref;
+      var begin, element, selectCampaigns, t, userGroups, _i, _j, _len, _len1, _ref, _ref1;
 
-      selectCampaigns = [];
+      selectCampaigns = "";
       _ref = data['selectCampaigns'];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         element = _ref[_i];
         selectCampaigns += '<option>' + element + '</option>';
       }
       $('#select-campaigns').html(selectCampaigns);
+      userGroups = "";
+      _ref1 = data['userGroups'];
+      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+        element = _ref1[_j];
+        userGroups += '<option>' + element + '</option>';
+      }
+      $('#select-usergroups').html(userGroups);
       t = data['time'] * 1000;
       begin = new Date(t);
       return setInterval(function() {
