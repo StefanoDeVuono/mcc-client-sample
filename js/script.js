@@ -216,6 +216,7 @@
       row += '</tr>';
     }
     $('#activeResourcesTable tbody.rows').html(row);
+    $("#activeResourcesTable").trigger("update");
     $("#activeResourcesTable").tablesorter({
       widgets: ['zebra']
     });
