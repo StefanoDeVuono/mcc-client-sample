@@ -7,8 +7,6 @@ include 'database.php';
 // select campaigns that are active (where active="Y") and user_group=user_group or user_group="A"
 // select user group
 
-
-
 if (preg_match('/ALL/', $allowed_campaigns) == 1 ) { // for admin user
 	$stmt = "SELECT campaign_id from vicidial_campaigns where active='Y'";
 	$result = mysqli_query($db, $stmt);

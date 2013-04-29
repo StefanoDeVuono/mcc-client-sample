@@ -37,7 +37,7 @@ html, body {
   font-family: "Open Sans", sans-serif; }
 
 #background {
-  width: 960px;
+  width: 1200px;
   margin: 0 auto; }
   #background div {
     background: white;
@@ -46,7 +46,7 @@ html, body {
     border-right: 1px #a4a4a4 solid;
     box-shadow: 0 2px 2px 2px #a4a4a4;
     height: 100%;
-    width: 960px;
+    width: 1200px;
     position: fixed; }
     #background div span {
       display: block;
@@ -56,13 +56,13 @@ html, body {
 
 #page {
   position: relative;
-  width: 960px;
+  width: 1200px;
   margin: 0 auto;
   background: white;
   border-top: 7px #689ebf solid; }
 
 #sectionA, #sectionB, #sectionC, #sectionD, #sectionE {
-  width: 835px;
+  width: 1075px;
   float: right; }
 
 .clear {
@@ -714,17 +714,18 @@ html, body {
   #sectionD #callsWaitingTable {
     border-spacing: 0;
     float: left;
-    width: 666px;
-    margin: 20px auto 65px 19px; }
+    width: 910px;
+    margin: 20px auto 65px 19px;
+    clear: left; }
     #sectionD #callsWaitingTable thead tr, #sectionD #callsWaitingTable tbody tr {
-      width: 666px;
+      width: 910px;
       display: block; }
     #sectionD #callsWaitingTable td.col1, #sectionD #callsWaitingTable td.col2, #sectionD #callsWaitingTable td.col3, #sectionD #callsWaitingTable td.col4, #sectionD #callsWaitingTable td.col5 {
-      width: 133.2px;
+      width: 182px;
       margin: 0;
       display: inline-block; }
     #sectionD #callsWaitingTable th {
-      width: 133.2px;
+      width: 182px;
       display: block;
       float: left; }
     #sectionD #callsWaitingTable td.col1, #sectionD #callsWaitingTable td.col2, #sectionD #callsWaitingTable td.col3, #sectionD #callsWaitingTable td.col4, #sectionD #callsWaitingTable td.col5 {
@@ -734,7 +735,7 @@ html, body {
       border: 1px solid #a4a4a4; }
     #sectionD #callsWaitingTable tbody.rows {
       display: block;
-      width: 666px;
+      width: 910px;
       max-height: 215px;
       overflow-y: auto;
       overflow-x: hidden;
@@ -758,10 +759,10 @@ html, body {
   #sectionE #activeResourcesTable {
     border-spacing: 0;
     float: left;
-    width: 722px;
+    width: 966px;
     margin: auto auto auto 19px; }
     #sectionE #activeResourcesTable thead tr {
-      width: 667px;
+      width: 911px;
       display: block; }
     #sectionE #activeResourcesTable tbody tr {
       display: block;
@@ -776,8 +777,8 @@ html, body {
       display: block;
       float: left;
       letter-spacing: -1px; }
-    #sectionE #activeResourcesTable .col1, #sectionE #activeResourcesTable .col2, #sectionE #activeResourcesTable .col3, #sectionE #activeResourcesTable .col4, #sectionE #activeResourcesTable .col5, #sectionE #activeResourcesTable .col6, #sectionE #activeResourcesTable .col7 {
-      width: 95.142857px;
+    #sectionE #activeResourcesTable .col1, #sectionE #activeResourcesTable .col2, #sectionE #activeResourcesTable .col3, #sectionE #activeResourcesTable .col4, #sectionE #activeResourcesTable .col5, #sectionE #activeResourcesTable .col6, #sectionE #activeResourcesTable .col7, #sectionE #activeResourcesTable .col8, #sectionE #activeResourcesTable .col9 {
+      width: 101.111111px;
       margin: 0; }
     #sectionE #activeResourcesTable td.col1, #sectionE #activeResourcesTable td.col2, #sectionE #activeResourcesTable td.col3, #sectionE #activeResourcesTable td.col4, #sectionE #activeResourcesTable td.col5, #sectionE #activeResourcesTable td.col6, #sectionE #activeResourcesTable td.col7, #sectionE #activeResourcesTable td.col8, #sectionE #activeResourcesTable td.col9, #sectionE #activeResourcesTable td.col10, #sectionE #activeResourcesTable td.col11, #sectionE #activeResourcesTable td.col12, #sectionE #activeResourcesTable td.col13, #sectionE #activeResourcesTable td.col14 {
       height: 43px;
@@ -805,32 +806,38 @@ html, body {
       text-align: center; }
     #sectionE #activeResourcesTable tr.even td.col1 span {
       background: #dadde0; }
-    #sectionE #activeResourcesTable #reportlink {
-      display: inline-block;
+    #sectionE #activeResourcesTable .reportlink {
+      display: block;
       width: 11px;
       height: 15px;
       margin: 10px 6px 0 35px;
       float: left;
-      background: url("./images/active_sprite.png") 0px 0px no-repeat; }
-      #sectionE #activeResourcesTable #reportlink:hover {
+      background: url("./images/active_sprite.png") 0px 0px no-repeat;
+      position: relative;
+      cursor: pointer; }
+      #sectionE #activeResourcesTable .reportlink:hover {
         background-position: 0px -42px; }
-    #sectionE #activeResourcesTable #grouplink {
-      display: inline-block;
+    #sectionE #activeResourcesTable .grouplink {
+      display: block;
       width: 16px;
       height: 15px;
       margin: 10px 6px;
       float: left;
-      background: url("./images/active_sprite.png") -20px 0px no-repeat; }
-      #sectionE #activeResourcesTable #grouplink:hover {
+      background: url("./images/active_sprite.png") -20px 0px no-repeat;
+      position: relative;
+      cursor: pointer; }
+      #sectionE #activeResourcesTable .grouplink:hover {
         background-position: -20px -42px; }
-    #sectionE #activeResourcesTable #permissionlink {
-      display: inline-block;
+    #sectionE #activeResourcesTable .permissionlink {
+      display: block;
       width: 14px;
       height: 15px;
       margin: 10px 6px;
       float: left;
-      background: url("./images/active_sprite.png") -46px 0px no-repeat; }
-      #sectionE #activeResourcesTable #permissionlink:hover {
+      background: url("./images/active_sprite.png") -46px 0px no-repeat;
+      position: relative;
+      cursor: pointer; }
+      #sectionE #activeResourcesTable .permissionlink:hover {
         background-position: -46px -42px; }
     #sectionE #activeResourcesTable #listen, #sectionE #activeResourcesTable #speak, #sectionE #activeResourcesTable #shout {
       display: block;
@@ -871,7 +878,7 @@ html, body {
   position: absolute;
   top: 0;
   left: 0;
-  right: 835px;
+  right: 1075px;
   bottom: 0;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1211,6 +1218,7 @@ form h2 {
   padding: 0 25px;
   z-index: 60;
   background: #f4f4f4;
+  display: block;
   bottom: 20px;
   left: 100px;
   height: 340px;

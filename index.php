@@ -323,17 +323,16 @@ include('login.php');
 				<nav>
 					<button>View</button>
 					<form class="options">
-						<div class="thing"><input type="checkbox" class="all">All</input></div>
 						<div class="thing"><input type="checkbox" class="user">User</input></div>
-						<div class="thing"><input type="checkbox" class="group">Group</input></div>
 						<div class="thing"><input type="checkbox" class="status">Status</input></div>
 						<div class="thing"><input type="checkbox" class="time">Time</input></div>
-						<div class="thing"><input type="checkbox" class="phone">Phone</input></div>
 						<div class="thing"><input type="checkbox" class="campaign">Campaign</input></div>
+						<div class="thing"><input type="checkbox" class="group">Group</input></div>
 						<div class="thing"><input type="checkbox" class="calls">Calls</input></div>
 						<div class="thing"><input type="checkbox" class="contact">Contact</input></div>
 						<div class="thing"><input type="checkbox" class="transfer">Transfer</input></div>
 						<div class="thing"><input type="checkbox" class="success">Success</input></div>
+						<div class="thing"><input type="checkbox" class="extension">Extension</input></div>
 						<div class="thing"><input type="checkbox" class="station">Station</input></div>
 						<div class="thing"><input type="checkbox" class="typeIaQ">Type (I,A,Q)</input></div>
 						<div class="thing"><input type="checkbox" class="in-group">In-Group</input></div>
@@ -344,15 +343,17 @@ include('login.php');
 				<table id="activeResourcesTable" class="tablesorter">
 				<thead>
 					<th id="user" class="col1"><a class="sort"></a>User<a class="close" href="#"></a></th>
-					<th id="group" class="col2"><a class="sort"></a>Group<a class="close" href="#"></a></th>
-					<th id="status" class="col3"><a class="sort"></a>Status<a class="close" href="#"></a></th>
-					<th id="time" class="col4"><a class="sort"></a>Time<a class="close" href="#"></a></th>
-					<th id="phone" class="col5"><a class="sort"></a>Phone<a class="close" href="#"></a></th>
-					<th id="campaign" class="col6"><a class="sort"></a>Campaign<a class="close" href="#"></a></th>
-					<th id="calls" class="col7"><a class="sort"></a>Calls<a class="close" href="#"></a></th>
-					<th id="contact" class="col8" style="display: none"><a class="sort"></a>Contact<a class="close" href="#"></a></th>
-					<th id="transfer" class="col9" style="display: none"><a class="sort"></a>Transfer<a class="close" href="#"></a></th>
-					<th id="success" class="col10" style="display: none"><a class="sort"></a>Success<a class="close" href="#"></a></th>
+					<th id="status" class="col2"><a class="sort"></a>Status<a class="close" href="#"></a></th>
+					<th id="time" class="col3"><a class="sort"></a>Time<a class="close" href="#"></a></th>
+					<th id="campaign" class="col4"><a class="sort"></a>Campaign<a class="close" href="#"></a></th>
+
+					<th id="group" class="col5"><a class="sort"></a>Group<a class="close" href="#"></a></th>
+					<th id="calls" class="col6"><a class="sort"></a>Calls<a class="close" href="#"></a></th>
+					<th id="contact" class="col7"><a class="sort"></a>Contact<a class="close" href="#"></a></th>
+					<th id="transfer" class="col8"><a class="sort"></a>Transfer<a class="close" href="#"></a></th>
+					<th id="success" class="col9"><a class="sort"></a>Success<a class="close" href="#"></a></th>
+					
+					<th id="extension" class="col10" style="display: none"><a class="sort"></a>Extension<a class="close" href="#"></a></th>
 					<th id="station" class="col11" style="display: none"><a class="sort"></a>Station<a class="close" href="#"></a></th>
 					<th id="typeIaQ" class="col12" style="display: none"><a class="sort"></a>Type (I,A,Q)<a class="close" href="#"></a></th>
 					<th id="in-group" class="col13" style="display: none"><a class="sort"></a>In-Group<a class="close" href="#"></a></th>
@@ -363,45 +364,6 @@ include('login.php');
 
 					</tbody>
 				</table>
-				<form id="activeResourcesForm">
-					<div class="leftform">
-						<h2 id="agentHeader">Agent: <span>FT FL Sylvestre, Judina</span></h2>
-						<label for="in-groups">Selected In Groups</label>
-						<select multiple name="in-groups" id="in-groups">
-							
-							<option>All Inbound</option>
-							<option>LocalTouch</option>
-							<option>Transfer INGroup</option>
-							<option>Test</option>
-						</select>
-					</div>
-					<div class="rightform">
-						<h2 id="campaignHeader">Campaign: <span>SIC</span></h2>
-						<label for="changeAddRemove">Change, Add or Remove</label>
-						<select id="changeAddRemove" class="dropdown">
-							<option>Change</option>
-							<option>Add</option>
-							<option>Remove</option>
-						</select>
-						
-						<label for="blendedOutAuto">Blended Outbound Autodial</label>
-						<select id="blendedOutAuto" class="dropdown">
-							<option>Blended</option>
-							<option>Outbound</option>
-							<option>Autodial</option>
-						</select>
-				
-						<label for="setUserDefault">Set as User Defaults</label>
-						<select id="setUserDefault" class="dropdown">
-							<option>Yes</option>
-							<option>No</option>
-							<option>Remove</option>
-						</select>
-					</div>
-
-					<input type="submit" value="Submit" />
-					<a href="#" class="close" id="closeActiveResourcesForm"></a>
-				</form>
 			</div>
 		</section><!-- end sectionE -->
 

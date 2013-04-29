@@ -59,12 +59,14 @@
     return $(this).toggleClass('darkBlue');
   });
 
-  $('#settingsPopup').on('click', 'a.close', function() {
+  $('#settingsPopup').on('click', 'a.close', function(e) {
+    e.preventDefault();
     return $('#settingsPopup').hide();
   });
 
-  $('#activeResourcesForm').on('click', 'a.close', function() {
-    return $('#activeResourcesForm').hide();
+  $('#activeResourcesTable').on('click', 'a#closeActiveResourcesForm', function(e) {
+    e.preventDefault();
+    return $('#activeResourcesForm').remove();
   });
 
 }).call(this);

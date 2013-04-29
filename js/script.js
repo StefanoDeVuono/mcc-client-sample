@@ -86,7 +86,7 @@
     length = $(tableId + ' th:visible').length;
     $(tableId + ' th, ' + tableId + ' td').css('width', (tableWidth / length) + 'px');
     margin = (((tableWidth / length) - 77) / 2) + 10;
-    $(tableId + ' #reportlink').css('margin-left', margin + 'px');
+    $(tableId + ' .reportlink').css('margin-left', margin + 'px');
     $(tableId + ' td.col15').css('width', '55px');
     $(tableId + ' th').removeClass('firstButton lastButton');
     $(tableId + ' th:visible:first').addClass('firstButton');
@@ -130,7 +130,7 @@
       row += '</tr>';
     }
     $('#callsWaitingTable tbody.rows').html(row);
-    resizeColumns('#callsWaitingTable', 666);
+    resizeColumns('#callsWaitingTable', 910);
     return false;
   };
 
@@ -143,54 +143,54 @@
       element = _ref[_i];
       row += '<tr>';
       if ($('#activeResourcesTable th.col1').is(':hidden')) {
-        row += '<td class="col col" style="display: none">' + element['user'] + '<span><a href="#" id="reportlink"></a><a href="#" id="grouplink"></a><a href="#" id="permissionlink"></a></span></td>';
+        row += '<td class="col col1">' + element['user'] + '<span class="thingamajig" data-user="' + element['user'] + '" data-campaign="' + element['campaign'] + '" data-in-group=' + element['in-group'] + '>' + '<a href="/Reports/tabs.php?userid=' + element['user'] + '" class="reportlink"></a>' + '<a href="#" class="grouplink"></a>' + '<a href="/vicidial/user_status.php?user=' + element['userid'] + '" class="permissionlink"></a>' + '</span></td>';
       } else {
-        row += '<td class="col col1">' + element['user'] + '<span><a href="/reports/tabs.php?userid=' + element['user'] + '" id="reportlink"></a><a href="#" id="grouplink"></a><a href="/vicidial/user_status.php?user=' + element['userid'] + '" id="permissionlink"></a></span></td>';
+        row += '<td class="col col1">' + element['user'] + '<span class="thingamajig" data-user="' + element['user'] + '" data-campaign="' + element['campaign'] + '" data-in-group=' + element['in-group'] + '>' + '<a href="/Reports/tabs.php?userid=' + element['user'] + '" class="reportlink"></a>' + '<a href="#" class="grouplink"></a>' + '<a href="/vicidial/user_status.php?user=' + element['userid'] + '" class="permissionlink"></a>' + '</span></td>';
       }
       if ($('#activeResourcesTable th.col2').is(':hidden')) {
-        row += '<td class="col col2" style="display: none">' + element['group'] + '</td>';
+        row += '<td class="col col2" style="display: none">' + element['status'] + '</td>';
       } else {
-        row += '<td class="col col2">' + element['group'] + '</td>';
+        row += '<td class="col col2">' + element['status'] + '</td>';
       }
       if ($('#activeResourcesTable th.col3').is(':hidden')) {
-        row += '<td class="col col3" style="display: none">' + element['status'] + '</td>';
+        row += '<td class="col col3" style="display: none">' + element['time'] + '</td>';
       } else {
-        row += '<td class="col col3">' + element['status'] + '</td>';
+        row += '<td class="col col3">' + element['time'] + '</td>';
       }
       if ($('#activeResourcesTable th.col4').is(':hidden')) {
-        row += '<td class="col col4" style="display: none">' + element['time'] + '</td>';
+        row += '<td class="col col4" style="display: none">' + element['campaign'] + '</td>';
       } else {
-        row += '<td class="col col4">' + element['time'] + '</td>';
+        row += '<td class="col col4">' + element['campaign'] + '</td>';
       }
       if ($('#activeResourcesTable th.col5').is(':hidden')) {
-        row += '<td class="col col5" style="display: none">' + element['phone'] + '</td>';
+        row += '<td class="col col5" style="display: none">' + element['group'] + '</td>';
       } else {
-        row += '<td class="col col5">' + element['phone'] + '</td>';
+        row += '<td class="col col5">' + element['group'] + '</td>';
       }
       if ($('#activeResourcesTable th.col6').is(':hidden')) {
-        row += '<td class="col col6" style="display: none">' + element['campaign'] + '</td>';
+        row += '<td class="col col6" style="display: none">' + element['calls'] + '</td>';
       } else {
-        row += '<td class="col col6">' + element['campaign'] + '</td>';
+        row += '<td class="col col6">' + element['calls'] + '</td>';
       }
       if ($('#activeResourcesTable th.col7').is(':hidden')) {
-        row += '<td class="col col7" style="display: none">' + element['calls'] + '</td>';
+        row += '<td class="col col7" style="display: none">' + element['contacts'] + '</td>';
       } else {
-        row += '<td class="col col7">' + element['calls'] + '</td>';
+        row += '<td class="col col7">' + element['contacts'] + '</td>';
       }
       if ($('#activeResourcesTable th.col8').is(':hidden')) {
-        row += '<td class="col col8" style="display: none">' + element['contacts'] + '</td>';
+        row += '<td class="col col8" style="display: none">' + element['transfers'] + '</td>';
       } else {
-        row += '<td class="col col8">' + element['contacts'] + '</td>';
+        row += '<td class="col col8">' + element['transfers'] + '</td>';
       }
       if ($('#activeResourcesTable th.col9').is(':hidden')) {
-        row += '<td class="col col9" style="display: none">' + element['transfers'] + '</td>';
+        row += '<td class="col col9" style="display: none">' + element['successes'] + '</td>';
       } else {
-        row += '<td class="col col9">' + element['transfers'] + '</td>';
+        row += '<td class="col col9">' + element['successes'] + '</td>';
       }
       if ($('#activeResourcesTable th.col10').is(':hidden')) {
-        row += '<td class="col col10" style="display: none">' + element['successes'] + '</td>';
+        row += '<td class="col col10" style="display: none">' + element['extension'] + '</td>';
       } else {
-        row += '<td class="col col10">' + element['successes'] + '</td>';
+        row += '<td class="col col10">' + element['extension'] + '</td>';
       }
       if ($('#activeResourcesTable th.col11').is(':hidden')) {
         row += '<td class="col col11" style="display: none">' + element['station'] + '</td>';
@@ -203,9 +203,9 @@
         row += '<td class="col col12">' + element['type'] + '</td>';
       }
       if ($('#activeResourcesTable th.col13').is(':hidden')) {
-        row += '<td class="col col13" style="display: none">' + element['calls'] + '</td>';
+        row += '<td class="col col13" style="display: none">' + element['in-group'].join(', ') + '</td>';
       } else {
-        row += '<td class="col col13">' + element['calls'] + '</td>';
+        row += '<td class="col col13">' + element['in-group'].join(', ') + '</td>';
       }
       if ($('#activeResourcesTable th.col14').is(':hidden')) {
         row += '<td class="col col14" style="display: none">' + element['calls'] + '</td>';
@@ -220,7 +220,7 @@
     $("#activeResourcesTable").tablesorter({
       widgets: ['zebra']
     });
-    resizeColumns('#activeResourcesTable', 666);
+    resizeColumns('#activeResourcesTable', 910);
     return false;
   };
 
@@ -434,7 +434,7 @@
       id = $(element).attr('id');
       $(grandparentId + ' .options input.' + id).prop('checked', true);
     }
-    if ($(grandparentId + ' input:checked').length >= 7) {
+    if ($(grandparentId + ' input:checked').length >= 9) {
       $(grandparentId + ' input:not(:checked)').attr('disabled', true);
     } else {
       $(grandparentId + ' input').attr('disabled', false);
@@ -451,7 +451,7 @@
       colClass = $(tableId + ' #' + checkClass).attr('class').split(' ')[0];
       console.log(colClass);
       $(tableId + ' .' + colClass).show();
-      resizeColumns(tableId, 666);
+      resizeColumns(tableId, 910);
       checkBoxes(tableId);
       return $(this).prop('checked', true);
     });
@@ -474,7 +474,7 @@
       $('#callsWaitingTable .' + classes).hide();
     }
     checkBoxes('#callsWaitingTable');
-    resizeColumns('#callsWaitingTable', 666);
+    resizeColumns('#callsWaitingTable', 910);
     return false;
   });
 
@@ -490,7 +490,7 @@
       $('#activeResourcesTable .' + classes).hide();
     }
     checkBoxes('#activeResourcesTable');
-    return resizeColumns('#activeResourcesTable', 666);
+    return resizeColumns('#activeResourcesTable', 910);
   });
 
   checkListeners('#sectionE', '#activeResourcesTable');
@@ -518,10 +518,59 @@
     return false;
   });
 
-  $('#activeResourcesTable').on('click', '#grouplink', function(e) {
+  $('#activeResourcesTable').on('click', '.grouplink', function(e) {
+    var $parentSpan, activeResourcesForm, campaign, group, in_group, options, user, _i, _len;
+
     e.preventDefault();
+    console.log('hello');
     console.log(e.type);
-    return $('#activeResourcesForm').show();
+    console.log($(this).parent());
+    $parentSpan = $(this).parent();
+    user = $parentSpan.data('user');
+    campaign = $parentSpan.data('campaign');
+    in_group = $parentSpan.data('in-group');
+    in_group = in_group.split(',');
+    console.log(in_group);
+    options = "";
+    for (_i = 0, _len = in_group.length; _i < _len; _i++) {
+      group = in_group[_i];
+      options += '<option>' + group + '</option>';
+    }
+    console.log(options);
+    activeResourcesForm = '<form id="activeResourcesForm">\
+					<div class="leftform">\
+						<h2 id="agentHeader">Agent: <span>' + user + '</span></h2>\
+						<label for="in-groups">Selected In Groups</label>\
+						<select multiple name="in-groups" id="in-groups">' + options + '</select>\
+					</div>\
+					<div class="rightform">\
+						<h2 id="campaignHeader">Campaign: <span>' + campaign + '</span></h2>\
+						<label for="changeAddRemove">Change, Add or Remove</label>\
+						<select id="changeAddRemove" class="dropdown">\
+							<option>Change</option>\
+							<option>Add</option>\
+							<option>Remove</option>\
+						</select>\
+						\
+						<label for="blendedOutAuto">Blended Outbound Autodial</label>\
+						<select id="blendedOutAuto" class="dropdown">\
+							<option>On</option>\
+							<option>Off</option>\
+						</select>\
+				\
+						<label for="setUserDefault">Set as User Defaults</label>\
+						<select id="setUserDefault" class="dropdown">\
+							<option>Yes</option>\
+							<option>No</option>\
+							<option>Remove</option>\
+						</select>\
+					</div>\
+\
+					<input type="submit" value="Submit" />\
+					<a href="#" class="close" id="closeActiveResourcesForm"></a>\
+				</form>';
+    $('#activeResourcesTable').append(activeResourcesForm);
+    return false;
   });
 
 }).call(this);

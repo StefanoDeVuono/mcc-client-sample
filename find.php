@@ -5,6 +5,9 @@ include 'database.php';
 // ini_set('display_errors', '1');
 //echo $allowed_campaigns;
 
+//$_GET["selectCampaigns"];
+//$_GET["selectUserGroups"];
+
 // groups
 $stmt = "select campaign_id from vicidial_campaigns where active='Y' $LOGallowed_campaignsSQL order by campaign_id;";
 $alowed_reports = array();
@@ -129,24 +132,37 @@ if ( isset($_GET["eSort"]) && isset($_GET["eOrder"]) ) {
 	}
 	$eOrder = "order by ".$_GET["eSort"].' '.$_GET["eOrder"];
 }
-$test = "show tables like 'realtime';";
-if ( msquery($test, $db) == 'realtime' ) {
-	$stmt = "select vicidial_users.user as 'userid', vicidial_users.full_name as 'user', vicidial_users.user_group as 'group', vicidial_live_agents.status as 'status', vicidial_live_agents.comments as 'type', UNIX_TIMESTAMP(last_update_time) - UNIX_TIMESTAMP(last_call_time) as 'time', vicidial_live_agents.extension as 'phone', vicidial_live_agents.campaign_id as 'campaign', vicidial_live_agents.calls_today as 'calls', vicidial_live_agents.extension as 'station', (case when realtime.contacts>0 then realtime.contacts else 0 end) 'contacts', (case when realtime.successes>0 then realtime.successes else 0 end) 'successes', (case when realtime.transfers>0 then realtime.transfers else 0 end) 'transfers' from vicidial_live_agents,vicidial_users,realtime where vicidial_live_agents.user=vicidial_users.user and vicidial_live_agents.user=realtime.userid group by vicidial_live_agents.user,realtime.userid $eOrder;";
+// $test = "show tables like 'realtime';";
+// if ( msquery($test, $db) == 'realtime' ) {
+	$stmt = "select vicidial_users.user as 'userid', vicidial_users.full_name as 'user', vicidial_users.user_group as 'group', vicidial_live_agents.status as 'status', vicidial_live_agents.comments as 'type', UNIX_TIMESTAMP(last_update_time) - UNIX_TIMESTAMP(last_call_time) as 'time', SUBSTRING_INDEX(vicidial_live_agents.extension, '/', -1) AS 'extension', vicidial_live_agents.campaign_id as 'campaign', vicidial_live_agents.calls_today as 'calls', vicidial_live_agents.extension as 'station', (case when realtime.contacts>0 then realtime.contacts else 0 end) 'contacts', (case when realtime.successes>0 then realtime.successes else 0 end) 'successes', (case when realtime.transfers>0 then realtime.transfers else 0 end) 'transfers', vicidial_campaigns.closer_campaigns as 'in-group' from vicidial_live_agents,vicidial_users,realtime,vicidial_campaigns where vicidial_live_agents.user=vicidial_users.user and vicidial_live_agents.user=realtime.userid and vicidial_live_agents.campaign_id=vicidial_campaigns.campaign_id group by vicidial_live_agents.user,realtime.userid $eOrder;";
 
-} else {
-	$stmt = "select vicidial_users.user as 'userid', vicidial_users.full_name as 'user', vicidial_users.user_group as 'group', vicidial_live_agents.status as 'status', vicidial_live_agents.comments as 'type', UNIX_TIMESTAMP(last_update_time) - UNIX_TIMESTAMP(last_call_time) as 'time', vicidial_live_agents.extension as 'phone', vicidial_live_agents.campaign_id as 'campaign', vicidial_live_agents.calls_today as 'calls', vicidial_live_agents.extension as 'station', (case when B.contacts>0 then B.contacts else 0 end) 'contacts', (case when C.sales>0 then C.sales else 0 end) 'successes', (case when D.transfers>0 then D.transfers else 0 end) 'Transfers' from vicidial_live_agents,vicidial_users LEFT JOIN (select B.user,case when count(*)=0 then 0 else count(*) end 'contacts' from vicidial_agent_log B	where event_time > DATE_FORMAT(now(), \"%Y-%m-%d\") and (status in (select distinct status from vicidial_campaign_statuses where customer_contact='Y') or status in (select distinct status from vicidial_statuses where customer_contact='Y')) group by B.user) B on (vicidial_users.user=B.user) LEFT JOIN (select C.user,case when count(*)>0 then count(*) else 0 end 'sales' from vicidial_agent_log C where event_time > now() -interval 12 hour and (status in (select distinct status from vicidial_campaign_statuses where sale='Y') or status  in (select distinct status from vicidial_statuses where sale='Y'))  group by C.user) C on (vicidial_users.user=C.user ) LEFT JOIN (select D.user,case when count(*)>0 then count(*) else 0 end 'transfers' from vicidial_agent_log D where event_time > now() -interval 12 hour and (status in ('XFER'))  group by D.user) D on (vicidial_users.user=D.user ) where vicidial_live_agents.user=vicidial_users.user $eOrder;";
-}
+//} else {
+//	$stmt = "select vicidial_users.user as 'userid', vicidial_users.full_name as 'user', vicidial_users.user_group as 'group', vicidial_live_agents.status as 'status', vicidial_live_agents.comments as 'type', UNIX_TIMESTAMP(last_update_time) - UNIX_TIMESTAMP(last_call_time) as 'time', SUBSTRING_INDEX(vicidial_live_agents.extension, '/', -1) AS 'phone', vicidial_live_agents.campaign_id as 'campaign', vicidial_live_agents.calls_today as 'calls', vicidial_live_agents.extension as 'station', (case when B.contacts>0 then B.contacts else 0 end) 'contacts', (case when C.sales>0 then C.sales else 0 end) 'successes', (case when D.transfers>0 then D.transfers else 0 end) 'Transfers' from vicidial_live_agents,vicidial_users LEFT JOIN (select B.user,case when count(*)=0 then 0 else count(*) end 'contacts' from vicidial_agent_log B	where event_time > DATE_FORMAT(now(), \"%Y-%m-%d\") and (status in (select distinct status from vicidial_campaign_statuses where customer_contact='Y') or status in (select distinct status from vicidial_statuses where customer_contact='Y')) group by B.user) B on (vicidial_users.user=B.user) LEFT JOIN (select C.user,case when count(*)>0 then count(*) else 0 end 'sales' from vicidial_agent_log C where event_time > now() -interval 12 hour and (status in (select distinct status from vicidial_campaign_statuses where sale='Y') or status  in (select distinct status from vicidial_statuses where sale='Y'))  group by C.user) C on (vicidial_users.user=C.user ) LEFT JOIN (select D.user,case when count(*)>0 then count(*) else 0 end 'transfers' from vicidial_agent_log D where event_time > now() -interval 12 hour and (status in ('XFER'))  group by D.user) D on (vicidial_users.user=D.user ) where vicidial_live_agents.user=vicidial_users.user $eOrder;";
+//}
 // $stmt = "select vicidial_users.user as 'userid', vicidial_users.full_name as 'user', vicidial_users.user_group as 'group', vicidial_live_agents.status as 'status', UNIX_TIMESTAMP(vicidial_live_agents.last_update_time) - UNIX_TIMESTAMP(vicidial_live_agents.last_call_time) as 'time', vicidial_live_agents.extension as 'phone', vicidial_live_agents.campaign_id as 'campaign', vicidial_live_agents.calls_today as 'calls', vicidial_live_agents.extension as 'station', vicidial_auto_calls.campaign_id from vicidial_live_agents,vicidial_users, vicidial_auto_calls where vicidial_live_agents.user=vicidial_users.user and vicidial_live_agents.callerid = vicidial_auto_calls.callerid $LOGallowed_campaignsSQL $eOrder;";
 // echo $eOrder;
 // echo 'stmt is '.$stmt;
 $rslt=mysqli_query($db, $stmt);
 while ($row = mysqli_fetch_assoc($rslt)) {
 	$row['time'] = gmdate('G:i:s', $row['time']); 
-	$row['phone'] = preg_replace('/IAX2\/|SIP\//', '', $row['phone']);
 	$row['type'] = ( $row['type'] == null ? "&nbsp;" : $row['type'] );
+	$row['in-group'] = explode(' ', trim($row['in-group'], ' -'));
 	$arrayE[$i] = $row;
 	$i++;
 }
+
+// updates
+// add in group temporarily
+//$stmt = "update vicidial_live_agents set closer_campaigns = concat(SUBSTRING_INDEX(closer_campaigns, ' -', 1),' Inbound',' -') where user = 'mporte'"
+// add in group permanently
+//$stmt = "update vicidial_users set closer_campaigns = concat(SUBSTRING_INDEX(closer_campaigns, ' -', 1),' Inbound',' -') where user = 'mporte'"
+//mysqli_query($db, $stmt);
+// remove temporarily
+//$stmt = "update vicidial_live_agents set closer_campaigns = replace (closer_campaigns,'Inbound ','') where user = 'mporte';"
+//mysqli_query($db, $stmt);
+// remove permanently
+//$stmt = "update vicidial_users set closer_campaigns = replace (closer_campaigns,'Inbound ','') where user = 'mporte';"
+//mysqli_query($db, $stmt);
 
 echo '{';
 echo '"A": ';
