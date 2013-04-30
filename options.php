@@ -38,6 +38,12 @@ if (preg_match('/ALL/', $allowed_campaigns) == 1 ) { // for admin user
 	}
 }
 
+$stmt="select phone_login from vicidial_users where user='$PHP_AUTH_USER' and pass='$PHP_AUTH_PW' and active='Y';";
+$getPhoneLogin = mysqli_query($db, $stmt);
+if ( (isset($_GET["setPhoneLogin"]) ) {
+	$stmt = "update vicidial_users set phone_login = '$setPhoneLogin' where user='$PHP_AUTH_USER' and pass='$PHP_AUTH_PW' and active='Y';"
+	mysqli_query($db, $stmt);
+}
 
 echo '{"selectCampaigns": ';
 echo json_encode($select_campaigns);
@@ -45,5 +51,7 @@ echo ', "userGroups": ';
 echo json_encode($userGroups);
 echo ', "time": ';
 echo json_encode(time());
+echo ', "phoneLogin": ';
+echo json_encode($getPhoneLogin);
 echo '}';
 ?>

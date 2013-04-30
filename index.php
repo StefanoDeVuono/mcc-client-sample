@@ -187,6 +187,13 @@ include('login.php');
 							<option>Yes</option>
 							<option>No</option>
 						</select>
+
+						<label for="phone-login">Phone Login</label>
+						<select id="phone-login" class="dropdown">
+							<label>g</label>
+							<option>Yes</option>
+							<option>No</option>
+						</select>
 					</div>
 					<input type="submit" value="Submit" />
 					<a href="#" class="close" id="closeSettingsPopup"></a>
@@ -371,5 +378,53 @@ include('login.php');
 		<div id="troubleman"></div>
 	</div>
 </body>
+<script type="text/javascript">
+function send_monitor(session_id,server_ip,stage)
+	{
+	//	alert(session_id + "|" + server_ip + "|" + monitor_phone + "|" + stage + "|" + user);
+	var xmlhttp=false;
+	/*@cc_on @*/
+	/*@if (@_jscript_version >= 5)
+	// JScript gives us Conditional compilation, we can cope with old IE versions.
+	// and security blocked creation of the objects.
+	 try {
+	  xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	 } catch (e) {
+	  try {
+	   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  } catch (E) {
+	   xmlhttp = false;
+	  }
+	 }
+	@end @*/
+	if (!xmlhttp && typeof XMLHttpRequest!='undefined')
+		{
+		xmlhttp = new XMLHttpRequest();
+		}
+	if (xmlhttp) 
+		{
+		var monitorQuery = "source=realtime&function=blind_monitor&user=" + user + "&pass=" + pass + "&phone_login=" + monitor_phone + "&session_id=" + session_id + '&server_ip=' + server_ip + '&stage=' + stage;
+		xmlhttp.open('POST', 'non_agent_api.php'); 
+		xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=UTF-8');
+		xmlhttp.send(monitorQuery); 
+		xmlhttp.onreadystatechange = function() 
+			{ 
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+				{
+			//	alert(xmlhttp.responseText);
+				var Xoutput = null;
+				Xoutput = xmlhttp.responseText;
+				var regXFerr = new RegExp("ERROR","g");
+				var regXFscs = new RegExp("SUCCESS","g");
+				if (Xoutput.match(regXFerr))
+					{alert(xmlhttp.responseText);}
+				if (Xoutput.match(regXFscs))
+					{alert("SUCCESS: calling " + monitor_phone);}
+				}
+			}
+		delete xmlhttp;
+		}
+	}
 
+</script>
 </html>
