@@ -13,7 +13,8 @@
   $('#date').text(month + '/' + day + '/' + year + '  ' + date.toLocaleTimeString());
 
   phoneLogin = $('#settingsPopup').on('click', 'input[type="submit"]', function(e) {
-    return $('#refreshrate').val();
+    e.preventDefault();
+    return $('#phone-login').val();
   });
 
   $.ajax({

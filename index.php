@@ -189,11 +189,7 @@ include('login.php');
 						</select>
 
 						<label for="phone-login">Phone Login</label>
-						<select id="phone-login" class="dropdown">
-							<label>g</label>
-							<option>Yes</option>
-							<option>No</option>
-						</select>
+						<input id="phone-login" type="number" />
 					</div>
 					<input type="submit" value="Submit" />
 					<a href="#" class="close" id="closeSettingsPopup"></a>

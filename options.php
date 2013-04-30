@@ -32,16 +32,16 @@ if (preg_match('/ALL/', $allowed_campaigns) == 1 ) { // for admin user
 	}
 	$stmt = "SELECT vicidial_user_groups.admin_viewable_groups from vicidial_user_groups, vicidial_users where (vicidial_user_groups.user_group=vicidial_users.user_group or vicidial_user_groups.) and vicidial_users.user='$PHP_AUTH_USER' and vicidial_users.pass='$PHP_AUTH_PW'";
 	$userGroups = explode(' ', msquery($stmt, $db));
-	if ($userGroups == [""]) {
+	if ( empty($userGroups) ) {
 		$stmt = "SELECT user_group from vicidial_users where user='$PHP_AUTH_USER' and pass='$PHP_AUTH_PW'";
 		$userGroups = msquery($stmt, $db);
 	}
 }
 
 $stmt="select phone_login from vicidial_users where user='$PHP_AUTH_USER' and pass='$PHP_AUTH_PW' and active='Y';";
-$getPhoneLogin = mysqli_query($db, $stmt);
-if ( (isset($_GET["setPhoneLogin"]) ) {
-	$stmt = "update vicidial_users set phone_login = '$setPhoneLogin' where user='$PHP_AUTH_USER' and pass='$PHP_AUTH_PW' and active='Y';"
+$getPhoneLogin = msquery($stmt, $db);
+if ( isset($_GET["setPhoneLogin"]) ) {
+	$stmt = "update vicidial_users set phone_login = '$setPhoneLogin' where user='$PHP_AUTH_USER' and pass='$PHP_AUTH_PW' and active='Y';";
 	mysqli_query($db, $stmt);
 }
 
@@ -51,7 +51,7 @@ echo ', "userGroups": ';
 echo json_encode($userGroups);
 echo ', "time": ';
 echo json_encode(time());
-echo ', "phoneLogin": ';
+echo ', "getPhoneLogin": ';
 echo json_encode($getPhoneLogin);
 echo '}';
 ?>

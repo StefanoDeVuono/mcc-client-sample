@@ -1104,7 +1104,7 @@ form .rightform {
   width: 50%;
   height: 100%;
   float: right; }
-  form .rightform label, form .rightform select, form .rightform h2 {
+  form .rightform label, form .rightform select, form .rightform h2, form .rightform input {
     margin-left: 83px; }
 form input[type="submit"] {
   display: inline-block;
