@@ -164,6 +164,7 @@ while ($row = mysqli_fetch_assoc($rslt)) {
 //$stmt = "update vicidial_users set closer_campaigns = replace (closer_campaigns,'Inbound ','') where user = 'mporte';"
 //mysqli_query($db, $stmt);
 
+
 echo '{';
 echo '"A": ';
 echo json_encode($arrayA);
