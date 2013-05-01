@@ -124,11 +124,11 @@ function horizontal_bar_chart($campaign_id,$days_graph,$title,$link,$metric,$met
 		{$stmt="SELECT stats_date,total_calls from vicidial_daily_ra_stats where stats_flag='OPEN' and user='$campaign_id';";}
 	if ($metric=='ra_concurrent_calls')
 		{$stmt="SELECT stats_date,max_calls from vicidial_daily_ra_stats where stats_flag='OPEN' and user='$campaign_id';";}
-	$rslt=mysql_query($stmt, $link);
-	$Xstats_to_print = mysql_num_rows($rslt);
+	$rslt=mysqli_query($db, $stmt);
+	$Xstats_to_print = mysqli_num_rows($rslt);
 	if ($Xstats_to_print > 0) 
 		{
-		$rowx=mysql_fetch_row($rslt);
+		$rowx=mysqli_fetch_row($rslt);
 		$Bstats_date[0] =  $rowx[0];
 		$Btotal_calls[0] = $rowx[1];
 		if ($max_count < $Btotal_calls[0]) {$max_count = $Btotal_calls[0];}
@@ -150,11 +150,11 @@ function horizontal_bar_chart($campaign_id,$days_graph,$title,$link,$metric,$met
 			{$stmt="SELECT stats_date,total_calls from vicidial_daily_ra_stats where stats_date='$Bstats_date[$i]' and user='$campaign_id';";}
 		if ($metric=='ra_concurrent_calls')
 			{$stmt="SELECT stats_date,max_calls from vicidial_daily_ra_stats where stats_date='$Bstats_date[$i]' and user='$campaign_id';";}
-		$rslt=mysql_query($stmt, $link);
-		$Ystats_to_print = mysql_num_rows($rslt);
+		$rslt=mysqli_query($db, $stmt);
+		$Ystats_to_print = mysqli_num_rows($rslt);
 		if ($Ystats_to_print > 0) 
 			{
-			$rowx=mysql_fetch_row($rslt);
+			$rowx=mysqli_fetch_row($rslt);
 			$Btotal_calls[$i] =		$rowx[1];
 			if ($max_count < $Btotal_calls[$i]) {$max_count = $Btotal_calls[$i];}
 			}

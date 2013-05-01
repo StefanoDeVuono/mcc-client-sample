@@ -79,7 +79,7 @@ $api_url_log = 0;
 
 $startMS = microtime();
 
-//include("database.php");
+include("database.php");
 
 
 
@@ -333,9 +333,8 @@ header ("Pragma: no-cache");                          // HTTP/1.0
 #############################################
 ##### START SYSTEM_SETTINGS LOOKUP #####
 $stmt = "SELECT use_non_latin,custom_fields_enabled FROM system_settings;";
-$rslt=mysqli_prepare($db, $stmt);
-//echo 'result is '.$rslt;
-$qm_conf_ct = mysqli_stmt_num_rows($rslt);
+$rslt=mysqli_query($db, $stmt);
+$qm_conf_ct = mysqli_num_rows($rslt);
 if ($qm_conf_ct > 0)
 	{
 	$row=mysqli_fetch_row($rslt);
@@ -524,8 +523,8 @@ $dsec = ( ( ($hour * 3600) + ($min * 60) ) + $sec );
 ### Grab Server GMT value from the database
 $stmt="SELECT local_gmt FROM servers where active='Y' limit 1;";
 if ($non_latin > 0) {$rslt=mysqli_query($db, "SET NAMES 'UTF8'");}
-$rslt=mysqli_prepare($db, $stmt);
-$gmt_recs = mysqli_stmt_num_rows($rslt);
+$rslt=mysqli_query($db, $stmt);
+$gmt_recs = mysqli_num_rows($rslt);
 if ($gmt_recs > 0)
 	{
 	$row=mysqli_fetch_row($rslt);
@@ -598,7 +597,7 @@ if ($function == 'sounds_list')
 		##### START SYSTEM_SETTINGS LOOKUP #####
 		$stmt = "SELECT use_non_latin,sounds_central_control_active,sounds_web_server,sounds_web_directory,admin_web_directory FROM system_settings;";
 		$rslt=mysqli_query($db, $stmt);
-		$ss_conf_ct = mysqli_stmt_num_rows($rslt);
+		$ss_conf_ct = mysqli_num_rows($rslt);
 		if ($ss_conf_ct > 0)
 			{
 			$row=mysqli_fetch_row($rslt);
@@ -765,7 +764,7 @@ if ($function == 'moh_list')
 		##### START SYSTEM_SETTINGS LOOKUP #####
 		$stmt = "SELECT use_non_latin,sounds_central_control_active,sounds_web_server,sounds_web_directory FROM system_settings;";
 		$rslt=mysqli_query($db, $stmt);
-		$ss_conf_ct = mysqli_stmt_num_rows($rslt);
+		$ss_conf_ct = mysqli_num_rows($rslt);
 		if ($ss_conf_ct > 0)
 			{
 			$row=mysqli_fetch_row($rslt);
@@ -845,7 +844,7 @@ if ($function == 'moh_list')
 
 			$stmt="SELECT moh_id,moh_name,random from vicidial_music_on_hold where active='Y' $LOGadmin_viewable_groupsSQL order by moh_id";
 			$rslt=mysqli_query($db, $stmt);
-			$moh_to_print = mysqli_stmt_num_rows($rslt);
+			$moh_to_print = mysqli_num_rows($rslt);
 			$k=0;
 			$sf=0;
 			while ($moh_to_print > $k) 
@@ -873,7 +872,7 @@ if ($function == 'moh_list')
 
 				$stmt="SELECT filename from vicidial_music_on_hold_files where moh_id='$moh_id[$k]';";
 				$rslt=mysqli_query($db, $stmt);
-				$mohfiles_to_print = mysqli_stmt_num_rows($rslt);
+				$mohfiles_to_print = mysqli_num_rows($rslt);
 				$m=0;
 				while ($mohfiles_to_print > $m) 
 					{
@@ -984,7 +983,7 @@ if ($function == 'vm_list')
 
 		$stmt="SELECT voicemail_id,fullname,email from vicidial_voicemail where active='Y' $LOGadmin_viewable_groupsSQL order by voicemail_id";
 		$rslt=mysqli_query($db, $stmt);
-		$vm_to_print = mysqli_stmt_num_rows($rslt);
+		$vm_to_print = mysqli_num_rows($rslt);
 		$k=0;
 		$sf=0;
 		while ($vm_to_print > $k) 
@@ -1008,7 +1007,7 @@ if ($function == 'vm_list')
 
 		$stmt="SELECT voicemail_id,fullname,email,extension from phones where active='Y' $LOGadmin_viewable_groupsSQL order by voicemail_id";
 		$rslt=mysqli_query($db, $stmt);
-		$vm_to_print = mysqli_stmt_num_rows($rslt);
+		$vm_to_print = mysqli_num_rows($rslt);
 		$k=0;
 		$sf=0;
 		while ($vm_to_print > $k) 
@@ -1392,7 +1391,7 @@ if ($function == 'blind_monitor')
 			{
 			$result = 'ERROR';
 			$result_reason = "blind_monitor USER DOES NOT HAVE PERMISSION TO BLIND MONITOR";
-			echo "$result: $result_reason: |$user|$allowed_user|\n";
+			echo "$result: $result_reason: |$user|$allowed_user|\nalso $row\n and stmt is $stmt";
 			$data = "$allowed_user";
 			api_log($db,$api_logging,$api_script,$user,$agent_user,$function,$value,$result,$result_reason,$source,$data);
 			exit;
@@ -1526,7 +1525,7 @@ if ($api_url_log > 0)
 
 
 
-
+echo $function;
 ################################################################################
 ### add_user - adds user to the vicidial_users table
 ################################################################################
@@ -1644,7 +1643,7 @@ if ($function == 'add_user')
 										{
 										$stmt = "SELECT auto_user_add_value FROM system_settings;";
 										$rslt=mysqli_query($db, $stmt);
-										$ss_auav_ct = mysqli_stmt_num_rows($rslt);
+										$ss_auav_ct = mysqli_num_rows($rslt);
 										if ($ss_auav_ct > 0)
 											{
 											$row=mysqli_fetch_row($rslt);
@@ -3313,7 +3312,7 @@ if ($function == 'recording_lookup')
 				$uniqueidTEST = preg_replace('/\..*$/','',$uniqueid);
 				$stmt="select count(*) from vicidial_log where uniqueid LIKE \"$uniqueidTEST%\";";
 				$rslt=mysqli_query($db, $stmt);
-				$vlec_recs = mysqli_stmt_num_rows($rslt);
+				$vlec_recs = mysqli_num_rows($rslt);
 				if ($vlec_recs > 0)
 					{
 					$row=mysqli_fetch_row($rslt);
@@ -3325,7 +3324,7 @@ if ($function == 'recording_lookup')
 					}
 				$stmt="select closecallid from vicidial_closer_log where uniqueid LIKE \"$uniqueidTEST%\";";
 				$rslt=mysqli_query($db, $stmt);
-				$vclec_recs = mysqli_stmt_num_rows($rslt);
+				$vclec_recs = mysqli_num_rows($rslt);
 				if ($vclec_recs > 0)
 					{
 					$L=0;
@@ -3383,7 +3382,7 @@ if ($function == 'recording_lookup')
 				{
 				$stmt="SELECT start_time,user,recording_id,lead_id,location from recording_log where $search_SQL order by start_time limit 100000;";
 				$rslt=mysqli_query($db, $stmt);
-				$rec_recs = mysqli_stmt_num_rows($rslt);
+				$rec_recs = mysqli_num_rows($rslt);
 				if ($DB>0) {echo "DEBUG: recording_lookup query - $rec_recs|$stmt\n";}
 				if ($rec_recs < 1)
 					{
@@ -3503,7 +3502,7 @@ if ($function == 'did_log_export')
 				{
 				$stmt="SELECT uniqueid,caller_id_number,call_date,UNIX_TIMESTAMP(call_date) from vicidial_did_log where $search_SQL order by call_date limit 100000;";
 				$rslt=mysqli_query($db, $stmt);
-				$rec_recs = mysqli_stmt_num_rows($rslt);
+				$rec_recs = mysqli_num_rows($rslt);
 				if ($DB>0) {echo "DEBUG: did_log_export query - $rec_recs|$stmt\n";}
 				if ($rec_recs < 1)
 					{
@@ -3547,7 +3546,7 @@ if ($function == 'did_log_export')
 						$DLcloser_epoch[$k]=$DLepoch[$k];
 						$stmt="SELECT length_in_sec,UNIX_TIMESTAMP(call_date) from vicidial_closer_log where uniqueid='$DLuniqueid[$k]' order by call_date desc limit 1;";
 						$rslt=mysqli_query($db, $stmt);
-						$vcl_recs = mysqli_stmt_num_rows($rslt);
+						$vcl_recs = mysqli_num_rows($rslt);
 						if ($DB>0) {echo "DEBUG: did_log_export query - $vcl_recs|$stmt\n";}
 						if ($vcl_recs > 0)
 							{
@@ -3650,7 +3649,7 @@ if ($function == 'agent_stats_export')
 				{
 				$stmt="SELECT user,lead_id,sub_status,pause_sec,wait_sec,talk_sec,dispo_sec,dead_sec,pause_epoch from vicidial_agent_log where $search_SQL order by user,agent_log_id limit 10000000;";
 				$rslt=mysqli_query($db, $stmt);
-				$rec_recs = mysqli_stmt_num_rows($rslt);
+				$rec_recs = mysqli_num_rows($rslt);
 				if ($DB>0) {echo "DEBUG: agent_stats_export query - $rec_recs|$stmt\n";}
 				if ($rec_recs < 1)
 					{
@@ -3721,7 +3720,7 @@ if ($function == 'agent_stats_export')
 						{
 						$stmt="SELECT full_name,user_group from vicidial_users where user='$ASuser[$k]' limit 1;";
 						$rslt=mysqli_query($db, $stmt);
-						$vcl_recs = mysqli_stmt_num_rows($rslt);
+						$vcl_recs = mysqli_num_rows($rslt);
 						if ($DB>0) {echo "DEBUG: agent_stats_export query - $vcl_recs|$stmt\n";}
 						if ($vcl_recs > 0)
 							{
@@ -3891,7 +3890,7 @@ if ($function == 'user_group_status')
 
 					$stmt="select group_id from vicidial_inbound_groups $whereLOGadmin_viewable_groupsSQL order by group_id;";
 					$rslt=mysqli_query($db, $stmt);
-					$groups_to_print = mysqli_stmt_num_rows($rslt);
+					$groups_to_print = mysqli_num_rows($rslt);
 					$i=0;
 					$rawLOGallowed_ingroupsSQL='';
 					while ($i < $groups_to_print)
@@ -3935,7 +3934,7 @@ if ($function == 'user_group_status')
 				$stmt="select callerid,status,campaign_id,call_type from vicidial_auto_calls $whereLOGallowed_callsSQL;";
 				$rslt=mysqli_query($db, $stmt);
 				if ($DB) {echo "$stmt\n";}
-				$calls_to_list = mysqli_stmt_num_rows($rslt);
+				$calls_to_list = mysqli_num_rows($rslt);
 				if ($calls_to_list > 0)
 					{
 					$i=0;
@@ -3953,7 +3952,7 @@ if ($function == 'user_group_status')
 
 				$stmt="select vicidial_live_agents.user,vicidial_live_agents.status,vicidial_live_agents.campaign_id,vicidial_users.user_group,vicidial_live_agents.comments,vicidial_live_agents.callerid,lead_id from vicidial_live_agents,vicidial_users where vicidial_live_agents.user=vicidial_users.user $search_SQL $LOGadmin_viewable_groupsSQL limit 10000000;";
 				$rslt=mysqli_query($db, $stmt);
-				$rec_recs = mysqli_stmt_num_rows($rslt);
+				$rec_recs = mysqli_num_rows($rslt);
 				if ($DB>0) {echo "DEBUG: user_group_status query - $rec_recs|$stmt\n";}
 				if ($rec_recs > 0)
 					{
@@ -4110,7 +4109,7 @@ if ($function == 'in_group_status')
 
 					$stmt="select group_id from vicidial_inbound_groups $whereLOGadmin_viewable_groupsSQL order by group_id;";
 					$rslt=mysqli_query($db, $stmt);
-					$groups_to_print = mysqli_stmt_num_rows($rslt);
+					$groups_to_print = mysqli_num_rows($rslt);
 					$i=0;
 					$rawLOGallowed_ingroupsSQL='';
 					while ($i < $groups_to_print)
@@ -4155,7 +4154,7 @@ if ($function == 'in_group_status')
 				$stmt="select callerid,status,campaign_id,call_type from vicidial_auto_calls $search_SQL $LOGallowed_callsSQL;";
 				$rslt=mysqli_query($db, $stmt);
 				if ($DB) {echo "$stmt\n";}
-				$calls_to_list = mysqli_stmt_num_rows($rslt);
+				$calls_to_list = mysqli_num_rows($rslt);
 				if ($calls_to_list > 0)
 					{
 					$i=0;
@@ -4176,7 +4175,7 @@ if ($function == 'in_group_status')
 				$stmt="SELECT distinct user from vicidial_live_inbound_agents where group_id IN('$in_groupsSQL');";
 				$rslt=mysqli_query($db, $stmt);
 				if ($DB) {echo "$stmt\n";}
-				$IG_users = mysqli_stmt_num_rows($rslt);
+				$IG_users = mysqli_num_rows($rslt);
 				if ($IG_users > 0)
 					{
 					$i=0;
@@ -4191,7 +4190,7 @@ if ($function == 'in_group_status')
 				$k=0;
 				$stmt="select vicidial_live_agents.user,vicidial_live_agents.status,vicidial_live_agents.campaign_id,vicidial_users.user_group,vicidial_live_agents.comments,vicidial_live_agents.callerid,lead_id from vicidial_live_agents,vicidial_users where vicidial_live_agents.user=vicidial_users.user and vicidial_live_agents.user IN('$users') $LOGadmin_viewable_groupsSQL limit 10000000;";
 				$rslt=mysqli_query($db, $stmt);
-				$rec_recs = mysqli_stmt_num_rows($rslt);
+				$rec_recs = mysqli_num_rows($rslt);
 				if ($DB>0) {echo "DEBUG: in_group_status query - $rec_recs|$stmt\n";}
 				if ($rec_recs > 0)
 					{
@@ -4316,7 +4315,7 @@ if ($function == 'update_log_entry')
 							{$stmt="SELECT lead_id,status,uniqueid from vicidial_log where campaign_id='$group' and lead_id='$lead_id' order by call_date desc limit 1;";}
 						}
 					$rslt=mysqli_query($db, $stmt);
-					$found_recs = mysqli_stmt_num_rows($rslt);
+					$found_recs = mysqli_num_rows($rslt);
 					if ($found_recs > 0)
 						{
 						$row=mysqli_fetch_row($rslt);
@@ -4524,7 +4523,7 @@ if ($function == 'add_lead')
 					{
 					$stmt="SELECT campaign_id from vicidial_lists where list_id='$list_id';";
 					$rslt=mysqli_query($db, $stmt);
-					$ci_recs = mysqli_stmt_num_rows($rslt);
+					$ci_recs = mysqli_num_rows($rslt);
 					if ($ci_recs > 0)
 						{
 						$row=mysqli_fetch_row($rslt);
@@ -4532,7 +4531,7 @@ if ($function == 'add_lead')
 
 						$stmt="select list_id from vicidial_lists where campaign_id='$duplicate_camp';";
 						$rslt=mysqli_query($db, $stmt);
-						$li_recs = mysqli_stmt_num_rows($rslt);
+						$li_recs = mysqli_num_rows($rslt);
 						if ($li_recs > 0)
 							{
 							$L=0;
@@ -4553,7 +4552,7 @@ if ($function == 'add_lead')
 					$duplicate_found=0;
 					$stmt="SELECT lead_id,list_id from vicidial_list where phone_number='$phone_number' and list_id='$list_id' limit 1;";
 					$rslt=mysqli_query($db, $stmt);
-					$pc_recs = mysqli_stmt_num_rows($rslt);
+					$pc_recs = mysqli_num_rows($rslt);
 					if ($pc_recs > 0)
 						{
 						$duplicate_found=1;
@@ -4578,7 +4577,7 @@ if ($function == 'add_lead')
 					$duplicate_found=0;
 					$stmt="SELECT lead_id,list_id from vicidial_list where phone_number='$phone_number' and list_id IN($duplicate_lists) limit 1;";
 					$rslt=mysqli_query($db, $stmt);
-					$pc_recs = mysqli_stmt_num_rows($rslt);
+					$pc_recs = mysqli_num_rows($rslt);
 					if ($pc_recs > 0)
 						{
 						$duplicate_found=1;
@@ -4603,7 +4602,7 @@ if ($function == 'add_lead')
 					$duplicate_found=0;
 					$stmt="SELECT lead_id,list_id from vicidial_list where phone_number='$phone_number' limit 1;";
 					$rslt=mysqli_query($db, $stmt);
-					$pc_recs = mysqli_stmt_num_rows($rslt);
+					$pc_recs = mysqli_num_rows($rslt);
 					if ($pc_recs > 0)
 						{
 						$duplicate_found=1;
@@ -4628,7 +4627,7 @@ if ($function == 'add_lead')
 					$duplicate_found=0;
 					$stmt="SELECT lead_id,list_id from vicidial_list where title='$title' and alt_phone='$alt_phone' and list_id='$list_id' limit 1;";
 					$rslt=mysqli_query($db, $stmt);
-					$pc_recs = mysqli_stmt_num_rows($rslt);
+					$pc_recs = mysqli_num_rows($rslt);
 					if ($pc_recs > 0)
 						{
 						$duplicate_found=1;
@@ -4653,7 +4652,7 @@ if ($function == 'add_lead')
 					$duplicate_found=0;
 					$stmt="SELECT lead_id,list_id from vicidial_list where title='$title' and alt_phone='$alt_phone' and list_id IN($duplicate_lists) limit 1;";
 					$rslt=mysqli_query($db, $stmt);
-					$pc_recs = mysqli_stmt_num_rows($rslt);
+					$pc_recs = mysqli_num_rows($rslt);
 					if ($pc_recs > 0)
 						{
 						$duplicate_found=1;
@@ -4678,7 +4677,7 @@ if ($function == 'add_lead')
 					$duplicate_found=0;
 					$stmt="SELECT lead_id,list_id from vicidial_list where title='$title' and alt_phone='$alt_phone' limit 1;";
 					$rslt=mysqli_query($db, $stmt);
-					$pc_recs = mysqli_stmt_num_rows($rslt);
+					$pc_recs = mysqli_num_rows($rslt);
 					if ($pc_recs > 0)
 						{
 						$duplicate_found=1;
@@ -4703,7 +4702,7 @@ if ($function == 'add_lead')
 					$duplicate_found=0;
 					$stmt="SELECT lead_id,list_id from vicidial_list where first_name='$first_name' and last_name='$last_name' and phone_number='$phone_number' and list_id='$list_id' limit 1;";
 					$rslt=mysqli_query($db, $stmt);
-					$pc_recs = mysqli_stmt_num_rows($rslt);
+					$pc_recs = mysqli_num_rows($rslt);
 					if ($pc_recs > 0)
 						{
 						$duplicate_found=1;
@@ -4728,7 +4727,7 @@ if ($function == 'add_lead')
 					$duplicate_found=0;
 					$stmt="SELECT lead_id,list_id from vicidial_list where first_name='$first_name' and last_name='$last_name' and phone_number='$phone_number' and list_id IN($duplicate_lists) limit 1;";
 					$rslt=mysqli_query($db, $stmt);
-					$pc_recs = mysqli_stmt_num_rows($rslt);
+					$pc_recs = mysqli_num_rows($rslt);
 					if ($pc_recs > 0)
 						{
 						$duplicate_found=1;
@@ -4753,7 +4752,7 @@ if ($function == 'add_lead')
 					$duplicate_found=0;
 					$stmt="SELECT lead_id,list_id from vicidial_list where first_name='$first_name' and last_name='$last_name' and phone_number='$phone_number' limit 1;";
 					$rslt=mysqli_query($db, $stmt);
-					$pc_recs = mysqli_stmt_num_rows($rslt);
+					$pc_recs = mysqli_num_rows($rslt);
 					if ($pc_recs > 0)
 						{
 						$duplicate_found=1;
@@ -4842,13 +4841,13 @@ if ($function == 'add_lead')
 							$stmt="SHOW TABLES LIKE \"custom_$list_id\";";
 							if ($DB>0) {echo "$stmt";}
 							$rslt=mysqli_query($db, $stmt);
-							$tablecount_to_print = mysqli_stmt_num_rows($rslt);
+							$tablecount_to_print = mysqli_num_rows($rslt);
 							if ($tablecount_to_print > 0) 
 								{
 								$CFinsert_SQL='';
 								$stmt="SELECT field_id,field_label,field_name,field_description,field_rank,field_help,field_type,field_options,field_size,field_max,field_default,field_cost,field_required,multi_position,name_position,field_order from vicidial_lists_fields where list_id='$list_id' order by field_rank,field_order,field_label;";
 								$rslt=mysqli_query($db, $stmt);
-								$fields_to_print = mysqli_stmt_num_rows($rslt);
+								$fields_to_print = mysqli_num_rows($rslt);
 								$fields_list='';
 								$o=0;
 								while ($fields_to_print > $o) 
@@ -5003,7 +5002,7 @@ if ($function == 'add_lead')
 						{
 						$stmt="SELECT count(*) from vicidial_campaigns where campaign_id='$campaign_id';";
 						$rslt=mysqli_query($db, $stmt);
-						$camp_recs = mysqli_stmt_num_rows($rslt);
+						$camp_recs = mysqli_num_rows($rslt);
 						if ($camp_recs > 0)
 							{
 							$row=mysqli_fetch_row($rslt);
@@ -5017,7 +5016,7 @@ if ($function == 'add_lead')
 								{
 								$stmt="SELECT user_group from vicidial_users where user='$callback_user';";
 								$rslt=mysqli_query($db, $stmt);
-								$user_recs = mysqli_stmt_num_rows($rslt);
+								$user_recs = mysqli_num_rows($rslt);
 								if ($user_recs > 0)
 									{
 									$row=mysqli_fetch_row($rslt);
@@ -5164,7 +5163,7 @@ if ($function == 'update_lead')
 					{
 					$stmt="SELECT campaign_id from vicidial_lists where list_id='$list_id';";
 					$rslt=mysqli_query($db, $stmt);
-					$ci_recs = mysqli_stmt_num_rows($rslt);
+					$ci_recs = mysqli_num_rows($rslt);
 					if ($ci_recs > 0)
 						{
 						$row=mysqli_fetch_row($rslt);
@@ -5172,7 +5171,7 @@ if ($function == 'update_lead')
 
 						$stmt="select list_id from vicidial_lists where campaign_id='$search_camp';";
 						$rslt=mysqli_query($db, $stmt);
-						$li_recs = mysqli_stmt_num_rows($rslt);
+						$li_recs = mysqli_num_rows($rslt);
 						if ($li_recs > 0)
 							{
 							$L=0;
@@ -5198,7 +5197,7 @@ if ($function == 'update_lead')
 					if ($DB>0) {echo "DEBUG: Checking for lead_id - $lead_id\n";}
 					$stmt="SELECT lead_id,list_id,entry_list_id from vicidial_list where $lead_id_SQL $search_SQL order by entry_date desc limit $records;";
 					$rslt=mysqli_query($db, $stmt);
-					$pc_recs = mysqli_stmt_num_rows($rslt);
+					$pc_recs = mysqli_num_rows($rslt);
 					$n=0;
 					while ($pc_recs > $n)
 						{
@@ -5215,7 +5214,7 @@ if ($function == 'update_lead')
 					if ($DB>0) {echo "DEBUG: Checking for vendor_lead_code - $vendor_lead_code\n";}
 					$stmt="SELECT lead_id,list_id,entry_list_id from vicidial_list where $vendor_lead_code_SQL $search_SQL order by entry_date desc limit $records;";
 					$rslt=mysqli_query($db, $stmt);
-					$pc_recs = mysqli_stmt_num_rows($rslt);
+					$pc_recs = mysqli_num_rows($rslt);
 					$n=0;
 					while ($pc_recs > $n)
 						{
@@ -5232,7 +5231,7 @@ if ($function == 'update_lead')
 					if ($DB>0) {echo "DEBUG: Checking for phone_number - $phone_number\n";}
 					$stmt="SELECT lead_id,list_id,entry_list_id from vicidial_list where $phone_number_SQL $search_SQL order by entry_date desc limit $records;";
 					$rslt=mysqli_query($db, $stmt);
-					$pc_recs = mysqli_stmt_num_rows($rslt);
+					$pc_recs = mysqli_num_rows($rslt);
 					$n=0;
 					while ($pc_recs > $n)
 						{
@@ -5342,7 +5341,7 @@ if ($function == 'update_lead')
 								$cb_count=0;
 								$stmt="SELECT callback_id from vicidial_callbacks where lead_id='$search_lead_id[$n]';";
 								$rslt=mysqli_query($db, $stmt);
-								$lead_recs = mysqli_stmt_num_rows($rslt);
+								$lead_recs = mysqli_num_rows($rslt);
 								if ($lead_recs > 0)
 									{
 									$row=mysqli_fetch_row($rslt);
@@ -5399,7 +5398,7 @@ if ($function == 'update_lead')
 									### Add new scheduled callback
 									$stmt="SELECT count(*) from vicidial_campaigns where campaign_id='$campaign_id';";
 									$rslt=mysqli_query($db, $stmt);
-									$camp_recs = mysqli_stmt_num_rows($rslt);
+									$camp_recs = mysqli_num_rows($rslt);
 									if ($camp_recs > 0)
 										{
 										$row=mysqli_fetch_row($rslt);
@@ -5414,7 +5413,7 @@ if ($function == 'update_lead')
 											{
 											$stmt="SELECT user_group from vicidial_users where user='$callback_user';";
 											$rslt=mysqli_query($db, $stmt);
-											$user_recs = mysqli_stmt_num_rows($rslt);
+											$user_recs = mysqli_num_rows($rslt);
 											if ($user_recs > 0)
 												{
 												$row=mysqli_fetch_row($rslt);
@@ -5489,7 +5488,7 @@ if ($function == 'update_lead')
 								$stmt="SHOW TABLES LIKE \"custom_$lead_custom_list\";";
 								if ($DB>0) {echo "$stmt";}
 								$rslt=mysqli_query($db, $stmt);
-								$tablecount_to_print = mysqli_stmt_num_rows($rslt);
+								$tablecount_to_print = mysqli_num_rows($rslt);
 								if ($tablecount_to_print > 0) 
 									{
 									if ($delete_lead=='Y')
@@ -5514,7 +5513,7 @@ if ($function == 'update_lead')
 										$VL_update_SQL='';
 										$stmt="SELECT field_id,field_label,field_name,field_description,field_rank,field_help,field_type,field_options,field_size,field_max,field_default,field_cost,field_required,multi_position,name_position,field_order from vicidial_lists_fields where list_id='$lead_custom_list' order by field_rank,field_order,field_label;";
 										$rslt=mysqli_query($db, $stmt);
-										$fields_to_print = mysqli_stmt_num_rows($rslt);
+										$fields_to_print = mysqli_num_rows($rslt);
 										$fields_list='';
 										$o=0;
 										while ($fields_to_print > $o) 
@@ -5561,7 +5560,7 @@ if ($function == 'update_lead')
 											$stmt="SELECT count(*) from custom_$lead_custom_list where lead_id='$search_lead_id[$n]';";
 											if ($DB>0) {echo "$stmt";}
 											$rslt=mysqli_query($db, $stmt);
-											$fieldleadcount_to_print = mysqli_stmt_num_rows($rslt);
+											$fieldleadcount_to_print = mysqli_num_rows($rslt);
 											if ($fieldleadcount_to_print > 0) 
 												{
 												$rowx=mysqli_fetch_row($rslt);
@@ -5704,13 +5703,13 @@ if ($function == 'update_lead')
 											$stmt="SHOW TABLES LIKE \"custom_$list_id\";";
 											if ($DB>0) {echo "$stmt";}
 											$rslt=mysqli_query($db, $stmt);
-											$tablecount_to_print = mysqli_stmt_num_rows($rslt);
+											$tablecount_to_print = mysqli_num_rows($rslt);
 											if ($tablecount_to_print > 0) 
 												{
 												$CFinsert_SQL='';
 												$stmt="SELECT field_id,field_label,field_name,field_description,field_rank,field_help,field_type,field_options,field_size,field_max,field_default,field_cost,field_required,multi_position,name_position,field_order from vicidial_lists_fields where list_id='$list_id' order by field_rank,field_order,field_label;";
 												$rslt=mysqli_query($db, $stmt);
-												$fields_to_print = mysqli_stmt_num_rows($rslt);
+												$fields_to_print = mysqli_num_rows($rslt);
 												$fields_list='';
 												$o=0;
 												while ($fields_to_print > $o) 
@@ -5855,7 +5854,7 @@ exit;
 
 function lookup_gmt($phone_code,$USarea,$state,$LOCAL_GMT_OFF_STD,$Shour,$Smin,$Ssec,$Smon,$Smday,$Syear,$tz_method,$postal_code,$owner)
 {
-require("databse.php");
+require("database.php");
 
 $postalgmt_found=0;
 if ( (eregi("POSTAL",$tz_method)) && (strlen($postal_code)>4) )
@@ -5864,7 +5863,7 @@ if ( (eregi("POSTAL",$tz_method)) && (strlen($postal_code)>4) )
 		{
 		$stmt="select postal_code,state,GMT_offset,DST,DST_range,country,country_code from vicidial_postal_codes where country_code='$phone_code' and postal_code LIKE \"$postal_code%\";";
 		$rslt=mysqli_query($db, $stmt);
-		$pc_recs = mysqli_stmt_num_rows($rslt);
+		$pc_recs = mysqli_num_rows($rslt);
 		if ($pc_recs > 0)
 			{
 			$row=mysqli_fetch_row($rslt);
@@ -5885,7 +5884,7 @@ if ( ($tz_method=="TZCODE") && (strlen($owner)>1) )
 
 	$stmt="select GMT_offset from vicidial_phone_codes where tz_code='$owner' and country_code='$phone_code' limit 1;";
 	$rslt=mysqli_query($db, $stmt);
-	$pc_recs = mysqli_stmt_num_rows($rslt);
+	$pc_recs = mysqli_num_rows($rslt);
 	if ($pc_recs > 0)
 		{
 		$row=mysqli_fetch_row($rslt);
@@ -5897,7 +5896,7 @@ if ( ($tz_method=="TZCODE") && (strlen($owner)>1) )
 
 	$stmt = "select distinct DST_range from vicidial_phone_codes where tz_code='$owner' and country_code='$phone_code' order by DST_range desc limit 1;";
 	$rslt=mysqli_query($db, $stmt);
-	$pc_recs = mysqli_stmt_num_rows($rslt);
+	$pc_recs = mysqli_num_rows($rslt);
 	if ($pc_recs > 0)
 		{
 		$row=mysqli_fetch_row($rslt);
@@ -5913,7 +5912,7 @@ if ($postalgmt_found < 1)
 		{
 		$stmt="select country_code,country,areacode,state,GMT_offset,DST,DST_range,geographic_description from vicidial_phone_codes where country_code='$phone_code' and areacode='$USarea';";
 		$rslt=mysqli_query($db, $stmt);
-		$pc_recs = mysqli_stmt_num_rows($rslt);
+		$pc_recs = mysqli_num_rows($rslt);
 		if ($pc_recs > 0)
 			{
 			$row=mysqli_fetch_row($rslt);
@@ -5928,7 +5927,7 @@ if ($postalgmt_found < 1)
 		{
 		$stmt="select country_code,country,areacode,state,GMT_offset,DST,DST_range,geographic_description from vicidial_phone_codes where country_code='$phone_code' and areacode='$USarea';";
 		$rslt=mysqli_query($db, $stmt);
-		$pc_recs = mysqli_stmt_num_rows($rslt);
+		$pc_recs = mysqli_num_rows($rslt);
 		if ($pc_recs > 0)
 			{
 			$row=mysqli_fetch_row($rslt);
@@ -5943,7 +5942,7 @@ if ($postalgmt_found < 1)
 		{
 		$stmt="select country_code,country,areacode,state,GMT_offset,DST,DST_range,geographic_description from vicidial_phone_codes where country_code='$phone_code' and state='$state';";
 		$rslt=mysqli_query($db, $stmt);
-		$pc_recs = mysqli_stmt_num_rows($rslt);
+		$pc_recs = mysqli_num_rows($rslt);
 		if ($pc_recs > 0)
 			{
 			$row=mysqli_fetch_row($rslt);
@@ -5959,7 +5958,7 @@ if ($postalgmt_found < 1)
 		$PC_processed++;
 		$stmt="select country_code,country,areacode,state,GMT_offset,DST,DST_range,geographic_description from vicidial_phone_codes where country_code='$phone_code';";
 		$rslt=mysqli_query($db, $stmt);
-		$pc_recs = mysqli_stmt_num_rows($rslt);
+		$pc_recs = mysqli_num_rows($rslt);
 		if ($pc_recs > 0)
 			{
 			$row=mysqli_fetch_row($rslt);
@@ -6658,7 +6657,7 @@ function dialable_gmt($DB,$db,$local_call_time,$gmt_offset,$state)
 	$stmt="SELECT call_time_id,call_time_name,call_time_comments,ct_default_start,ct_default_stop,ct_sunday_start,ct_sunday_stop,ct_monday_start,ct_monday_stop,ct_tuesday_start,ct_tuesday_stop,ct_wednesday_start,ct_wednesday_stop,ct_thursday_start,ct_thursday_stop,ct_friday_start,ct_friday_stop,ct_saturday_start,ct_saturday_stop,ct_state_call_times FROM vicidial_call_times where call_time_id='$local_call_time';";
 	if ($DB) {echo "$stmt\n";}
 	$rslt=mysqli_query($db, $stmt);
-	$call_times_to_print = mysqli_stmt_num_rows($rslt);
+	$call_times_to_print = mysqli_num_rows($rslt);
 	if ($call_times_to_print > 0) 
 		{
 		$rowx=mysqli_fetch_row($rslt);
@@ -6689,7 +6688,7 @@ function dialable_gmt($DB,$db,$local_call_time,$gmt_offset,$state)
 			$stmt="SELECT sct_default_start,sct_default_stop,sct_sunday_start,sct_sunday_stop,sct_monday_start,sct_monday_stop,sct_tuesday_start,sct_tuesday_stop,sct_wednesday_start,sct_wednesday_stop,sct_thursday_start,sct_thursday_stop,sct_friday_start,sct_friday_stop,sct_saturday_start,sct_saturday_stop FROM vicidial_state_call_times where state_call_time_id IN($Gct_state_call_timesSQL) and state_call_time_state='$state';";
 			if ($DB) {echo "$stmt\n";}
 			$rslt=mysqli_query($db, $stmt);
-			$state_times_to_print = mysqli_stmt_num_rows($rslt);
+			$state_times_to_print = mysqli_num_rows($rslt);
 			if ($state_times_to_print > 0) 
 				{
 				$rowx=mysqli_fetch_row($rslt);

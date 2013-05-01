@@ -32,9 +32,11 @@ include('login.php');
 <![endif]-->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="./jquery.tablesorter.min.js"></script>
 <script async src="./js/options.js"></script>
 <script async src="./js/script.js"></script>
+<!-- <script async src="./js/visualize.js"></script> -->
 <title>MCC</title>
 </head>
 <body>
@@ -132,9 +134,10 @@ include('login.php');
 			<header>
 				<a id="reload" href="#"></a>
 				<a class="pause" href="#"></a>
-				<div id="date"></div>
-				<a id="options">Options</a>
-				<a id="settings">User Settings</a>
+				<div id="date" class="header"></div>
+				<a id="options" class="header">Options</a>
+				<a id="settings" class="header">User Settings</a>
+				<a id="webphone" class="header">WebPhone</a>
 			</header>		
 			<div id="optionsPopup">
 				<a href="/vicidial/admin.php">Users</a>
@@ -267,6 +270,24 @@ include('login.php');
 				<div id="busy" class="col2"><div class="number"><span class="pct">%</span></div>Busy</div>
 				<div id="cancel" class="col3"><div class="number"><span class="pct">%</span></div>Cancel</div>
 				<div id="congestion" class="col4"><div class="number"><span class="pct">%</span></div>Congestion</div>
+
+				<!-- <div id="answer" class="col1">
+					<svg class="number"></svg>
+					Answer
+				</div>
+				<div id="busy" class="col2">
+					<svg class="number"></svg>
+					Busy
+				</div>
+				<div id="cancel" class="col3">
+					<svg class="number"></svg>
+					Cancel
+				</div>
+				<div id="congestion" class="col4">
+					<svg class="number"></svg>
+					Congestion
+				</div> -->
+				
 				<div id="upperRight">
 					<button>All</button>
 					<button>24hrs</button>
@@ -372,56 +393,18 @@ include('login.php');
 		</section><!-- end sectionE -->
 
 		<div class="clear"></div>
-		<div id="troubleman"></div>
+		<div id="popupWrapper">
+			<div id="alert">
+				<span id="alertmsg"></span>
+				<input type="submit" value="OK">
+			</div>
+			<div id="webphonePopup">
+				<a class="close" id="closeSectionE" href="#"></a>
+				<div class="closable"></div>
+			</div>
+		</div>
+
+		
 	</div>
 </body>
-<script type="text/javascript">
-function send_monitor(session_id,server_ip,stage)
-	{
-	//	alert(session_id + "|" + server_ip + "|" + monitor_phone + "|" + stage + "|" + user);
-	var xmlhttp=false;
-	/*@cc_on @*/
-	/*@if (@_jscript_version >= 5)
-	// JScript gives us Conditional compilation, we can cope with old IE versions.
-	// and security blocked creation of the objects.
-	 try {
-	  xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-	 } catch (e) {
-	  try {
-	   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	  } catch (E) {
-	   xmlhttp = false;
-	  }
-	 }
-	@end @*/
-	if (!xmlhttp && typeof XMLHttpRequest!='undefined')
-		{
-		xmlhttp = new XMLHttpRequest();
-		}
-	if (xmlhttp) 
-		{
-		var monitorQuery = "source=realtime&function=blind_monitor&user=" + user + "&pass=" + pass + "&phone_login=" + monitor_phone + "&session_id=" + session_id + '&server_ip=' + server_ip + '&stage=' + stage;
-		xmlhttp.open('POST', 'non_agent_api.php'); 
-		xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=UTF-8');
-		xmlhttp.send(monitorQuery); 
-		xmlhttp.onreadystatechange = function() 
-			{ 
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
-				{
-			//	alert(xmlhttp.responseText);
-				var Xoutput = null;
-				Xoutput = xmlhttp.responseText;
-				var regXFerr = new RegExp("ERROR","g");
-				var regXFscs = new RegExp("SUCCESS","g");
-				if (Xoutput.match(regXFerr))
-					{alert(xmlhttp.responseText);}
-				if (Xoutput.match(regXFscs))
-					{alert("SUCCESS: calling " + monitor_phone);}
-				}
-			}
-		delete xmlhttp;
-		}
-	}
-
-</script>
 </html>

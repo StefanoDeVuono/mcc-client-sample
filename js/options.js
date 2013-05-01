@@ -12,6 +12,53 @@
 
   $('#date').text(month + '/' + day + '/' + year + '  ' + date.toLocaleTimeString());
 
+  (function($) {
+    return $.fn.drags = function(opt) {
+      var $el;
+
+      opt = $.extend({
+        handle: "",
+        cursor: "move"
+      }, opt);
+      if (opt.handle === "") {
+        $el = this;
+      } else {
+        $el = this.find(opt.handle);
+      }
+      return $el.css('cursor', opt.cursor).on('mousedown', function(e) {
+        var $drag, drg_h, drg_w, pos_x, pos_y, z_idx;
+
+        if (opt.handle === "") {
+          $drag = $(this).addClass('draggable');
+        } else {
+          $drag = $(this).addClass('active-handle').parent().addClass('draggable');
+        }
+        z_idx = $drag.css('z-index');
+        drg_h = $drag.outerHeight();
+        drg_w = $drag.outerWidth();
+        pos_y = $drag.offset().top + drg_h - e.pageY;
+        pos_x = $drag.offset().left + drg_w - e.pageX;
+        $drag.css('z-index', 1000).parents().on('mousemove', function(e) {
+          return $('.draggable').offset({
+            top: e.pageY + pos_y - drg_h,
+            left: e.pageX + pos_x - drg_w
+          }).on('mouseup', function() {
+            return $(this).removeClass('draggable').css('z-index', z_idx);
+          });
+        });
+        return e.preventDefault();
+      }).on('mouseup', function() {
+        if (opt.handle === "") {
+          return $(this).removeClass('draggable');
+        } else {
+          return $(this).removeClass('active-handle').parent().removeClass('draggable');
+        }
+      });
+    };
+  })($);
+
+  console.log('test');
+
   $('#settingsPopup').on('click', 'input[type="submit"]', function(e) {
     var phoneLogin;
 
@@ -25,8 +72,8 @@
       success: function(data) {
         $('#settingsPopup').data('user', data['user']);
         $('#settingsPopup').data('pass', data['pass']);
-        $('#settingsPopup').data('server-ip', data['server-ip']);
-        return $('#settingsPopup').data('setPhoneLogin', data['setPhoneLogin']);
+        $('#settingsPopup').data('server-ip', data['set_server_ip']);
+        return $('#settingsPopup').data('monitor-phone', data['setPhoneLogin']);
       },
       dataType: "json"
     });
@@ -37,7 +84,14 @@
     success: function(data) {
       var begin, element, selectCampaigns, t, userGroups, _i, _j, _len, _len1, _ref, _ref1;
 
+      $('#settingsPopup').data('user', data['user']);
+      $('#settingsPopup').data('pass', data['pass']);
+      $('#settingsPopup').data('server-ip', data['get_server_ip']);
+      $('#settingsPopup').data('monitor-phone', data['getPhoneLogin']);
       $('#settingsPopup #phone-login').val(data['getPhoneLogin']);
+      $('#webphone').data('user', data['webphone_name']);
+      $('#webphone').data('pass', data['webphone_pass']);
+      $('#webphone').data('server-ip', data['webphone_ip']);
       console.log(data['getPhoneLogin']);
       selectCampaigns = "";
       _ref = data['selectCampaigns'];
@@ -90,5 +144,30 @@
     e.preventDefault();
     return $('#activeResourcesForm').remove();
   });
+
+  $('#sectionA').on('click', '#webphone', function(e) {
+    var ip, pass, user;
+
+    e.preventDefault();
+    user = $('#webphone').data('user');
+    pass = $('#webphone').data('pass');
+    ip = $('#webphone').data('server-ip');
+    $('#webphonePopup').css('visibility', 'visible');
+    return $.ajax({
+      url: './webphone/adminphoneapplet.php?serveraddress=' + ip + '&username=' + user + '&password=' + pass,
+      success: function(data) {
+        return $('#webphonePopup .closable').html(data);
+      },
+      dataType: "html"
+    });
+  });
+
+  $('#webphonePopup').on('click', '.close', function(e) {
+    e.preventDefault();
+    $('#webphonePopup .closable').empty();
+    return $('#webphonePopup').css('visibility', 'hidden');
+  });
+
+  $('#alert, #webphonePopup, #settingsPopup').drags();
 
 }).call(this);

@@ -40,7 +40,19 @@ if (preg_match('/ALL/', $allowed_campaigns) == 1 ) { // for admin user
 
 $stmt="select phone_login from vicidial_users where user='$PHP_AUTH_USER' and pass='$PHP_AUTH_PW' and active='Y';";
 $getPhoneLogin = msquery($stmt, $db);
+$stmt="SELECT server_ip as 'get_server_ip' from phones where login='$getPhoneLogin' and active = 'Y';";
+$get_server_ip = msquery($stmt, $db);
 
+$stmt = "select phone_login from vicidial_users where user='$PHP_AUTH_USER';";
+$phone_login = msquery($stmt, $db);
+$stmt = "select conf_secret from phones where login='$phone_login';";
+$conf_secret = msquery($stmt, $db);
+$stmt = "select server_ip from phones where login='$phone_login';";
+$server_ip = msquery($stmt, $db);
+$stmt = "select pass from phones where login='$phone_login';";
+$phone_login = msquery($stmt, $db);
+$stmt = "select external_server_ip from servers where server_ip='192.168.100.51';";
+$external_server_ip = msquery($stmt, $db);
 
 echo '{"selectCampaigns": ';
 echo json_encode($select_campaigns);
@@ -50,20 +62,27 @@ echo ', "time": ';
 echo json_encode(time());
 echo ', "getPhoneLogin": ';
 echo json_encode($getPhoneLogin);
-
+echo ', "get_server_ip": ';
+echo json_encode($get_server_ip);
+echo ', "user": ';
+echo json_encode($PHP_AUTH_USER);
+echo ', "pass": ';
+echo json_encode($PHP_AUTH_PW);
 if ( isset($_GET["setPhoneLogin"]) ) {
 	$setPhoneLogin = $_GET["setPhoneLogin"];
-	$stmt="SELECT server_ip from phones where login='$setPhoneLogin' and active = 'Y';";
-	$server_ip = msquery($stmt, $db);
-	echo ', "user": ';
-	echo json_encode($PHP_AUTH_USER);
-	echo ', "pass": ';
-	echo json_encode($PHP_AUTH_PW);
-	echo ', "server-ip": ';
-	echo json_encode($server_ip);
+	$stmt="SELECT server_ip as 'set_server_ip' from phones where login='$setPhoneLogin' and active = 'Y';";
+	$set_server_ip = msquery($stmt, $db);
+	echo ', "set_server_ip": ';
+	echo json_encode($set_server_ip);
 	echo ', "setPhoneLogin": ';
 	echo json_encode($setPhoneLogin);
 }
+echo ', "webphone_name": ';
+echo json_encode($phone_login);
+echo ', "webphone_pass": ';
+echo json_encode($conf_secret);
+echo ', "webphone_ip": ';
+echo json_encode($external_server_ip);
 
 echo '}';
 ?>

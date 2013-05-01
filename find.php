@@ -102,9 +102,12 @@ $dOrder = "";
 if ( isset($_GET["dSort"]) && isset($_GET["dOrder"]) ) {
 	$dOrder = "order by ".$_GET["dSort"].' '.$_GET["dOrder"];
 }
-$stmt = "SELECT status,campaign_id as 'campaign',phone_number as 'phone',server_ip,UNIX_TIMESTAMP(call_time) as 'time',call_type as 'callType',queue_priority as 'priority',agent_only from vicidial_auto_calls where status NOT IN('XFER') and ( (call_type='IN' and campaign_id IN($closer_campaignsSQL)) or (call_type IN('OUT','OUTBALANCE') $LOGallowed_campaignsSQL) ) $dOrder";
+$timeNow = date("U");
+//$stmt = "SELECT status,campaign_id as 'campaign',phone_number as 'phone',server_ip,$timeNow - UNIX_TIMESTAMP(call_time) as 'time',call_type as 'callType',queue_priority as 'priority',agent_only from vicidial_auto_calls where status NOT IN('XFER') and ( (call_type='IN' and campaign_id IN($closer_campaignsSQL)) or (call_type IN('OUT','OUTBALANCE') $LOGallowed_campaignsSQL) ) $dOrder";
+$stmt = "SELECT status,campaign_id as 'campaign',phone_number as 'phone',server_ip,$timeNow - UNIX_TIMESTAMP(call_time) as 'time',call_type as 'callType',queue_priority as 'priority',agent_only from vicidial_auto_calls where status ='LIVE' $dOrder";
 $rslt=mysqli_query($db, $stmt);
 while ($row = mysqli_fetch_assoc($rslt)) {
+	$row['time'] = gmdate('G:i:s', $row['time']);
 	$arrayD[$i] = $row;
 	$i++;
 }

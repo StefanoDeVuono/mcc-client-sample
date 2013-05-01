@@ -17,3 +17,5 @@ js/script.coffee
 js/options.coffee
 database.php
 login.php
+config.rb
+*.coffee
