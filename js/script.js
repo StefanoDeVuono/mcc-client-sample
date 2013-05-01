@@ -243,9 +243,7 @@
           setDataE(data);
           $("#callsWaitingTable").trigger("update");
           $("#activeResourcesTable").trigger("update");
-          findAE(delay);
-          console.log(delay);
-          return console.log(findAE);
+          return findAE(delay);
         },
         dataType: "json"
       });
@@ -332,8 +330,6 @@
 
   storeAjaxFunc = ajaxFunc;
 
-  console.log("storeA is " + storeA);
-
   $('#sectionA header').on('click', 'a.pause', function(e) {
     e.preventDefault();
     setDataA = pause;
@@ -349,7 +345,6 @@
 
   $('#sectionA header').on('click', 'a.play', function(e) {
     e.preventDefault();
-    console.log('hello');
     setDataA = storeA;
     setDataC = storeC;
     setDataD = storeD;
@@ -396,7 +391,7 @@
         return button.addClass('open');
       });
       $(parent + ' header').animate({
-        'margin-top': '8px'
+        'margin': '8px auto 8px 28px'
       }, timer);
     }
     return false;
@@ -416,7 +411,7 @@
         return button.addClass('close');
       });
       $(parent + ' header').animate({
-        'margin-top': '20px'
+        'margin': '20px auto 8px 28px'
       }, timer);
     }
     return false;
@@ -446,10 +441,8 @@
     $(sectionId + ' div.thing').on('click', 'input:checked', function() {
       var checkClass, colClass;
 
-      console.log($(this));
       checkClass = $(this).attr('class');
       colClass = $(tableId + ' #' + checkClass).attr('class').split(' ')[0];
-      console.log(colClass);
       $(tableId + ' .' + colClass).show();
       resizeColumns(tableId, 910);
       checkBoxes(tableId);
@@ -458,7 +451,6 @@
     return $(sectionId + ' div.thing').on('click', 'input:not(:checked)', function() {
       var checkClass;
 
-      console.log(':not(:checked)');
       checkClass = $(this).attr('class');
       return $(tableId + ' th#' + checkClass + ' a').click();
     });
@@ -522,21 +514,16 @@
     var $parentSpan, activeResourcesForm, campaign, group, in_group, options, user, _i, _len;
 
     e.preventDefault();
-    console.log('hello');
-    console.log(e.type);
-    console.log($(this).parent());
     $parentSpan = $(this).parent();
     user = $parentSpan.data('user');
     campaign = $parentSpan.data('campaign');
     in_group = $parentSpan.data('in-group');
     in_group = in_group.split(',');
-    console.log(in_group);
     options = "";
     for (_i = 0, _len = in_group.length; _i < _len; _i++) {
       group = in_group[_i];
       options += '<option>' + group + '</option>';
     }
-    console.log(options);
     activeResourcesForm = '<form id="activeResourcesForm">\
 					<div class="leftform">\
 						<h2 id="agentHeader">Agent: <span>' + user + '</span></h2>\
@@ -577,22 +564,17 @@
     var monitor_phone, pass, server_ip, session_id, stage, user;
 
     user = $('#settingsPopup').data('user');
-    console.log("user is ");
     pass = $('#settingsPopup').data('pass');
-    console.log("pass is " + pass);
     monitor_phone = $('#settingsPopup').data('setPhoneLogin');
-    console.log("monitor_phone is " + monitor_phone);
     session_id = $(this).parent().data('session-id');
-    console.log("session_id is " + session_id);
     server_ip = $('#settingsPopup').data('server-ip');
-    console.log("server_ip is " + server_ip);
     if ($(this).attr('id') === 'listen') {
       stage = 'MONITOR';
     }
     if ($(this).attr('id') === 'shout') {
       stage = 'BARGE';
     }
-    console.log("stage is " + stage);
+    console.log("user = \"" + user + "\"; pass = \"" + pass + "\"; monitor_phone = \"" + monitor_phone + "\"; session_id = \"" + session_id + "\"; server_ip = \"" + server_ip + "\"; stage = \"" + stage + "\";");
     return $.post('non_agent_api.php', "source=realtime&function=blind_monitor&user=" + user + "&pass=" + pass + "&phone_login=" + monitor_phone + "&session_id=" + session_id + '&server_ip=' + server_ip + '&stage=' + stage);
   });
 

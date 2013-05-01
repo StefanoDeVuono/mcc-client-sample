@@ -241,12 +241,13 @@ include('login.php');
 		<section id="sectionB">
 			<div class="closable">
 				<div id="alertLogo"></div>
-				<header>Alert Settings</header>
 				<label>3 Alerts</label>
 				<button id="alertSettings1">Select option</button>
 				<button id="alertSettings2">Select option</button>
 				<div id="onOff"></div>
 			</div>
+			<header>Alert Settings</header>
+			
 			<a class="close" href="#"></a>
 		</section><!-- end sectionB -->
 
