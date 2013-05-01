@@ -23,7 +23,7 @@ if (preg_match('/ALL/', $allowed_campaigns) == 1 ) { // for admin user
 	}
 } else {  // for non-admin users
 	// JSalerno abc123 group: NJTRANSFERS
-	echo 'non-admin<br>';
+	//echo 'non-admin<br>';
 	$stmt = "SELECT distinct campaign_id from vicidial_campaigns A, vicidial_users B where A.active='Y' and (B.user_group=A.user_group or A.user_group='---ALL---') and B.user='$PHP_AUTH_USER' and B.pass='$PHP_AUTH_PW'";
 	$result = mysqli_query($db, $stmt);
 	$select_campaigns = array();
@@ -40,10 +40,7 @@ if (preg_match('/ALL/', $allowed_campaigns) == 1 ) { // for admin user
 
 $stmt="select phone_login from vicidial_users where user='$PHP_AUTH_USER' and pass='$PHP_AUTH_PW' and active='Y';";
 $getPhoneLogin = msquery($stmt, $db);
-if ( isset($_GET["setPhoneLogin"]) ) {
-	$stmt="SELECT extension,dialplan_number,server_ip,login,pass,protocol,conf_secret,is_webphone,use_external_server_ip,codecs_list,webphone_dialpad,outbound_cid,webphone_auto_answer from phones where login='$setPhoneLogin' and active = 'Y';";
-	mysqli_query($db, $stmt);
-}
+
 
 echo '{"selectCampaigns": ';
 echo json_encode($select_campaigns);
@@ -53,5 +50,20 @@ echo ', "time": ';
 echo json_encode(time());
 echo ', "getPhoneLogin": ';
 echo json_encode($getPhoneLogin);
+
+if ( isset($_GET["setPhoneLogin"]) ) {
+	$setPhoneLogin = $_GET["setPhoneLogin"];
+	$stmt="SELECT server_ip from phones where login='$setPhoneLogin' and active = 'Y';";
+	$server_ip = msquery($stmt, $db);
+	echo ', "user": ';
+	echo json_encode($PHP_AUTH_USER);
+	echo ', "pass": ';
+	echo json_encode($PHP_AUTH_PW);
+	echo ', "server-ip": ';
+	echo json_encode($server_ip);
+	echo ', "setPhoneLogin": ';
+	echo json_encode($setPhoneLogin);
+}
+
 echo '}';
 ?>

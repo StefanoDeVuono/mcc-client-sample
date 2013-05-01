@@ -212,7 +212,7 @@
       } else {
         row += '<td class="col col14">' + element['calls'] + '</td>';
       }
-      row += '<td class="col col15"><a id="listen" href="#"></a><a id="speak" href="#"></a><a id="shout" href="#"></a></td>';
+      row += '<td class="col col15" data-session-id="' + element['session-id'] + '"><a id="listen" href="#"></a><!--<a id="speak" href="#">--></a><a id="shout" href="#"></a></td>';
       row += '</tr>';
     }
     $('#activeResourcesTable tbody.rows').html(row);
@@ -571,6 +571,29 @@
 				</form>';
     $('#activeResourcesTable').append(activeResourcesForm);
     return false;
+  });
+
+  $('#activeResourcesTable').on('click', '#listen, #shout', function() {
+    var monitor_phone, pass, server_ip, session_id, stage, user;
+
+    user = $('#settingsPopup').data('user');
+    console.log("user is ");
+    pass = $('#settingsPopup').data('pass');
+    console.log("pass is " + pass);
+    monitor_phone = $('#settingsPopup').data('setPhoneLogin');
+    console.log("monitor_phone is " + monitor_phone);
+    session_id = $(this).parent().data('session-id');
+    console.log("session_id is " + session_id);
+    server_ip = $('#settingsPopup').data('server-ip');
+    console.log("server_ip is " + server_ip);
+    if ($(this).attr('id') === 'listen') {
+      stage = 'MONITOR';
+    }
+    if ($(this).attr('id') === 'shout') {
+      stage = 'BARGE';
+    }
+    console.log("stage is " + stage);
+    return $.post('non_agent_api.php', "source=realtime&function=blind_monitor&user=" + user + "&pass=" + pass + "&phone_login=" + monitor_phone + "&session_id=" + session_id + '&server_ip=' + server_ip + '&stage=' + stage);
   });
 
 }).call(this);
