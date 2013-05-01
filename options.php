@@ -41,7 +41,7 @@ if (preg_match('/ALL/', $allowed_campaigns) == 1 ) { // for admin user
 $stmt="select phone_login from vicidial_users where user='$PHP_AUTH_USER' and pass='$PHP_AUTH_PW' and active='Y';";
 $getPhoneLogin = msquery($stmt, $db);
 if ( isset($_GET["setPhoneLogin"]) ) {
-	$stmt = "update vicidial_users set phone_login = '$setPhoneLogin' where user='$PHP_AUTH_USER' and pass='$PHP_AUTH_PW' and active='Y';";
+	$stmt="SELECT extension,dialplan_number,server_ip,login,pass,protocol,conf_secret,is_webphone,use_external_server_ip,codecs_list,webphone_dialpad,outbound_cid,webphone_auto_answer from phones where login='$setPhoneLogin' and active = 'Y';";
 	mysqli_query($db, $stmt);
 }
 
