@@ -266,12 +266,12 @@ include('login.php');
 						<div class="button">Agent</div>
 					</nav>
 				</div>
-				<div id="answer" class="col1"><div class="number"><span class="pct">%</span></div>Answer</div>
+				<!-- <div id="answer" class="col1"><div class="number"><span class="pct">%</span></div>Answer</div>
 				<div id="busy" class="col2"><div class="number"><span class="pct">%</span></div>Busy</div>
 				<div id="cancel" class="col3"><div class="number"><span class="pct">%</span></div>Cancel</div>
 				<div id="congestion" class="col4"><div class="number"><span class="pct">%</span></div>Congestion</div>
-
-				<!-- <div id="answer" class="col1">
+ -->
+				<div id="answer" class="col1">
 					<svg class="number"></svg>
 					Answer
 				</div>
@@ -286,7 +286,7 @@ include('login.php');
 				<div id="congestion" class="col4">
 					<svg class="number"></svg>
 					Congestion
-				</div> -->
+				</div>
 				
 				<div id="upperRight">
 					<button>All</button>

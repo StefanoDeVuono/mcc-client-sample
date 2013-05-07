@@ -65,8 +65,11 @@ html, body {
   height: 100%;
   width: 1200px;
   position: fixed;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
-/* line 123, style.sass */
+/* line 124, style.sass */
 #background div span {
   display: block;
   width: 122px;
@@ -74,7 +77,7 @@ html, body {
   border-right: 2px solid grey;
 }
 
-/* line 129, style.sass */
+/* line 130, style.sass */
 #page {
   position: relative;
   width: 1200px;
@@ -83,18 +86,18 @@ html, body {
   border-top: 7px #689ebf solid;
 }
 
-/* line 138, style.sass */
+/* line 139, style.sass */
 #sectionA, #sectionB, #sectionC, #sectionD, #sectionE {
   width: 1075px;
   float: right;
 }
 
-/* line 143, style.sass */
+/* line 144, style.sass */
 .clear {
   clear: both;
 }
 
-/* line 149, style.sass */
+/* line 150, style.sass */
 #sectionA header {
   height: 37px;
   width: 100%;
@@ -102,11 +105,11 @@ html, body {
   box-shadow: 0 2px 2px #d5e9f3;
   font-size: 12px;
 }
-/* line 155, style.sass */
+/* line 156, style.sass */
 #sectionA header a {
   display: block;
 }
-/* line 157, style.sass */
+/* line 158, style.sass */
 #sectionA header #reload {
   height: 16px;
   width: 16px;
@@ -115,7 +118,7 @@ html, body {
   float: left;
   margin: 9px 5px 11px 11px;
 }
-/* line 164, style.sass */
+/* line 165, style.sass */
 #sectionA header .pause {
   height: 16px;
   width: 16px;
@@ -124,7 +127,7 @@ html, body {
   float: left;
   margin: 9px 5px 11px 11px;
 }
-/* line 171, style.sass */
+/* line 172, style.sass */
 #sectionA header .play {
   height: 16px;
   width: 16px;
@@ -133,7 +136,7 @@ html, body {
   float: left;
   margin: 9px 5px 11px 11px;
 }
-/* line 178, style.sass */
+/* line 179, style.sass */
 #sectionA header .header {
   float: right;
   height: 39px;
@@ -141,48 +144,48 @@ html, body {
   line-height: 37px;
   text-align: center;
 }
-/* line 184, style.sass */
+/* line 185, style.sass */
 #sectionA header a.header {
   cursor: pointer;
 }
-/* line 186, style.sass */
+/* line 187, style.sass */
 #sectionA header #date {
   width: 142px;
 }
-/* line 188, style.sass */
+/* line 189, style.sass */
 #sectionA header #options {
   width: 68px;
 }
-/* line 190, style.sass */
+/* line 191, style.sass */
 #sectionA header #settings {
   width: 94px;
 }
-/* line 192, style.sass */
+/* line 193, style.sass */
 #sectionA header #webphone {
   width: 83px;
 }
 
-/* line 195, style.sass */
+/* line 196, style.sass */
 #sectionA {
   position: relative;
 }
-/* line 197, style.sass */
+/* line 198, style.sass */
 #sectionA .text {
   color: #8f8f8f;
   font: 10px helvetica, Arial, sans-serif;
 }
-/* line 200, style.sass */
+/* line 201, style.sass */
 #sectionA .col0 {
   margin: 24px 36px auto 32px;
   width: 75px;
   float: left;
 }
-/* line 204, style.sass */
+/* line 205, style.sass */
 #sectionA .col0 .number {
   font: 78px helvetica, Arial, sans-serif;
   text-align: center;
 }
-/* line 207, style.sass */
+/* line 208, style.sass */
 #sectionA #optionsPopup {
   display: none;
   position: absolute;
@@ -194,7 +197,7 @@ html, body {
   box-shadow: 0 0 10px #dadde0;
   z-index: 40;
 }
-/* line 217, style.sass */
+/* line 218, style.sass */
 #sectionA #optionsPopup a {
   color: black;
   text-decoration: none;
@@ -204,21 +207,21 @@ html, body {
   line-height: 2.2em;
 }
 
-/* line 226, style.sass */
+/* line 227, style.sass */
 #sectionATable {
   margin: 19px 0;
   float: left;
   width: 664px;
 }
-/* line 231, style.sass */
+/* line 232, style.sass */
 #sectionATable .number {
   font: 28px helvetica, Arial, sans-serif;
 }
-/* line 233, style.sass */
+/* line 234, style.sass */
 #sectionATable .row1 {
   border-bottom: 1px solid #a4a4a4;
 }
-/* line 235, style.sass */
+/* line 236, style.sass */
 #sectionATable .col1 {
   width: 97px;
   padding-right: 30px;
@@ -227,7 +230,7 @@ html, body {
   height: 54px;
   text-align: center;
 }
-/* line 242, style.sass */
+/* line 243, style.sass */
 #sectionATable .col2 {
   width: 169px;
   border-right: 1px solid #a4a4a4;
@@ -235,7 +238,7 @@ html, body {
   height: 54px;
   text-align: center;
 }
-/* line 248, style.sass */
+/* line 249, style.sass */
 #sectionATable .col3 {
   width: 180px;
   border-right: 1px solid #a4a4a4;
@@ -243,19 +246,19 @@ html, body {
   height: 54px;
   text-align: center;
 }
-/* line 254, style.sass */
+/* line 255, style.sass */
 #sectionATable .col4 {
   width: 183px;
   float: left;
   height: 54px;
   text-align: center;
 }
-/* line 260, style.sass */
+/* line 261, style.sass */
 #sectionATable .row2 .text {
   padding-top: 12px;
 }
 
-/* line 263, style.sass */
+/* line 264, style.sass */
 #sectionB {
   background: #c32232;
   color: white;
@@ -265,7 +268,7 @@ html, body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 272, style.sass */
+/* line 273, style.sass */
 #sectionB #alertLogo {
   position: absolute;
   top: 16px;
@@ -275,27 +278,27 @@ html, body {
   background: url(./images/alertLogo.svg) no-repeat;
   background-size: contain;
 }
-/* line 280, style.sass */
+/* line 281, style.sass */
 #sectionB .closable {
   float: left;
   height: 55px;
   width: 20px;
 }
-/* line 284, style.sass */
+/* line 285, style.sass */
 #sectionB header {
   float: left;
   font: bold 16px helvetica, Arial, sans-serif;
   line-height: 1em;
   margin: 20px auto 8px 28px;
 }
-/* line 289, style.sass */
+/* line 290, style.sass */
 #sectionB label {
   position: absolute;
   line-height: 55px;
   margin-right: 13px;
   left: 455px;
 }
-/* line 294, style.sass */
+/* line 295, style.sass */
 #sectionB #alertSettings1 {
   font-size: 11px;
   padding: 0.5em 1.5em;
@@ -358,7 +361,7 @@ html, body {
   padding: 0 !important;
   margin: -1px !important;
 }
-/* line 301, style.sass */
+/* line 302, style.sass */
 #sectionB #alertSettings2 {
   font-size: 11px;
   padding: 0.5em 1.5em;
@@ -421,7 +424,7 @@ html, body {
   padding: 0 !important;
   margin: -1px !important;
 }
-/* line 308, style.sass */
+/* line 309, style.sass */
 #sectionB #onOff {
   top: 16px;
   left: 920px;
@@ -430,7 +433,7 @@ html, body {
   position: absolute;
   background: url(./images/toggle_on.png) no-repeat;
 }
-/* line 315, style.sass */
+/* line 316, style.sass */
 #sectionB .close {
   position: absolute;
   height: 10px;
@@ -440,7 +443,7 @@ html, body {
   top: 10px;
   right: 12px;
 }
-/* line 323, style.sass */
+/* line 324, style.sass */
 #sectionB .open {
   position: absolute;
   height: 10px;
@@ -451,28 +454,28 @@ html, body {
   right: 12px;
 }
 
-/* line 332, style.sass */
+/* line 333, style.sass */
 #sectionC {
   position: relative;
   border-bottom: 1px solid #a4a4a4;
 }
-/* line 335, style.sass */
+/* line 336, style.sass */
 #sectionC header {
   margin: 20px auto 17px 28px;
   float: left;
   width: 100%;
 }
-/* line 338, style.sass */
+/* line 339, style.sass */
 #sectionC .col0 {
   margin: 0 19px 16px 30px;
   width: 98px;
   float: left;
 }
-/* line 342, style.sass */
+/* line 343, style.sass */
 #sectionC .col0 nav {
   border-right: 1px #a4a4a4 solid;
 }
-/* line 344, style.sass */
+/* line 345, style.sass */
 #sectionC .col0 div.button {
   margin-top: 5px;
   width: 73px;
@@ -542,30 +545,32 @@ html, body {
   padding: 0 !important;
   margin: -1px !important;
 }
-/* line 355, style.sass */
+/* line 356, style.sass */
 #sectionC .col0 div.button:first-child {
   margin-top: 0;
 }
-/* line 358, style.sass */
+/* line 359, style.sass */
 #sectionC .col1, #sectionC .col2, #sectionC .col3, #sectionC .col4 {
   width: 169px;
   float: left;
-  padding: 37px 0;
+  padding-bottom: 37px;
   text-align: center;
   font: normal 12px helvetica, Arial, sans-serif;
+  height: 148px;
 }
-/* line 364, style.sass */
+/* line 366, style.sass */
 #sectionC .col1 .number, #sectionC .col2 .number, #sectionC .col3 .number, #sectionC .col4 .number {
   font: bold 22px helvetica, Arial, sans-serif;
   margin-bottom: 10px;
   padding-left: 10px;
+  border-bottom: 1px solid #a4a4a4;
 }
-/* line 369, style.sass */
+/* line 372, style.sass */
 #sectionC .col1 .pct, #sectionC .col2 .pct, #sectionC .col3 .pct, #sectionC .col4 .pct {
   font: normal 12px/18px helvetica, Arial, sans-serif;
   vertical-align: top;
 }
-/* line 372, style.sass */
+/* line 375, style.sass */
 #sectionC #upperRight {
   width: 320px;
   height: 31px;
@@ -573,12 +578,12 @@ html, body {
   top: 0;
   right: 0;
 }
-/* line 378, style.sass */
+/* line 381, style.sass */
 #sectionC #upperRight button {
   float: left;
   margin: 0;
 }
-/* line 381, style.sass */
+/* line 384, style.sass */
 #sectionC #upperRight button:nth-child(1) {
   display: inline-block;
   white-space: nowrap;
@@ -625,7 +630,7 @@ html, body {
   box-sizing: border-box;
   position: relative;
 }
-/* line 383, style.sass */
+/* line 386, style.sass */
 #sectionC #upperRight button:nth-child(2) {
   display: inline-block;
   white-space: nowrap;
@@ -672,7 +677,7 @@ html, body {
   box-sizing: border-box;
   position: relative;
 }
-/* line 385, style.sass */
+/* line 388, style.sass */
 #sectionC #upperRight button:nth-child(3) {
   display: inline-block;
   white-space: nowrap;
@@ -719,7 +724,7 @@ html, body {
   box-sizing: border-box;
   position: relative;
 }
-/* line 387, style.sass */
+/* line 390, style.sass */
 #sectionC #upperRight button:nth-child(4) {
   display: inline-block;
   white-space: nowrap;
@@ -766,7 +771,7 @@ html, body {
   box-sizing: border-box;
   position: relative;
 }
-/* line 389, style.sass */
+/* line 392, style.sass */
 #sectionC #upperRight button:nth-child(5) {
   display: inline-block;
   white-space: nowrap;
@@ -813,7 +818,7 @@ html, body {
   box-sizing: border-box;
   position: relative;
 }
-/* line 391, style.sass */
+/* line 394, style.sass */
 #sectionC #upperRight button:nth-child(6) {
   display: inline-block;
   white-space: nowrap;
@@ -860,7 +865,7 @@ html, body {
   box-sizing: border-box;
   position: relative;
 }
-/* line 393, style.sass */
+/* line 396, style.sass */
 #sectionC #upperRight button:nth-child(7) {
   display: inline-block;
   white-space: nowrap;
@@ -907,7 +912,7 @@ html, body {
   box-sizing: border-box;
   position: relative;
 }
-/* line 395, style.sass */
+/* line 398, style.sass */
 #sectionC #upperRight .close {
   float: left;
   margin: 10px auto auto 15px;
@@ -918,24 +923,24 @@ html, body {
   background-size: contain;
 }
 
-/* line 404, style.sass */
+/* line 407, style.sass */
 #sectionD {
   position: relative;
   border-bottom: 1px solid #a4a4a4;
 }
-/* line 410, style.sass */
+/* line 413, style.sass */
 #sectionD header {
   margin: 20px auto 17px 28px;
   float: left;
 }
-/* line 413, style.sass */
+/* line 416, style.sass */
 #sectionD div.pause {
   position: absolute;
   top: 20px;
   left: 140px;
   width: 100px;
 }
-/* line 418, style.sass */
+/* line 421, style.sass */
 #sectionD div.pause a {
   display: inline-block;
   white-space: nowrap;
@@ -984,26 +989,26 @@ html, body {
   margin: 5px 8px 0 17px;
   float: left;
 }
-/* line 422, style.sass */
+/* line 425, style.sass */
 #sectionD div.pause div.minipause {
   background: url("./images/pause.svg") no-repeat center center;
   background-size: 90% 75%;
   height: 100%;
   width: 100%;
 }
-/* line 427, style.sass */
+/* line 430, style.sass */
 #sectionD div.pause div.miniplay {
   background: url("./images/play.svg") no-repeat center center;
   background-size: 90% 75%;
   height: 100%;
   width: 100%;
 }
-/* line 432, style.sass */
+/* line 435, style.sass */
 #sectionD div.pause div.pauselabel {
   font-size: 11px;
   line-height: 24px;
 }
-/* line 435, style.sass */
+/* line 438, style.sass */
 #sectionD #callsWaitingTable {
   border-spacing: 0;
   float: left;
@@ -1011,24 +1016,24 @@ html, body {
   margin: 20px auto 65px 19px;
   clear: left;
 }
-/* line 444, style.sass */
+/* line 447, style.sass */
 #sectionD #callsWaitingTable thead tr, #sectionD #callsWaitingTable tbody tr {
   width: 910px;
   display: block;
 }
-/* line 447, style.sass */
+/* line 450, style.sass */
 #sectionD #callsWaitingTable td.col1, #sectionD #callsWaitingTable td.col2, #sectionD #callsWaitingTable td.col3, #sectionD #callsWaitingTable td.col4, #sectionD #callsWaitingTable td.col5 {
   width: 182px;
   margin: 0;
   display: inline-block;
 }
-/* line 462, style.sass */
+/* line 465, style.sass */
 #sectionD #callsWaitingTable th {
   width: 182px;
   display: block;
   float: left;
 }
-/* line 466, style.sass */
+/* line 469, style.sass */
 #sectionD #callsWaitingTable td.col1, #sectionD #callsWaitingTable td.col2, #sectionD #callsWaitingTable td.col3, #sectionD #callsWaitingTable td.col4, #sectionD #callsWaitingTable td.col5 {
   height: 43px;
   -webkit-box-sizing: border-box;
@@ -1036,7 +1041,7 @@ html, body {
   box-sizing: border-box;
   border: 1px solid #a4a4a4;
 }
-/* line 470, style.sass */
+/* line 473, style.sass */
 #sectionD #callsWaitingTable tbody.rows {
   display: block;
   width: 910px;
@@ -1045,7 +1050,7 @@ html, body {
   overflow-x: hidden;
   border-bottom: 1px solid #a4a4a4;
 }
-/* line 477, style.sass */
+/* line 480, style.sass */
 #sectionD nav {
   font-size: 11px;
   width: 86px;
@@ -1054,39 +1059,39 @@ html, body {
   margin-bottom: 35px;
   right: 0;
 }
-/* line 484, style.sass */
+/* line 487, style.sass */
 #sectionD nav .options {
   border-top: 1px solid #a4a4a4;
 }
 
-/* line 487, style.sass */
+/* line 490, style.sass */
 #sectionE {
   position: relative;
   padding-bottom: 65px;
 }
-/* line 492, style.sass */
+/* line 495, style.sass */
 #sectionE header {
   margin: 20px auto 17px 28px;
   float: left;
 }
-/* line 495, style.sass */
+/* line 498, style.sass */
 #sectionE #activeResourcesTable {
   border-spacing: 0;
   float: left;
   width: 966px;
   margin: auto auto auto 19px;
 }
-/* line 502, style.sass */
+/* line 505, style.sass */
 #sectionE #activeResourcesTable thead tr {
   width: 911px;
   display: block;
 }
-/* line 505, style.sass */
+/* line 508, style.sass */
 #sectionE #activeResourcesTable tbody tr {
   display: block;
   position: relative;
 }
-/* line 509, style.sass */
+/* line 512, style.sass */
 #sectionE #activeResourcesTable .col15 {
   position: absolute;
   padding-left: 5px;
@@ -1094,18 +1099,18 @@ html, body {
   background: white;
   display: inline-block;
 }
-/* line 515, style.sass */
+/* line 518, style.sass */
 #sectionE #activeResourcesTable th {
   display: block;
   float: left;
   letter-spacing: -1px;
 }
-/* line 519, style.sass */
+/* line 522, style.sass */
 #sectionE #activeResourcesTable .col1, #sectionE #activeResourcesTable .col2, #sectionE #activeResourcesTable .col3, #sectionE #activeResourcesTable .col4, #sectionE #activeResourcesTable .col5, #sectionE #activeResourcesTable .col6, #sectionE #activeResourcesTable .col7, #sectionE #activeResourcesTable .col8, #sectionE #activeResourcesTable .col9 {
   width: 101.11111px;
   margin: 0;
 }
-/* line 522, style.sass */
+/* line 525, style.sass */
 #sectionE #activeResourcesTable td.col1, #sectionE #activeResourcesTable td.col2, #sectionE #activeResourcesTable td.col3, #sectionE #activeResourcesTable td.col4, #sectionE #activeResourcesTable td.col5, #sectionE #activeResourcesTable td.col6, #sectionE #activeResourcesTable td.col7, #sectionE #activeResourcesTable td.col8, #sectionE #activeResourcesTable td.col9, #sectionE #activeResourcesTable td.col10, #sectionE #activeResourcesTable td.col11, #sectionE #activeResourcesTable td.col12, #sectionE #activeResourcesTable td.col13, #sectionE #activeResourcesTable td.col14 {
   height: 43px;
   -webkit-box-sizing: border-box;
@@ -1117,17 +1122,17 @@ html, body {
   margin: 0;
   display: inline-block;
 }
-/* line 536, style.sass */
+/* line 539, style.sass */
 #sectionE #activeResourcesTable td.col1 {
   position: relative;
   display: block;
   float: left;
 }
-/* line 540, style.sass */
+/* line 543, style.sass */
 #sectionE #activeResourcesTable td.col1:hover span {
   display: block;
 }
-/* line 542, style.sass */
+/* line 545, style.sass */
 #sectionE #activeResourcesTable td.col1 span {
   display: none;
   position: absolute;
@@ -1138,11 +1143,11 @@ html, body {
   background: white;
   text-align: center;
 }
-/* line 551, style.sass */
+/* line 554, style.sass */
 #sectionE #activeResourcesTable tr.even td.col1 span {
   background: #dadde0;
 }
-/* line 553, style.sass */
+/* line 556, style.sass */
 #sectionE #activeResourcesTable .reportlink {
   display: block;
   width: 11px;
@@ -1153,11 +1158,11 @@ html, body {
   position: relative;
   cursor: pointer;
 }
-/* line 563, style.sass */
+/* line 566, style.sass */
 #sectionE #activeResourcesTable .reportlink:hover {
   background-position: 0px -42px;
 }
-/* line 565, style.sass */
+/* line 568, style.sass */
 #sectionE #activeResourcesTable .grouplink {
   display: block;
   width: 16px;
@@ -1168,11 +1173,11 @@ html, body {
   position: relative;
   cursor: pointer;
 }
-/* line 575, style.sass */
+/* line 578, style.sass */
 #sectionE #activeResourcesTable .grouplink:hover {
   background-position: -20px -42px;
 }
-/* line 577, style.sass */
+/* line 580, style.sass */
 #sectionE #activeResourcesTable .permissionlink {
   display: block;
   width: 14px;
@@ -1183,33 +1188,33 @@ html, body {
   position: relative;
   cursor: pointer;
 }
-/* line 587, style.sass */
+/* line 590, style.sass */
 #sectionE #activeResourcesTable .permissionlink:hover {
   background-position: -46px -42px;
 }
-/* line 589, style.sass */
+/* line 592, style.sass */
 #sectionE #activeResourcesTable #listen, #sectionE #activeResourcesTable #speak, #sectionE #activeResourcesTable #shout {
   display: block;
   float: left;
   height: 19px;
   margin-top: 9px;
 }
-/* line 594, style.sass */
+/* line 597, style.sass */
 #sectionE #activeResourcesTable #listen {
   width: 17px;
   background: url(./images/micro.png) 0px center no-repeat;
 }
-/* line 597, style.sass */
+/* line 600, style.sass */
 #sectionE #activeResourcesTable #speak {
   width: 17px;
   background: url(./images/micro.png) -17px center no-repeat;
 }
-/* line 600, style.sass */
+/* line 603, style.sass */
 #sectionE #activeResourcesTable #shout {
   width: 16px;
   background: url(./images/micro.png) -36px center no-repeat;
 }
-/* line 603, style.sass */
+/* line 606, style.sass */
 #sectionE nav {
   font-size: 11px;
   width: 86px;
@@ -1218,19 +1223,19 @@ html, body {
   margin-bottom: 24px;
   right: 0;
 }
-/* line 610, style.sass */
+/* line 613, style.sass */
 #sectionE nav .options {
   border-top: 1px solid #a4a4a4;
 }
 
-/* line 614, style.sass */
+/* line 617, style.sass */
 .thing input[type="checkbox"] {
   background: url(./images/radio-uncheck.png);
   -webkit-appearance: radio;
   -moz-appearance: radio;
   appearance: radio;
 }
-/* line 619, style.sass */
+/* line 622, style.sass */
 .thing:checked {
   background: url(./images/radio-check.png);
   -webkit-appearance: radio;
@@ -1238,7 +1243,7 @@ html, body {
   appearance: radio;
 }
 
-/* line 631, style.sass */
+/* line 634, style.sass */
 #sectionF {
   position: absolute;
   top: 0;
@@ -1251,7 +1256,7 @@ html, body {
   padding-bottom: 65px;
   border-right: 2px solid grey;
 }
-/* line 642, style.sass */
+/* line 645, style.sass */
 #sectionF #logo {
   height: 57px;
   background: url(./images/logo.png);
@@ -1260,7 +1265,7 @@ html, body {
   border-bottom: 1px solid #a4a4a4;
   border-left: 1px solid #cccccc;
 }
-/* line 649, style.sass */
+/* line 652, style.sass */
 #sectionF .sides {
   display: inline-block;
   white-space: nowrap;
@@ -1316,19 +1321,19 @@ html, body {
   box-sizing: border-box;
   padding: 0 6px;
 }
-/* line 658, style.sass */
+/* line 661, style.sass */
 #sectionF .sides header {
   margin: 22px 0 6px 0;
 }
-/* line 660, style.sass */
+/* line 663, style.sass */
 #sectionF .sides h2, #sectionF .sides h3, #sectionF .sides h4 {
   margin: 0;
 }
-/* line 662, style.sass */
+/* line 665, style.sass */
 #sectionF .sides h2:last-child, #sectionF .sides h3:last-child, #sectionF .sides h4:last-child {
   margin: 0 0 21px 0;
 }
-/* line 664, style.sass */
+/* line 667, style.sass */
 #sectionF .sides h2 {
   color: #5ebf1e;
   font-size: 25px;
@@ -1336,32 +1341,32 @@ html, body {
   text-indent: -0.5em;
   position: relative;
 }
-/* line 670, style.sass */
+/* line 673, style.sass */
 #sectionF .sides h2 .pct {
   font: 700 12px/20px helvetica, Arial, sans-serif;
   line-height: 50px;
   vertical-align: top;
 }
-/* line 674, style.sass */
+/* line 677, style.sass */
 #sectionF .sides h3 {
   margin-top: 14px;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 113px;
 }
-/* line 679, style.sass */
+/* line 682, style.sass */
 #sectionF .sides h4 {
   font: normal 12px helvetica, Arial, sans-serif;
 }
-/* line 681, style.sass */
+/* line 684, style.sass */
 #sectionF .sides h4#dropped {
   color: #c32232;
 }
-/* line 683, style.sass */
+/* line 686, style.sass */
 #sectionF .sides h4#answered {
   color: #5ebf1e;
 }
-/* line 685, style.sass */
+/* line 688, style.sass */
 #sectionF .sides #arrows {
   position: absolute;
   top: 0;
@@ -1375,22 +1380,22 @@ html, body {
   text-align: center;
   text-indent: 0;
 }
-/* line 696, style.sass */
+/* line 699, style.sass */
 #sectionF .sides .neutral {
   background: url("./images/dropped.png") 5px 0px no-repeat;
   color: #8f8f8f;
 }
-/* line 699, style.sass */
+/* line 702, style.sass */
 #sectionF .sides .goingUp {
   background: url("./images/dropped.png") -20px 0px no-repeat;
   color: #c32232;
 }
-/* line 702, style.sass */
+/* line 705, style.sass */
 #sectionF .sides .goingDown {
   background: url("./images/dropped.png") -43px 0px no-repeat;
   color: #5ebf1e;
 }
-/* line 705, style.sass */
+/* line 708, style.sass */
 #sectionF .sides #tabslink {
   position: absolute;
   display: block;
@@ -1400,7 +1405,7 @@ html, body {
   right: 0;
 }
 
-/* line 718, style.sass */
+/* line 721, style.sass */
 .sort {
   display: block;
   height: 14px;
@@ -1412,7 +1417,7 @@ html, body {
   background-repeat: no-repeat;
 }
 
-/* line 729, style.sass */
+/* line 732, style.sass */
 a.close {
   display: block;
   height: 9px;
@@ -1424,7 +1429,7 @@ a.close {
   background-size: contain;
 }
 
-/* line 739, style.sass */
+/* line 742, style.sass */
 a.open {
   display: block;
   height: 9px;
@@ -1436,23 +1441,23 @@ a.open {
   background-size: contain;
 }
 
-/* line 750, style.sass */
+/* line 753, style.sass */
 section > a.close, section > a.open {
   top: 13px;
   right: 13px;
 }
 
-/* line 754, style.sass */
+/* line 757, style.sass */
 .closable {
   width: 100%;
 }
 
-/* line 762, style.sass */
+/* line 765, style.sass */
 table.tablesorter {
   font-size: 11px;
   line-height: 12px;
 }
-/* line 766, style.sass */
+/* line 769, style.sass */
 table.tablesorter thead tr th {
   display: table-cell;
   white-space: nowrap;
@@ -1499,50 +1504,50 @@ table.tablesorter thead tr th {
   box-sizing: border-box;
   position: relative;
 }
-/* line 768, style.sass */
+/* line 771, style.sass */
 table.tablesorter thead tr .header a.sort {
   background-image: url("./images/arrows.svg");
 }
-/* line 770, style.sass */
+/* line 773, style.sass */
 table.tablesorter thead tr .headerSortUp a.sort {
   background-image: url("./images/asc.svg");
 }
-/* line 772, style.sass */
+/* line 775, style.sass */
 table.tablesorter thead tr .headerSortDown a.sort {
   background-image: url("./images/desc.svg");
 }
-/* line 774, style.sass */
+/* line 777, style.sass */
 table.tablesorter .even {
   background-color: #dadde0;
 }
-/* line 776, style.sass */
+/* line 779, style.sass */
 table.tablesorter .firstButton {
   border-top-left-radius: 3px;
   moz-border-radius-topleft: 3px;
 }
-/* line 779, style.sass */
+/* line 782, style.sass */
 table.tablesorter .lastButton {
   border-top-right-radius: 3px;
   moz-border-radius-topright: 3px;
 }
 
-/* line 794, style.sass */
+/* line 797, style.sass */
 form .leftform {
   width: 50%;
   height: 100%;
   float: left;
 }
-/* line 798, style.sass */
+/* line 801, style.sass */
 form .rightform {
   width: 50%;
   height: 100%;
   float: right;
 }
-/* line 803, style.sass */
+/* line 806, style.sass */
 form .rightform label, form .rightform select, form .rightform h2, form .rightform input {
   margin-left: 83px;
 }
-/* line 805, style.sass */
+/* line 808, style.sass */
 form input[type="submit"] {
   display: inline-block;
   white-space: nowrap;
@@ -1595,7 +1600,7 @@ form input[type="submit"] {
   font-weight: bold;
   line-height: normal;
 }
-/* line 813, style.sass */
+/* line 816, style.sass */
 form .dropdown {
   text-indent: 1em;
   display: inline-block;
@@ -1643,19 +1648,19 @@ form .dropdown {
   box-sizing: border-box;
   position: relative;
 }
-/* line 817, style.sass */
+/* line 820, style.sass */
 form label {
   font-size: 11px;
   color: #8f8f8f;
   margin: 23px 0 10px 0;
   display: block;
 }
-/* line 822, style.sass */
+/* line 825, style.sass */
 form h2 {
   margin-top: 20px;
 }
 
-/* line 825, style.sass */
+/* line 828, style.sass */
 #activeResourcesForm {
   display: none;
   position: absolute;
@@ -1674,31 +1679,31 @@ form h2 {
   height: 340px;
   width: 700px;
 }
-/* line 833, style.sass */
+/* line 836, style.sass */
 #activeResourcesForm #agentHeader span {
   color: #8f8f8f;
 }
-/* line 836, style.sass */
+/* line 839, style.sass */
 #activeResourcesForm #campaignHeader span {
   color: #8f8f8f;
 }
-/* line 838, style.sass */
+/* line 841, style.sass */
 #activeResourcesForm #in-groups label {
   max-height: 87px;
 }
-/* line 840, style.sass */
+/* line 843, style.sass */
 #activeResourcesForm #in-groups label option {
   line-height: 1.2em;
   text-indent: 0.2em;
 }
-/* line 843, style.sass */
+/* line 846, style.sass */
 #activeResourcesForm #in-groups {
   height: 185px;
   width: 340px;
   overflow: auto;
 }
 
-/* line 848, style.sass */
+/* line 851, style.sass */
 #settingsPopup {
   display: none;
   position: absolute;
@@ -1716,20 +1721,20 @@ form h2 {
   top: 70px;
   left: 20px;
 }
-/* line 854, style.sass */
+/* line 857, style.sass */
 #settingsPopup #select-campaigns {
   width: 340px;
   height: 132px;
   overflow: auto;
 }
-/* line 858, style.sass */
+/* line 861, style.sass */
 #settingsPopup #select-usergroups {
   width: 340px;
   height: 132px;
   overflow: auto;
 }
 
-/* line 863, style.sass */
+/* line 866, style.sass */
 #popupWrapper {
   visibility: hidden;
   position: fixed;
@@ -1738,7 +1743,7 @@ form h2 {
   width: 100%;
   height: 100%;
 }
-/* line 870, style.sass */
+/* line 873, style.sass */
 #popupWrapper #alert {
   visibility: hidden;
   position: relative;
@@ -1751,13 +1756,13 @@ form h2 {
   padding: 10px;
   z-index: 2000;
 }
-/* line 883, style.sass */
+/* line 886, style.sass */
 #popupWrapper #alert input[type="submit"] {
   position: absolute;
   bottom: 10px;
   right: 10px;
 }
-/* line 887, style.sass */
+/* line 890, style.sass */
 #popupWrapper #webphonePopup {
   visibility: hidden;
   padding: 5px;

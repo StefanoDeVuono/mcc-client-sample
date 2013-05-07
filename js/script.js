@@ -46,9 +46,9 @@
   $('#activeResourcesTable th').on('click', function() {
     eSorter = $(this).attr('id');
     if ($(this).hasClass('headerSortDown')) {
-      eOrder = "asc";
-    } else if ($(this).hasClass('headerSortUp')) {
       eOrder = "desc";
+    } else if ($(this).hasClass('headerSortUp')) {
+      eOrder = "asc";
     }
     return false;
   });
@@ -69,17 +69,19 @@
   visualizeC = function(div, dataset) {
     var el;
 
-    el = d3.select(div + " svg").attr("width", 120).attr("height", 100).selectAll("rect").data(dataset).enter().append("rect").attr("x", 25).attr("y", function(d) {
-      return 100 - d;
+    el = d3.select(div + " svg");
+    el.attr("width", 169).attr("height", 120).selectAll("rect").data(dataset).enter().append("rect").attr("x", 25).attr("y", function(d) {
+      return 120 - d;
     }).attr("width", 119).attr("height", function(d) {
       return d;
-    }).attr("fill", "teal").selectAll("text").data(dataset).enter().append("text").text(function(d) {
+    }).attr("fill", "#6496B9");
+    return el.selectAll("text").data(dataset).enter().append("text").text(function(d) {
       return d + "%";
-    }).attr("x", 25).attr("y", function(d) {
+    }).attr("x", 85).attr("y", function(d) {
       if (d >= 5) {
-        return 100 - (4 * d) + 14;
+        return 120 - d + 14;
       } else {
-        return 100 - (4 * d) - 5;
+        return 120 - d - 5;
       }
     }).attr("font-family", "sans-serif").attr("font-size", "11px").attr("fill", function(d) {
       if (d >= 5) {
@@ -88,7 +90,6 @@
         return "black";
       }
     }).attr("text-anchor", "middle");
-    return console.log(el);
   };
 
   setDataC = function(data) {
@@ -100,10 +101,10 @@
     conPct = data['C']['CONGESTION'] || 0;
     dataset = [ansPct, busPct, canPct, conPct];
     $('#answer .number, #busy .number, #cancel .number, #congestion .number').empty();
-    $('#answer .number').html(ansPct + '<span class="pct">%</span');
-    $('#busy .number').html(busPct + '<span class="pct">%</span');
-    $('#cancel .number').html(canPct + '<span class="pct">%</span');
-    $('#congestion .number').html(conPct + '<span class="pct">%</span');
+    visualizeC('#answer', [ansPct]);
+    visualizeC('#busy', [busPct]);
+    visualizeC('#cancel', [canPct]);
+    visualizeC('#congestion', [conPct]);
     return false;
   };
 
@@ -246,9 +247,7 @@
     $('#activeResourcesTable tbody.rows').empty();
     $('#activeResourcesTable tbody.rows').html(row);
     $("#activeResourcesTable").trigger("update");
-    $("#activeResourcesTable").tablesorter({
-      widgets: ['zebra']
-    });
+    $("#activeResourcesTable").trigger("applyWidgets");
     resizeColumns('#activeResourcesTable', 910);
     return false;
   };
@@ -343,7 +342,6 @@
   findFajax();
 
   pause = function() {
-    console.log('pause');
     return false;
   };
 
@@ -528,6 +526,10 @@
 
   checkListeners('#sectionE', '#activeResourcesTable');
 
+  $("#activeResourcesTable").tablesorter({
+    widgets: ['zebra']
+  });
+
   $("#callsWaitingTable").tablesorter();
 
   checkBoxes('#callsWaitingTable');
@@ -616,7 +618,6 @@
     if ($(this).attr('id') === 'shout') {
       stage = 'BARGE';
     }
-    console.log("user = \"" + user + "\"; pass = \"" + pass + "\"; monitor_phone = \"" + monitor_phone + "\"; session_id = \"" + session_id + "\"; server_ip = \"" + server_ip + "\"; stage = \"" + stage + "\";");
     return $.post('non_agent_api.php', "source=realtime&function=blind_monitor&user=" + user + "&pass=" + pass + "&phone_login=" + monitor_phone + "&session_id=" + session_id + '&server_ip=' + server_ip + '&stage=' + stage).always(function(e) {
       var msg;
 

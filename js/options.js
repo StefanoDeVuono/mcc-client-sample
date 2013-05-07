@@ -57,8 +57,6 @@
     };
   })($);
 
-  console.log('test');
-
   $('#settingsPopup').on('click', 'input[type="submit"]', function(e) {
     var phoneLogin;
 
@@ -92,7 +90,6 @@
       $('#webphone').data('user', data['webphone_name']);
       $('#webphone').data('pass', data['webphone_pass']);
       $('#webphone').data('server-ip', data['webphone_ip']);
-      console.log(data['getPhoneLogin']);
       selectCampaigns = "";
       _ref = data['selectCampaigns'];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
