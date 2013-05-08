@@ -172,9 +172,9 @@
       element = _ref[_i];
       row += '<tr>';
       if ($('#activeResourcesTable th.col1').is(':hidden')) {
-        row += '<td class="col col1">' + element['user'] + '<span class="thingamajig" data-user="' + element['user'] + '" data-campaign="' + element['campaign'] + '" data-in-group=' + element['in-group'] + '>' + '<a href="/Reports/tabs.php?userid=' + element['user'] + '" class="reportlink"></a>' + '<a href="#" class="grouplink"></a>' + '<a href="/vicidial/user_status.php?user=' + element['userid'] + '" class="permissionlink"></a>' + '</span></td>';
+        row += '<td class="col col1">' + element['user'] + '<span class="thingamajig" data-user="' + element['user'] + '" data-campaign="' + element['campaign'] + '" data-in-group=' + element['in-group'] + '>' + '<a href="/Reports/tabs.php?userid=' + element['user'] + '" target="_blank" class="reportlink"></a>' + '<a href="#" class="grouplink"></a>' + '<a href="/vicidial/user_status.php?user=' + element['userid'] + '" class="permissionlink"></a>' + '</span></td>';
       } else {
-        row += '<td class="col col1">' + element['user'] + '<span class="thingamajig" data-user="' + element['user'] + '" data-campaign="' + element['campaign'] + '" data-in-group=' + element['in-group'] + '>' + '<a href="/Reports/tabs.php?userid=' + element['user'] + '" class="reportlink"></a>' + '<a href="#" class="grouplink"></a>' + '<a href="/vicidial/user_status.php?user=' + element['userid'] + '" class="permissionlink"></a>' + '</span></td>';
+        row += '<td class="col col1">' + element['user'] + '<span class="thingamajig" data-user="' + element['user'] + '" data-campaign="' + element['campaign'] + '" data-in-group=' + element['in-group'] + '>' + '<a href="/Reports/tabs.php?userid=' + element['user'] + '" target="_blank" class="reportlink"></a>' + '<a href="#" class="grouplink"></a>' + '<a href="/vicidial/user_status.php?user=' + element['userid'] + '" class="permissionlink"></a>' + '</span></td>';
       }
       if ($('#activeResourcesTable th.col2').is(':hidden')) {
         row += '<td class="col col2" style="display: none">' + element['status'] + '</td>';
@@ -241,7 +241,7 @@
       } else {
         row += '<td class="col col14">' + element['calls'] + '</td>';
       }
-      row += '<td class="col col15" data-session-id="' + element['session-id'] + '"><a id="listen" href="#"></a><!--<a id="speak" href="#">--></a><a id="shout" href="#"></a></td>';
+      row += '<td class="col col15" data-session-id="' + element['session-id'] + '"><a id="listen" href="#"></a><a id="speak" target="_blank" href="http://66.241.101.140/coach.php?phone=' + $(this).parent().data('session-id') + '&extension=' + $('#settingsPopup').data('monitor-phone') + '"></a><a id="shout" href="#"></a></td>';
       row += '</tr>';
     }
     $('#activeResourcesTable tbody.rows').empty();

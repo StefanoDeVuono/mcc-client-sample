@@ -6,7 +6,7 @@
 
   w = 20;
 
-  h = 80;
+  h = 100;
 
   x = d3.scale.linear().domain([0, 1]).range([0, w]);
 

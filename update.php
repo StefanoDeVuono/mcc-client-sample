@@ -11,16 +11,16 @@ include 'database.php';
 
 // updates
 // add in group temporarily
-//$stmt = "update vicidial_live_agents set closer_campaigns = concat(SUBSTRING_INDEX(closer_campaigns, ' -', 1),' Inbound',' -') where user = 'mporte'"
-// add in group permanently
-//$stmt = "update vicidial_users set closer_campaigns = concat(SUBSTRING_INDEX(closer_campaigns, ' -', 1),' Inbound',' -') where user = 'mporte'"
-//mysqli_query($db, $stmt);
-// remove temporarily
-//$stmt = "update vicidial_live_agents set closer_campaigns = replace (closer_campaigns,'Inbound ','') where user = 'mporte';"
-//mysqli_query($db, $stmt);
-// remove permanently
-//$stmt = "update vicidial_users set closer_campaigns = replace (closer_campaigns,'Inbound ','') where user = 'mporte';"
-//mysqli_query($db, $stmt);
+// $stmt = "update vicidial_live_agents set closer_campaigns = concat(SUBSTRING_INDEX(closer_campaigns, ' -', 1),' Inbound',' -') where user = 'mporte'"
+// // add in group permanently
+// $stmt = "update vicidial_users set closer_campaigns = concat(SUBSTRING_INDEX(closer_campaigns, ' -', 1),' Inbound',' -') where user = 'mporte'"
+// mysqli_query($db, $stmt);
+// // remove temporarily
+// $stmt = "update vicidial_live_agents set closer_campaigns = replace (closer_campaigns,'Inbound ','') where user = 'mporte';"
+// mysqli_query($db, $stmt);
+// // remove permanently
+// $stmt = "update vicidial_users set closer_campaigns = replace (closer_campaigns,'Inbound ','') where user = 'mporte';"
+// mysqli_query($db, $stmt);
 
 //new
 
