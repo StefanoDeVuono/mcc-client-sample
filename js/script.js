@@ -2,6 +2,8 @@
 (function() {
   var ajaxFunc, checkBoxes, checkListeners, dOrder, dSorter, delay, droppedTrend, eOrder, eSorter, findAE, findF, findFajax, oldDropped, pause, resizeColumns, setDataA, setDataC, setDataD, setDataE, setDataF, storeA, storeAjaxFunc, storeC, storeD, storeE, storeF, visualizeC;
 
+  console.log('new stuff');
+
   oldDropped = parseInt($('#arrows').text());
 
   droppedTrend = function() {
@@ -241,7 +243,7 @@
       } else {
         row += '<td class="col col14">' + element['calls'] + '</td>';
       }
-      row += '<td class="col col15" data-session-id="' + element['session-id'] + '"><a id="listen" href="#"></a><a id="speak" target="_blank" href="http://66.241.101.140/coach.php?phone=' + $(this).parent().data('session-id') + '&extension=' + $('#settingsPopup').data('monitor-phone') + '"></a><a id="shout" href="#"></a></td>';
+      row += '<td class="col col15" data-session-id="' + element['session-id'] + '" data-station="' + element['extension'] + '"><a class="listen" href="#"></a><a class="speak" href="#"></a><a class="shout" href="#"></a></td>';
       row += '</tr>';
     }
     $('#activeResourcesTable tbody.rows').empty();
@@ -603,28 +605,36 @@
     return false;
   });
 
-  $('#activeResourcesTable').on('click', '#listen, #shout', function(e) {
-    var monitor_phone, pass, server_ip, session_id, stage, user;
+  $('#activeResourcesTable').on('click', '.listen, .speak, .shout', function(e) {
+    var extension, monitor_phone, pass, server_ip, session_id, stage, user;
 
     e.preventDefault();
     user = $('#settingsPopup').data('user');
     pass = $('#settingsPopup').data('pass');
+    extension = $(this).parent().data('station');
     monitor_phone = $('#settingsPopup').data('monitor-phone');
     session_id = $(this).parent().data('session-id');
     server_ip = $('#settingsPopup').data('server-ip');
-    if ($(this).attr('id') === 'listen') {
-      stage = 'MONITOR';
-    }
-    if ($(this).attr('id') === 'shout') {
-      stage = 'BARGE';
-    }
-    return $.post('non_agent_api.php', "source=realtime&function=blind_monitor&user=" + user + "&pass=" + pass + "&phone_login=" + monitor_phone + "&session_id=" + session_id + '&server_ip=' + server_ip + '&stage=' + stage).always(function(e) {
-      var msg;
+    if ($(this).attr('class') === 'speak') {
+      console.log("extension is " + extension + " monitor_phone is " + monitor_phone);
+      return $.post('http://192.168.100.51/coach.php', "phone=" + extension + "&extension=" + monitor_phone).always(function(e) {
+        return $('#alert').css('visibility', 'visible');
+      });
+    } else {
+      if ($(this).attr('class') === 'listen') {
+        stage = 'MONITOR';
+      }
+      if ($(this).attr('class') === 'shout') {
+        stage = 'BARGE';
+      }
+      return $.post('non_agent_api.php', "source=realtime&function=blind_monitor&user=" + user + "&pass=" + pass + "&phone_login=" + monitor_phone + "&session_id=" + session_id + '&server_ip=' + server_ip + '&stage=' + stage).always(function(e) {
+        var msg;
 
-      msg = e.replace(/\|/gi, ' ');
-      $('#alert').css('visibility', 'visible');
-      return $('#alertmsg').text(msg);
-    });
+        msg = e.replace(/\|/gi, ' ');
+        $('#alert').css('visibility', 'visible');
+        return $('#alertmsg').text(msg);
+      });
+    }
   });
 
   $('#alert').on('click', 'input[type="submit"]', function(e) {

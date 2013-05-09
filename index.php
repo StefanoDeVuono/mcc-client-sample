@@ -117,7 +117,7 @@ include('login.php');
 					<h3></h3>
 				</div>
 			</div>
-			<a href="tabs.php" target="_blank" id="tabslink">
+			<a href="../Reports/tabs.php" target="_blank" id="tabslink">
 				<div class="sides" id="reports">
 					<a href="#" class="close" id="closeReports"></a>
 					<header>View</header>

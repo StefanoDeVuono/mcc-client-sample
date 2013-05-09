@@ -133,7 +133,7 @@ if ( isset($_GET["eSort"]) && isset($_GET["eOrder"]) ) {
 	if ($_GET["eSort"] == 'status') {
 		$_GET["eSort"] = "CAST(status as char)";
 	}
-	$eOrder = "order by '".$_GET["eSort"].'" ".$_GET["eOrder"];
+	$eOrder = "order by '".$_GET["eSort"]."' ".$_GET["eOrder"];
 }
 // $test = "show tables like 'realtime';";
 // if ( msquery($test, $db) == 'realtime' ) {

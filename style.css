@@ -1193,24 +1193,24 @@ html, body {
   background-position: -46px -42px;
 }
 /* line 592, style.sass */
-#sectionE #activeResourcesTable #listen, #sectionE #activeResourcesTable #speak, #sectionE #activeResourcesTable #shout {
+#sectionE #activeResourcesTable .listen, #sectionE #activeResourcesTable .speak, #sectionE #activeResourcesTable .shout {
   display: block;
   float: left;
   height: 19px;
   margin-top: 9px;
 }
 /* line 597, style.sass */
-#sectionE #activeResourcesTable #listen {
+#sectionE #activeResourcesTable .listen {
   width: 17px;
   background: url(./images/micro.png) 0px center no-repeat;
 }
 /* line 600, style.sass */
-#sectionE #activeResourcesTable #speak {
+#sectionE #activeResourcesTable .speak {
   width: 17px;
   background: url(./images/micro.png) -17px center no-repeat;
 }
 /* line 603, style.sass */
-#sectionE #activeResourcesTable #shout {
+#sectionE #activeResourcesTable .shout {
   width: 16px;
   background: url(./images/micro.png) -36px center no-repeat;
 }
