@@ -606,18 +606,19 @@
   });
 
   $('#activeResourcesTable').on('click', '.listen, .speak, .shout', function(e) {
-    var extension, monitor_phone, pass, server_ip, session_id, stage, user;
+    var extension, monitor_phone, pass, phone, server_ip, session_id, stage, user;
 
     e.preventDefault();
     user = $('#settingsPopup').data('user');
     pass = $('#settingsPopup').data('pass');
-    extension = $(this).parent().data('station');
+    phone = $(this).parent().data('station');
+    extension = $('#webphone').data('user');
     monitor_phone = $('#settingsPopup').data('monitor-phone');
     session_id = $(this).parent().data('session-id');
     server_ip = $('#settingsPopup').data('server-ip');
     if ($(this).attr('class') === 'speak') {
-      console.log("extension is " + extension + " monitor_phone is " + monitor_phone);
-      return $.post('http://192.168.100.51/coach.php', "phone=" + extension + "&extension=" + monitor_phone).always(function(e) {
+      console.log("phone is " + phone + " extension is " + extension);
+      return $.get("http://66.241.101.140/coach.php?phone=" + phone + "&extension=" + extension).always(function(e) {
         return $('#alert').css('visibility', 'visible');
       });
     } else {
