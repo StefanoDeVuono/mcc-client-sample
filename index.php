@@ -399,7 +399,8 @@ include('login.php');
 				<input type="submit" value="OK">
 			</div>
 			<div id="webphonePopup">
-				<a class="close" id="closeSectionE" href="#"></a>
+				<a class="minimize" href="#"></a>
+				<a class="close" href="#"></a>
 				<div class="closable"></div>
 			</div>
 		</div>

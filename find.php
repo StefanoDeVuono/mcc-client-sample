@@ -100,7 +100,7 @@ $arrayD = array();
 $i = 0; // arrayD index
 $dOrder = "";
 if ( isset($_GET["dSort"]) && isset($_GET["dOrder"]) ) {
-	$dOrder = "order by ".$_GET["dSort"].' '.$_GET["dOrder"];
+	$dOrder = "order by `".$_GET["dSort"].'` '.$_GET["dOrder"];
 }
 $timeNow = date("U");
 //$stmt = "SELECT status,campaign_id as 'campaign',phone_number as 'phone',server_ip,$timeNow - UNIX_TIMESTAMP(call_time) as 'time',call_type as 'callType',queue_priority as 'priority',agent_only from vicidial_auto_calls where status NOT IN('XFER') and ( (call_type='IN' and campaign_id IN($closer_campaignsSQL)) or (call_type IN('OUT','OUTBALANCE') $LOGallowed_campaignsSQL) ) $dOrder";
@@ -133,7 +133,7 @@ if ( isset($_GET["eSort"]) && isset($_GET["eOrder"]) ) {
 	if ($_GET["eSort"] == 'status') {
 		$_GET["eSort"] = "CAST(status as char)";
 	}
-	$eOrder = "order by '".$_GET["eSort"]."' ".$_GET["eOrder"];
+	$eOrder = "order by `".$_GET["eSort"]."` ".$_GET["eOrder"];
 }
 // $test = "show tables like 'realtime';";
 // if ( msquery($test, $db) == 'realtime' ) {

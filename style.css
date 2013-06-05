@@ -1777,3 +1777,25 @@ form h2 {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 12px;
   z-index: 2000;
 }
+/* line 903, style.sass */
+#popupWrapper #webphonePopup .minimize {
+  display: block;
+  height: 9px;
+  width: 9px;
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  background: url(./images/minimizeblk.svg) no-repeat;
+  background-size: contain;
+}
+/* line 912, style.sass */
+#popupWrapper #webphonePopup .open {
+  display: block;
+  height: 9px;
+  width: 9px;
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  background: url(./images/openblk.svg) no-repeat;
+  background-size: contain;
+}

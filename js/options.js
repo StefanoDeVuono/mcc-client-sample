@@ -165,6 +165,26 @@
     return $('#webphonePopup').css('visibility', 'hidden');
   });
 
+  $('#webphonePopup').on('click', '.minimize', function(e) {
+    e.preventDefault();
+    $('#webphonePopup .closable').slideUp();
+    $('#webphonePopup').animate({
+      height: '-=430px'
+    });
+    $('#webphonePopup .minimize').addClass('open');
+    return $('#webphonePopup .minimize').removeClass('minimize');
+  });
+
+  $('#webphonePopup').on('click', '.open', function(e) {
+    e.preventDefault();
+    $('#webphonePopup .closable').slideDown();
+    $('#webphonePopup').animate({
+      height: '+=430px'
+    });
+    $('#webphonePopup .open').addClass('minimize');
+    return $('#webphonePopup .open').removeClass('open');
+  });
+
   $('#alert, #webphonePopup, #settingsPopup').drags();
 
 }).call(this);

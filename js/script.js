@@ -174,9 +174,9 @@
       element = _ref[_i];
       row += '<tr>';
       if ($('#activeResourcesTable th.col1').is(':hidden')) {
-        row += '<td class="col col1">' + element['user'] + '<span class="thingamajig" data-user="' + element['user'] + '" data-campaign="' + element['campaign'] + '" data-in-group=' + element['in-group'] + '>' + '<a href="/Reports/tabs.php?userid=' + element['user'] + '" target="_blank" class="reportlink"></a>' + '<a href="#" class="grouplink"></a>' + '<a href="/vicidial/user_status.php?user=' + element['userid'] + '" class="permissionlink"></a>' + '</span></td>';
+        row += '<td class="col col1">' + element['user'] + '<span class="thingamajig" data-user="' + element['user'] + '" data-campaign="' + element['campaign'] + '" data-in-group=' + element['in-group'] + '>' + '<a href="/Reports/tabs.php?userid=' + element['user'] + '" target="_blank" class="reportlink"></a>' + '<a href="#" class="grouplink"></a>' + '<a href="/vicidial/user_status.php?user=' + element['userid'] + '" target="_blank" class="permissionlink"></a>' + '</span></td>';
       } else {
-        row += '<td class="col col1">' + element['user'] + '<span class="thingamajig" data-user="' + element['user'] + '" data-campaign="' + element['campaign'] + '" data-in-group=' + element['in-group'] + '>' + '<a href="/Reports/tabs.php?userid=' + element['user'] + '" target="_blank" class="reportlink"></a>' + '<a href="#" class="grouplink"></a>' + '<a href="/vicidial/user_status.php?user=' + element['userid'] + '" class="permissionlink"></a>' + '</span></td>';
+        row += '<td class="col col1">' + element['user'] + '<span class="thingamajig" data-user="' + element['user'] + '" data-campaign="' + element['campaign'] + '" data-in-group=' + element['in-group'] + '>' + '<a href="/Reports/tabs.php?userid=' + element['user'] + '" target="_blank" class="reportlink"></a>' + '<a href="#" class="grouplink"></a>' + '<a href="/vicidial/user_status.php?user=' + element['userid'] + '" target="_blank" class="permissionlink"></a>' + '</span></td>';
       }
       if ($('#activeResourcesTable th.col2').is(':hidden')) {
         row += '<td class="col col2" style="display: none">' + element['status'] + '</td>';
