@@ -167,7 +167,7 @@
 
   $('#webphonePopup').on('click', '.minimize', function(e) {
     e.preventDefault();
-    $('#webphonePopup .closable').slideUp();
+    $('#webphonePopup .closable').css('visibility', 'hidden');
     $('#webphonePopup').animate({
       height: '-=430px'
     });
@@ -177,7 +177,7 @@
 
   $('#webphonePopup').on('click', '.open', function(e) {
     e.preventDefault();
-    $('#webphonePopup .closable').slideDown();
+    $('#webphonePopup .closable').css('visibility', 'visible');
     $('#webphonePopup').animate({
       height: '+=430px'
     });

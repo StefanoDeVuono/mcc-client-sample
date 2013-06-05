@@ -133,6 +133,15 @@ if ( isset($_GET["eSort"]) && isset($_GET["eOrder"]) ) {
 	if ($_GET["eSort"] == 'status') {
 		$_GET["eSort"] = "CAST(status as char)";
 	}
+	if  ($_GET["eSort"] == 'contact') {
+		$_GET["eSort"] = "contacts";
+	}
+	if  ($_GET["eSort"] == 'transfer') {
+		$_GET["eSort"] = "transfers";
+	}
+	if  ($_GET["eSort"] == 'success') {
+		$_GET["eSort"] = "successes";
+	}
 	$eOrder = "order by `".$_GET["eSort"]."` ".$_GET["eOrder"];
 }
 // $test = "show tables like 'realtime';";
