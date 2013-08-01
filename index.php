@@ -3,7 +3,7 @@
 // error_reporting(E_ALL);
 // ini_set('display_errors', '1');
 
-session_start();
+//session_start();
 
 header ("Content-type: text/html; charset=utf-8");
 
@@ -18,7 +18,7 @@ $agent_paused=0; // Paused Agents
 $agent_dispo=0; // Agents in Despo
 
 //MySQL Database Connect
-include('login.php');
+//include('login.php');
 
 ?>
 
@@ -37,7 +37,7 @@ include('login.php');
 <script async src="./js/options.js"></script>
 <script async src="./js/script.js"></script>
 <!-- <script async src="./js/visualize.js"></script> -->
-<title>MCC</title>
+<title>Real-Time</title>
 </head>
 <body>
 	<?php //echo session_id(); ?>
@@ -134,6 +134,8 @@ include('login.php');
 			<header>
 				<a id="reload" href="#"></a>
 				<a class="pause" href="#"></a>
+				<a class="save">Save</a>
+				<a class="reset">Reset</a>
 				<div id="date" class="header"></div>
 				<a id="options" class="header">Options</a>
 				<a id="settings" class="header">User Settings</a>
@@ -153,6 +155,52 @@ include('login.php');
 				<a href="/vicidial/admin.php?ADD=10">Modify</a>
 				<a href="/vicidial/admin.php">Summary</a>
 			</div>
+
+
+
+
+			<form id="alertsPopup">
+			<div class="formField ifStatement">
+		  If
+			</div>
+		  <!-- <div class="leftform"> -->
+		  <div class="formField">
+		    <label for="select-field">Select Field</label>
+		    <select name="select-field" id="select-field"  class="dropdown"><option></option><option>isaBlast</option><option>ISA</option><option>7778</option><option>7779</option><option>7780</option><option>7771</option><option>299</option><option>FrankPer</option><option>Gormley</option><option>437</option><option>901</option><option>1928</option><option>1999</option><option>7373</option><option>Rago</option><option>IMS</option><option>7374</option><option>7375</option><option>7376</option><option>7377</option><option>BDLAW</option><option>Protecti</option><option>Energy_R</option><option>TextToSp</option><option>msg</option><option>BPA</option><option>BDTEST</option></select>
+		  </div>
+		  <div class="formField">
+		    <label for="select-operator">Select Operator</label>
+		    <select name="select-operator" id="select-operator" class="dropdown"><option></option><option>></option><option>=</option><option><</option></select>
+		  </div>
+		  <!-- </div>
+		  <div class="rightform">  -->
+		  <div class="formField">
+		    <label for="comparison">Enter Comparison Value</label>
+		    <input type="text" name="comparison" id="comparison">
+		  </div>
+		  <div class="formField">
+		    <label for="warning-level">Warning LEvel</label>
+		    <select id="warning-level" name="warning-level" class="dropdown">   
+		      <option></option>
+		      <option>Info</option>
+		      <option>Warning</option>
+		      <option>Urgent</option>
+		    </select>
+		  </div>
+		  <div class="formField">
+		    <a href="#" class="add-query"></a>
+		  </div>
+		  <!-- </div> -->
+		  <input type="submit" value="Submit">
+		  <a href="#" class="close" id="closeSettingsPopup"></a>
+		</form>
+
+
+
+
+
+
+
 			<form id="settingsPopup">
 					<div class="leftform">
 						<label for="select-campaigns">Select Campaigns</label>
@@ -245,8 +293,8 @@ include('login.php');
 			<div class="closable">
 				<div id="alertLogo"></div>
 				<label>3 Alerts</label>
-				<button id="alertSettings1">Select option</button>
-				<button id="alertSettings2">Select option</button>
+<!-- 				<button id="alertSettings1">Select option</button>
+ -->				<button id="alertSettings2">Select Alert Options</button>
 				<div id="onOff"></div>
 			</div>
 			<header>Alert Settings</header>
@@ -317,7 +365,6 @@ include('login.php');
 				<nav>
 					<button>View</button>
 					<form class="options">
-						<div class="thing"><input type="checkbox" class="all">All</div>
 						<div class="thing"><input type="checkbox" class="campaign">Campaign</div>
 						<div class="thing"><input type="checkbox" class="phone">Phone</div>
 						<div class="thing"><input type="checkbox" class="time">Time</div>

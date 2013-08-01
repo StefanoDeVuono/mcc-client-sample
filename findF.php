@@ -72,6 +72,8 @@ $arrayF['DIALABLE_LEADS'] = number_format(msquery($stmt, $db));
 $stmt = "select min(dial_method) from vicidial_campaigns where active='Y' $LOGallowed_campaignsSQL;";
 $arrayF['DIAL_METHOD'] = msquery($stmt, $db);
 
+$db->close();
+
 echo json_encode($arrayF);
 
 ?>
